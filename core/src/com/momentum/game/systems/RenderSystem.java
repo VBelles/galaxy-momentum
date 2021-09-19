@@ -1,6 +1,5 @@
 package com.momentum.game.systems;
 
-import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
@@ -12,8 +11,6 @@ import com.momentum.game.components.Transform;
 
 public class RenderSystem extends IteratingSystem {
 
-    private final ComponentMapper<Renderable> renderableMapper = ComponentMapper.getFor(Renderable.class);
-    private final ComponentMapper<Transform> transformMapper = ComponentMapper.getFor(Transform.class);
     private final SpriteBatch batch = new SpriteBatch();
     private final Camera camera;
 
@@ -34,8 +31,8 @@ public class RenderSystem extends IteratingSystem {
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
-        Renderable renderable = renderableMapper.get(entity);
-        Transform transform = transformMapper.get(entity);
+        Renderable renderable = Renderable.mapper.get(entity);
+        Transform transform = Transform.mapper.get(entity);
         batch.draw(renderable.texture, transform.position.x, transform.position.y);
     }
 

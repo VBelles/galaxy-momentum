@@ -6,6 +6,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.momentum.game.components.Collider;
 import com.momentum.game.components.Player;
 import com.momentum.game.components.Renderable;
 import com.momentum.game.components.Transform;
@@ -38,8 +39,19 @@ public class Game extends ApplicationAdapter {
                         .setTexture(new TextureRegion(resources.get(resources.player)))
                 )
                 .add(engine.createComponent(Player.class)
-                        .setSpeed(50)
+                        .setSpeed(100)
                 )
+        );
+
+
+        engine.addEntity(new Entity()
+                .add(engine.createComponent(Transform.class)
+                        .setPosition(400, 400)
+                )
+                .add(engine.createComponent(Renderable.class)
+                        .setTexture(new TextureRegion(resources.get(resources.player)))
+                )
+                .add(engine.createComponent(Collider.class))
         );
     }
 
