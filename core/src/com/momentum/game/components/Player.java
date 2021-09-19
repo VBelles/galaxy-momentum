@@ -8,11 +8,15 @@ public class Player implements Component, Pool.Poolable {
 
     public Vector2 direction = new Vector2();
     public float speed;
+    public Vector2 startDrag = new Vector2();
+    public boolean dragging = false;
 
     @Override
     public void reset() {
         direction.setZero();
         speed = 0f;
+        startDrag.setZero();
+        dragging = false;
     }
 
     public Player setDirection(float x, float y) {

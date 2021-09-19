@@ -26,7 +26,7 @@ public class Game extends ApplicationAdapter {
         camera = new OrthographicCamera();
         engine = new PooledEngine();
 
-        engine.addSystem(new PlayerSystem());
+        engine.addSystem(new PlayerSystem(camera));
         engine.addSystem(new RenderSystem(camera));
 
         engine.addEntity(new Entity()
