@@ -43,22 +43,51 @@ public class PlayerSystem extends EntitySystem {
         Transform transform = Transform.mapper.get(entity);
         Renderable renderable = Renderable.mapper.get(entity);
 
-        // Process drag action
-        if (Gdx.input.justTouched()) {
-            Vector3 worldCoordinates = getWorldInputCoordinates();
-            player.startDrag.set(worldCoordinates.x, worldCoordinates.y);
-            player.dragging = true;
-        } else if (!Gdx.input.isTouched() && player.dragging) {
-            Vector3 worldCoordinates = getWorldInputCoordinates();
-            player.direction
-                    .set(player.startDrag)
-                    .sub(worldCoordinates.x, worldCoordinates.y)
-                    .nor();
-            player.dragging = false;
+        // -------------- Dani --------------
+        player.setAcceleration(Vector2.Zero);
+
+        if (Gdx.input.isTouched()) {
+            Vector3 worldCoordinates = getWorldInputCoordinates();//can we cast to Vector2 directly?
+            //pick pull acceleration from another object
+            float pullAccelerationModule = 3;
+            //foreach pull point (maybe we only have 1... probably)
+            //I can't do Vector2 - Vector2?
+            Vector2 pullDirection = new Vector2(
+                    worldCoordinates.x - transform.position.x,
+                    worldCoordinates.y - transform.position.y
+            );
+            pullDirection.nor();
+            Vector2 newAcceleration = new Vector2(
+                    player.acceleration.x + pullDirection.x * pullAccelerationModule,
+                    player.acceleration.y + pullDirection.y * pullAccelerationModule
+            );
+
+            player.setAcceleration(newAcceleration);
         }
 
-        // Calculate position increment
-        Vector2 delta = player.direction.cpy().scl(player.speed * deltaTime);
+        Vector2 deltaMovement = new Vector2(
+                (player.velocity.x + ((0.5f) * player.acceleration.x * deltaTime)) * deltaTime,
+                (player.velocity.y + ((0.5f) * player.acceleration.y * deltaTime)) * deltaTime
+        );
+        //---------------------------------------------
+
+
+//            // Process drag action
+//        if (Gdx.input.justTouched()) {
+//            Vector3 worldCoordinates = getWorldInputCoordinates();
+//            player.startDrag.set(worldCoordinates.x, worldCoordinates.y);
+//            player.dragging = true;
+//        } else if (!Gdx.input.isTouched() && player.dragging) {
+//            Vector3 worldCoordinates = getWorldInputCoordinates();
+//            player.direction
+//                    .set(player.startDrag)
+//                    .sub(worldCoordinates.x, worldCoordinates.y)
+//                    .nor();
+//            player.dragging = false;
+//        }
+//
+//        // Calculate position increment
+//        Vector2 deltaMovement = player.direction.cpy().scl(player.speed * deltaTime);
 
         // Check collision
         Rectangle playerBounds = new Rectangle(transform.position.x, transform.position.y,
@@ -68,13 +97,21 @@ public class PlayerSystem extends EntitySystem {
             Renderable colRenderable = Renderable.mapper.get(collider);
             Rectangle colliderBounds = new Rectangle(colTransform.position.x, colTransform.position.y,
                     colRenderable.texture.getRegionWidth(), colRenderable.texture.getRegionHeight());
-            if (collides(delta, playerBounds, colliderBounds)) {
+            if (collides(deltaMovement, playerBounds, colliderBounds)) {
                 System.out.println("Collision!");
-                player.direction.setZero();
+                //player.direction.setZero();
+                //Dani: should only affect the velocity in the axis of the collision normal
+                player.setVelocity(Vector2.Zero);//-------Dani----------
             }
         }
 
-        transform.position.mulAdd(delta, player.speed * deltaTime);
+        //transform.position.mulAdd(deltaMovement, player.speed * deltaTime);
+
+        //------------ Dani -----------------
+        transform.position.add(deltaMovement);//not counting collision yet
+
+        //Dani: set velocity for next frame
+        player.setVelocity(player.velocity.add(player.velocity.scl(deltaTime)));
     }
 
     private Vector3 getWorldInputCoordinates() {

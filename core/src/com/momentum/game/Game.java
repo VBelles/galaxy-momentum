@@ -6,6 +6,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.momentum.game.components.Collider;
 import com.momentum.game.components.Player;
 import com.momentum.game.components.Renderable;
@@ -39,7 +40,8 @@ public class Game extends ApplicationAdapter {
                         .setTexture(new TextureRegion(resources.get(resources.player)))
                 )
                 .add(engine.createComponent(Player.class)
-                        .setSpeed(100)
+                        //.setSpeed(100)
+                        .setVelocity(new Vector2(3, 3))
                 )
         );
 
