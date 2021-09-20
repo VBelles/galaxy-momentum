@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.dongbat.jbump.CollisionFilter;
 import com.dongbat.jbump.Rect;
+import com.dongbat.jbump.Response;
 import com.dongbat.jbump.World;
 import com.momentum.game.components.Collider;
 import com.momentum.game.components.Player;
@@ -18,7 +19,6 @@ public class PlayerSystem extends IteratingSystem {
 
     private final Camera camera;
     private final World<Entity> world;
-    private Iterable<Entity> players;
 
     public PlayerSystem(Camera camera, World<Entity> world) {
         super(Family.all(Player.class, Transform.class, Collider.class).get());
@@ -51,7 +51,12 @@ public class PlayerSystem extends IteratingSystem {
         transform.position.mulAdd(delta, player.speed * deltaTime);
 
         // Try to move in world (checks collision with other collides)
-        world.move(collider.item, transform.position.x, transform.position.y, CollisionFilter.defaultFilter);
+        Response.Result result = world.move(collider.item, transform.position.x, transform.position.y,
+                CollisionFilter.defaultFilter);
+
+        if (!result.projectedCollisions.isEmpty()) {
+            player.direction.setZero();
+        }
 
         // Update transform position given world position
         Rect rect = world.getRect(collider.item);

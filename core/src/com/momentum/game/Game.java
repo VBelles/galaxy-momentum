@@ -6,6 +6,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.dongbat.jbump.World;
 import com.momentum.game.components.Collider;
 import com.momentum.game.components.Player;
@@ -18,7 +19,7 @@ import com.momentum.game.systems.RenderSystem;
 
 public class Game extends ApplicationAdapter {
 
-    private static final float CAMERA_WIDTH = 800F;
+    private static final float CAMERA_WIDTH = 768F;
     private OrthographicCamera camera;
     private PooledEngine engine;
     private World<Entity> world;
@@ -35,9 +36,13 @@ public class Game extends ApplicationAdapter {
         engine.addSystem(new PhysicsSystem(world));
         engine.addSystem(new RenderSystem(camera));
 
+
+        TiledMap map = resources.get(resources.map);
+        MapLoader.load(map, engine);
+
         engine.addEntity(new Entity()
                 .add(engine.createComponent(Transform.class)
-                        .setPosition(0, 0)
+                        .setPosition(50, 50)
                         .setAngle(0)
                 )
                 .add(engine.createComponent(Renderable.class)
@@ -45,19 +50,6 @@ public class Game extends ApplicationAdapter {
                 )
                 .add(engine.createComponent(Player.class)
                         .setSpeed(100)
-                )
-                .add(engine.createComponent(Collider.class)
-                        .setWidth(resources.get(resources.player).getWidth())
-                        .setHeight(resources.get(resources.player).getHeight())
-                )
-        );
-
-        engine.addEntity(new Entity()
-                .add(engine.createComponent(Transform.class)
-                        .setPosition(400, 400)
-                )
-                .add(engine.createComponent(Renderable.class)
-                        .setTexture(new TextureRegion(resources.get(resources.player)))
                 )
                 .add(engine.createComponent(Collider.class)
                         .setWidth(resources.get(resources.player).getWidth())
