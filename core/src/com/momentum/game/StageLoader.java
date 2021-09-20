@@ -32,7 +32,15 @@ public class StageLoader {
             // Find spawn
             MapObject spawn = layer.getObjects().get("spawn");
             if (spawn instanceof TiledMapTileMapObject) {
-                buildPlayerEntity(engine, resources, ((TiledMapTileMapObject) spawn).getX(), ((TiledMapTileMapObject) spawn).getY());
+                buildPlayerEntity(engine, resources, ((TiledMapTileMapObject) spawn).getX(),
+                        ((TiledMapTileMapObject) spawn).getY(), level);
+            }
+
+            // Find goal
+            MapObject goal = layer.getObjects().get("goal");
+            if (goal instanceof TiledMapTileMapObject) {
+                buildGoalEntity(engine, resources, ((TiledMapTileMapObject) goal).getX(),
+                        ((TiledMapTileMapObject) goal).getY(), level);
             }
         }
     }
@@ -57,7 +65,7 @@ public class StageLoader {
         engine.addEntity(entity);
     }
 
-    private static void buildPlayerEntity(Engine engine, Resources resources, float x, float y) {
+    private static void buildPlayerEntity(Engine engine, Resources resources, float x, float y, int level) {
         engine.addEntity(new Entity()
                 .add(engine.createComponent(Transform.class)
                         .setPosition(x, y)
@@ -71,6 +79,28 @@ public class StageLoader {
                 .add(engine.createComponent(Collider.class)
                         .setWidth(resources.get(resources.player).getWidth())
                         .setHeight(resources.get(resources.player).getHeight())
+                ).add(engine.createComponent(Tag.class)
+                        .addTag(level)
+                )
+        );
+    }
+
+    private static void buildGoalEntity(Engine engine, Resources resources, float x, float y, int level) {
+        engine.addEntity(new Entity()
+                .add(engine.createComponent(Transform.class)
+                        .setPosition(x, y)
+                )
+                .add(engine.createComponent(Renderable.class)
+                        .setTexture(new TextureRegion(resources.get(resources.player)))
+                )
+                .add(engine.createComponent(Goal.class))
+                .add(engine.createComponent(Collider.class)
+                        .setSensor(true)
+                        .setWidth(resources.get(resources.player).getWidth())
+                        .setHeight(resources.get(resources.player).getHeight())
+                )
+                .add(engine.createComponent(Tag.class)
+                        .addTag(level)
                 )
         );
     }

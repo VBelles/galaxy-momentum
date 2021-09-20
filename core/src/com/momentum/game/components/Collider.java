@@ -9,11 +9,15 @@ import com.dongbat.jbump.Item;
 public class Collider implements Component, Pool.Poolable {
 
     public Item<Entity> item;
-    public float width, height;
+    public float width = 0, height = 0;
+    public boolean isSensor = false;
 
     @Override
     public void reset() {
         item = null;
+        width = 0;
+        height = 0;
+        isSensor = false;
     }
 
     public Collider setWidth(float width) {
@@ -26,6 +30,10 @@ public class Collider implements Component, Pool.Poolable {
         return this;
     }
 
+    public Collider setSensor(boolean sensor) {
+        isSensor = sensor;
+        return this;
+    }
 
     public static final ComponentMapper<Collider> mapper = ComponentMapper.getFor(Collider.class);
 }

@@ -8,5 +8,6 @@
 	<extend-configuration-property name="gdx.reflect.include" value="com.momentum.game.components.Collider" />
 	<extend-configuration-property name="gdx.reflect.include" value="com.momentum.game.components.Stage" />
 	<extend-configuration-property name="gdx.reflect.include" value="com.momentum.game.components.Tag" />
+	<extend-configuration-property name="gdx.reflect.include" value="com.momentum.game.components.Goal" />
 	<inherits name="com.dongbat.jbump" />
 </module>

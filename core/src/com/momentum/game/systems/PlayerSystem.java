@@ -7,11 +7,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.dongbat.jbump.CollisionFilter;
+import com.dongbat.jbump.Item;
 import com.dongbat.jbump.Rect;
 import com.dongbat.jbump.Response;
 import com.dongbat.jbump.World;
+import com.momentum.game.DefaultFilter;
 import com.momentum.game.components.Collider;
+import com.momentum.game.components.Goal;
 import com.momentum.game.components.Player;
 import com.momentum.game.components.Transform;
 
@@ -52,10 +54,16 @@ public class PlayerSystem extends IteratingSystem {
 
         // Try to move in world (checks collision with other collides)
         Response.Result result = world.move(collider.item, transform.position.x, transform.position.y,
-                CollisionFilter.defaultFilter);
+                DefaultFilter.instance);
 
         if (!result.projectedCollisions.isEmpty()) {
-            player.direction.setZero();
+            for (@SuppressWarnings("rawtypes") Item item : result.projectedCollisions.others) {
+                Entity collidedEntity = ((Entity) item.userData);
+                Goal goal = Goal.mapper.get(collidedEntity);
+                if (goal != null) {
+                    goal.achieved = true;
+                }
+            }
         }
 
         // Update transform position given world position
