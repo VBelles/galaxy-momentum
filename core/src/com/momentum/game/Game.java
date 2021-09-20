@@ -15,6 +15,7 @@ import com.momentum.game.components.Transform;
 import com.momentum.game.resources.Resources;
 import com.momentum.game.systems.PhysicsSystem;
 import com.momentum.game.systems.PlayerSystem;
+import com.momentum.game.systems.RenderDebugSystem;
 import com.momentum.game.systems.RenderSystem;
 
 public class Game extends ApplicationAdapter {
@@ -35,6 +36,7 @@ public class Game extends ApplicationAdapter {
         engine.addSystem(new PlayerSystem(camera, world));
         engine.addSystem(new PhysicsSystem(world));
         engine.addSystem(new RenderSystem(camera));
+        engine.addSystem(new RenderDebugSystem(camera));
 
 
         TiledMap map = resources.get(resources.map);
