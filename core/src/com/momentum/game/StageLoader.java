@@ -4,7 +4,6 @@ import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapLayer;
-import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
@@ -30,17 +29,15 @@ public class StageLoader {
             }
 
             // Find spawn
-            MapObject spawn = layer.getObjects().get("spawn");
-            if (spawn instanceof TiledMapTileMapObject) {
-                buildPlayerEntity(engine, resources, ((TiledMapTileMapObject) spawn).getX(),
-                        ((TiledMapTileMapObject) spawn).getY(), level);
+            TiledMapTileMapObject spawn = (TiledMapTileMapObject) layer.getObjects().get("spawn");
+            if (spawn != null) {
+                buildPlayerEntity(engine, resources, spawn.getX(), spawn.getY(), level);
             }
 
             // Find goal
-            MapObject goal = layer.getObjects().get("goal");
-            if (goal instanceof TiledMapTileMapObject) {
-                buildGoalEntity(engine, resources, ((TiledMapTileMapObject) goal).getX(),
-                        ((TiledMapTileMapObject) goal).getY(), level);
+            TiledMapTileMapObject goal = (TiledMapTileMapObject) layer.getObjects().get("goal");
+            if (goal != null) {
+                buildGoalEntity(engine, resources, goal.getX(), goal.getY(), level);
             }
         }
     }
