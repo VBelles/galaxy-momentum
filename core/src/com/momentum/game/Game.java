@@ -5,21 +5,17 @@ import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
-import com.momentum.game.components.Collider;
-import com.momentum.game.components.Player;
-import com.momentum.game.components.Renderable;
-import com.momentum.game.components.Transform;
+import com.dongbat.jbump.World;
+import com.momentum.game.components.Stage;
 import com.momentum.game.resources.Resources;
-import com.momentum.game.systems.PlayerSystem;
-import com.momentum.game.systems.RenderSystem;
+import com.momentum.game.systems.*;
 
 public class Game extends ApplicationAdapter {
 
-    private static final float CAMERA_WIDTH = 800F;
-    OrthographicCamera camera;
-    PooledEngine engine;
+    private static final float CAMERA_WIDTH = 768F;
+    private OrthographicCamera camera;
+    private PooledEngine engine;
+    private World<Entity> world;
 
     @Override
     public void create() {
@@ -27,34 +23,15 @@ public class Game extends ApplicationAdapter {
         resources.finishLoading();
         camera = new OrthographicCamera();
         engine = new PooledEngine();
+        world = new World<>();
 
-        engine.addSystem(new PlayerSystem(camera));
+        engine.addSystem(new PlayerSystem(camera, world));
+        engine.addSystem(new StageSystem(resources));
+        engine.addSystem(new PhysicsSystem(world));
         engine.addSystem(new RenderSystem(camera));
+        engine.addSystem(new RenderDebugSystem(camera));
 
-        engine.addEntity(new Entity()
-                .add(engine.createComponent(Transform.class)
-                        .setPosition(0, 0)
-                        .setAngle(0)
-                )
-                .add(engine.createComponent(Renderable.class)
-                        .setTexture(new TextureRegion(resources.get(resources.player)))
-                )
-                .add(engine.createComponent(Player.class)
-                        //.setSpeed(100)
-                        .setVelocity(new Vector2(2, 8))
-                )
-        );
-
-
-//        engine.addEntity(new Entity()
-//                .add(engine.createComponent(Transform.class)
-//                        .setPosition(400, 400)
-//                )
-//                .add(engine.createComponent(Renderable.class)
-//                        .setTexture(new TextureRegion(resources.get(resources.player)))
-//                )
-//                .add(engine.createComponent(Collider.class))
-//        );
+        engine.addEntity(new Entity().add(engine.createComponent(Stage.class)));
     }
 
     @Override
@@ -69,6 +46,9 @@ public class Game extends ApplicationAdapter {
 
     @Override
     public void dispose() {
-
+        engine.removeAllEntities();
+        engine.removeAllEntities();
+        engine.clearPools();
+        world.reset();
     }
 }
