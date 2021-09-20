@@ -6,19 +6,22 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.dongbat.jbump.World;
 import com.momentum.game.components.Collider;
 import com.momentum.game.components.Player;
 import com.momentum.game.components.Renderable;
 import com.momentum.game.components.Transform;
 import com.momentum.game.resources.Resources;
+import com.momentum.game.systems.PhysicsSystem;
 import com.momentum.game.systems.PlayerSystem;
 import com.momentum.game.systems.RenderSystem;
 
 public class Game extends ApplicationAdapter {
 
     private static final float CAMERA_WIDTH = 800F;
-    OrthographicCamera camera;
-    PooledEngine engine;
+    private OrthographicCamera camera;
+    private PooledEngine engine;
+    private World<Entity> world;
 
     @Override
     public void create() {
@@ -26,8 +29,10 @@ public class Game extends ApplicationAdapter {
         resources.finishLoading();
         camera = new OrthographicCamera();
         engine = new PooledEngine();
+        world = new World<>();
 
-        engine.addSystem(new PlayerSystem(camera));
+        engine.addSystem(new PlayerSystem(camera, world));
+        engine.addSystem(new PhysicsSystem(world));
         engine.addSystem(new RenderSystem(camera));
 
         engine.addEntity(new Entity()
@@ -41,8 +46,11 @@ public class Game extends ApplicationAdapter {
                 .add(engine.createComponent(Player.class)
                         .setSpeed(100)
                 )
+                .add(engine.createComponent(Collider.class)
+                        .setWidth(resources.get(resources.player).getWidth())
+                        .setHeight(resources.get(resources.player).getHeight())
+                )
         );
-
 
         engine.addEntity(new Entity()
                 .add(engine.createComponent(Transform.class)
@@ -51,7 +59,10 @@ public class Game extends ApplicationAdapter {
                 .add(engine.createComponent(Renderable.class)
                         .setTexture(new TextureRegion(resources.get(resources.player)))
                 )
-                .add(engine.createComponent(Collider.class))
+                .add(engine.createComponent(Collider.class)
+                        .setWidth(resources.get(resources.player).getWidth())
+                        .setHeight(resources.get(resources.player).getHeight())
+                )
         );
     }
 
@@ -67,6 +78,9 @@ public class Game extends ApplicationAdapter {
 
     @Override
     public void dispose() {
-
+        engine.removeAllEntities();
+        engine.removeAllEntities();
+        engine.clearPools();
+        world.reset();
     }
 }
