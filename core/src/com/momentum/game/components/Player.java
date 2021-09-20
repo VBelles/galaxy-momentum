@@ -36,12 +36,12 @@ public class Player implements Component, Pool.Poolable {
 //        return this;
 //    }
 
-    public Player setVelocity(Vector2 newVelocity){
+    public Player setVelocity(Vector2 velocity){
         this.velocity = velocity;
         return this;
     }
 
-    public Player setAcceleration(Vector2 newAcceleration){
+    public Player setAcceleration(Vector2 acceleration){
         this.acceleration = acceleration;
         return this;
     }

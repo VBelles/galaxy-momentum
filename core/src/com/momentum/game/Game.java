@@ -41,20 +41,20 @@ public class Game extends ApplicationAdapter {
                 )
                 .add(engine.createComponent(Player.class)
                         //.setSpeed(100)
-                        .setVelocity(new Vector2(3, 3))
+                        .setVelocity(new Vector2(2, 8))
                 )
         );
 
 
-        engine.addEntity(new Entity()
-                .add(engine.createComponent(Transform.class)
-                        .setPosition(400, 400)
-                )
-                .add(engine.createComponent(Renderable.class)
-                        .setTexture(new TextureRegion(resources.get(resources.player)))
-                )
-                .add(engine.createComponent(Collider.class))
-        );
+//        engine.addEntity(new Entity()
+//                .add(engine.createComponent(Transform.class)
+//                        .setPosition(400, 400)
+//                )
+//                .add(engine.createComponent(Renderable.class)
+//                        .setTexture(new TextureRegion(resources.get(resources.player)))
+//                )
+//                .add(engine.createComponent(Collider.class))
+//        );
     }
 
     @Override

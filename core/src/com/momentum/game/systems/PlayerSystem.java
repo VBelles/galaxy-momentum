@@ -44,12 +44,17 @@ public class PlayerSystem extends EntitySystem {
         Renderable renderable = Renderable.mapper.get(entity);
 
         // -------------- Dani --------------
+        Vector2 deltaMovement = new Vector2(
+                (player.velocity.x + ((0.5f) * player.acceleration.x * deltaTime)) * deltaTime,
+                (player.velocity.y + ((0.5f) * player.acceleration.y * deltaTime)) * deltaTime
+        );
+
         player.setAcceleration(Vector2.Zero);
 
         if (Gdx.input.isTouched()) {
             Vector3 worldCoordinates = getWorldInputCoordinates();//can we cast to Vector2 directly?
             //pick pull acceleration from another object
-            float pullAccelerationModule = 3;
+            float pullAccelerationModule = 500;
             //foreach pull point (maybe we only have 1... probably)
             //I can't do Vector2 - Vector2?
             Vector2 pullDirection = new Vector2(
@@ -65,10 +70,7 @@ public class PlayerSystem extends EntitySystem {
             player.setAcceleration(newAcceleration);
         }
 
-        Vector2 deltaMovement = new Vector2(
-                (player.velocity.x + ((0.5f) * player.acceleration.x * deltaTime)) * deltaTime,
-                (player.velocity.y + ((0.5f) * player.acceleration.y * deltaTime)) * deltaTime
-        );
+
         //---------------------------------------------
 
 
@@ -111,7 +113,7 @@ public class PlayerSystem extends EntitySystem {
         transform.position.add(deltaMovement);//not counting collision yet
 
         //Dani: set velocity for next frame
-        player.setVelocity(player.velocity.add(player.velocity.scl(deltaTime)));
+        player.setVelocity(player.velocity.add(player.acceleration.scl(deltaTime)));
     }
 
     private Vector3 getWorldInputCoordinates() {
