@@ -22,7 +22,7 @@ public class StageLoader {
                     for (int col = 0; col < tiledLayer.getHeight(); col++) {
                         TiledMapTileLayer.Cell cell = tiledLayer.getCell(row, col);
                         if (cell != null) {
-                            buildTileEntity(engine, cell, row, col, 16, physics, level);
+                            buildTileEntity(engine, cell, row, col, ((TiledMapTileLayer) layer).getTileWidth(), physics, level);
                         }
                     }
                 }
