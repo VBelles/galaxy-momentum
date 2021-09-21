@@ -1,8 +1,10 @@
 d:assets:assets:0:application/unknown:1
 b:stage_0.tmx:stage_0-461c35bbb65e067fe20baafd08c73e7c.tmx:10002:application/unknown:1
 i:alienworld_tileset.png:alienworld_tileset-09699095d0c0d57534ee4b4ec4b32191.png:32827:image/png:1
+i:momentum.png:momentum-1b0f3af7006a80233f319af47bbf66ba.png:3844:image/png:1
 i:player.png:player-c99f73e93808e66baea8267c6ae12d04.png:148:image/png:1
 b:stage_1.tmx:stage_1-fc49b46ebf58a8f553f684984e9f8315.tmx:9162:application/unknown:1
+t:momentum.atlas:momentum-a6696f18486613d5384054f27c533531.atlas:469:application/unknown:1
 t:com/badlogic/gdx/graphics/g3d/particles/particles.fragment.glsl:particles.fragment-b90524761fdf09b0a836056d590c30b8.glsl:820:application/unknown:1
 t:com/badlogic/gdx/graphics/g3d/particles/particles.vertex.glsl:particles.vertex-f25b8b2fae10b9bfa09bfdd484923148.glsl:2886:application/unknown:1
 t:com/badlogic/gdx/graphics/g3d/shaders/default.fragment.glsl:default.fragment-e1c018bd48044c8b67c7bbc53145e540.glsl:5874:application/unknown:1
