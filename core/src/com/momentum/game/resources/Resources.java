@@ -3,7 +3,9 @@ package com.momentum.game.resources;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.utils.Disposable;
@@ -15,13 +17,19 @@ public class Resources implements Disposable {
 
     private final AssetManager assetManager = new AssetManager();
 
-    public AssetDescriptor<Texture> player = new AssetDescriptor<>("player.png", Texture.class);
-
     public List<AssetDescriptor<TiledMap>> stages = new ArrayList<>();
+
+
+    public Animation<TextureRegion> playerMove;
+    public Animation<TextureRegion> playerDead;
+    public Animation<TextureRegion> playerHit;
+
+    public TextureAtlas atlas;
+
 
     public Resources() {
         assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
-        assetManager.load(player);
+        assetManager.load("momentum.atlas", TextureAtlas.class);
         for (int i = 0; i < 2; i++) {
             stages.add(new AssetDescriptor<>("stage_" + i + ".tmx", TiledMap.class));
             assetManager.load(stages.get(i));
@@ -30,7 +38,10 @@ public class Resources implements Disposable {
 
     public void finishLoading() {
         assetManager.finishLoading();
-
+        atlas = assetManager.get("momentum.atlas", TextureAtlas.class);
+        playerMove = new Animation<TextureRegion>(0.5f, atlas.findRegions("player_move"));
+        playerDead = new Animation<TextureRegion>(0.2f, atlas.findRegions("player_dead"));
+        playerHit = new Animation<TextureRegion>(0.5f, atlas.findRegions("player_hit"));
     }
 
     public <T> T get(AssetDescriptor<T> assetDescriptor) {

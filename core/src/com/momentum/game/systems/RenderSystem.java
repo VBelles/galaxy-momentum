@@ -33,7 +33,9 @@ public class RenderSystem extends IteratingSystem {
     protected void processEntity(Entity entity, float deltaTime) {
         Renderable renderable = Renderable.mapper.get(entity);
         Transform transform = Transform.mapper.get(entity);
-        batch.draw(renderable.texture, transform.position.x, transform.position.y);
+        if(renderable.texture != null) {
+            batch.draw(renderable.texture, transform.position.x, transform.position.y);
+        }
     }
 
 

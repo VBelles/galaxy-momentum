@@ -17,7 +17,7 @@ public class PlayerSystem extends IteratingSystem {
     private final World<Entity> world;
 
     public PlayerSystem(Camera camera, World<Entity> world) {
-        super(Family.all(Player.class, Transform.class, Collider.class).get());
+        super(Family.all(Player.class, Transform.class, Collider.class, Animated.class).get());
         this.camera = camera;
         this.world = world;
     }
@@ -27,6 +27,11 @@ public class PlayerSystem extends IteratingSystem {
         Player player = Player.mapper.get(entity);
         Transform transform = Transform.mapper.get(entity);
         Collider collider = Collider.mapper.get(entity);
+        Animated animated = Animated.mapper.get(entity);
+
+        if (animated.isCurrentAnimationFinished()) {
+            animated.setCurrentAnimation(Player.STATE_MOVING);
+        }
 
         //Get movement that happened during last frame (not counting collisions)
         Vector2 deltaMovement = new Vector2(
@@ -81,6 +86,8 @@ public class PlayerSystem extends IteratingSystem {
                 Vector2 projectedVector = normal.scl(player.velocity.dot(normal));
                 Vector2 reflectedVector = player.velocity.add(projectedVector.scl(-2));
                 player.setVelocity(reflectedVector.scl(0.5f));
+
+                animated.setCurrentAnimation(Player.STATE_HIT);
             }
 
             Goal goal = Goal.mapper.get(collidedEntity);

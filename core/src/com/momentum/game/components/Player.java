@@ -7,6 +7,10 @@ import com.badlogic.gdx.utils.Pool;
 
 public class Player implements Component, Pool.Poolable {
 
+    public static final int STATE_MOVING = 0;
+    public static final int STATE_HIT = 1;
+    public static final int STATE_DEAD = 2;
+
     public Vector2 velocity = new Vector2();
     public Vector2 acceleration = new Vector2();
 
