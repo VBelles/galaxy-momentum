@@ -9,10 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.dongbat.jbump.*;
 import com.momentum.game.DefaultFilter;
-import com.momentum.game.components.Collider;
-import com.momentum.game.components.Goal;
-import com.momentum.game.components.Player;
-import com.momentum.game.components.Transform;
+import com.momentum.game.components.*;
 
 public class PlayerSystem extends IteratingSystem {
 
@@ -43,7 +40,7 @@ public class PlayerSystem extends IteratingSystem {
         //if there are gravity points the touched checks should be there
         if (Gdx.input.isTouched()) {
             Vector3 worldCoordinates = getWorldInputCoordinates();
-            float pullAccelerationMagnitude = 500 ;//TODO pick acceleration from object (getPull(Vector2 playerPos))
+            float pullAccelerationMagnitude = 500;//TODO pick acceleration from object (getPull(Vector2 playerPos))
             //MathUtils.lerp
 
             //foreach pull point (maybe we only have 1... probably)
@@ -66,7 +63,6 @@ public class PlayerSystem extends IteratingSystem {
         targetPosition.add(deltaMovement);
 
 
-
         // Try to move in world (checks collision with other collides)
         Response.Result result = world.move(collider.item, targetPosition.x, targetPosition.y,
                 DefaultFilter.instance);
@@ -84,6 +80,11 @@ public class PlayerSystem extends IteratingSystem {
                 if (goal != null && !goal.achieved) {
                     Gdx.app.log("PlayerSystem", "Goal achieved");
                     goal.achieved = true;
+                }
+                Switch aSwitch = Switch.mapper.get(collidedEntity);
+                if (aSwitch != null && !aSwitch.pressed) {
+                    Gdx.app.log("PlayerSystem", "Pressed switch");
+                    aSwitch.justPressed = true;
                 }
             }
         }

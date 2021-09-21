@@ -48,8 +48,9 @@ public class StageLoader {
                 Gdx.app.log("StageLoader", "Build goal");
             }
 
-            // Build movables
             for (MapObject object : layer.getObjects()) {
+
+                // Build movables
                 if (object.getName().startsWith("movable")) {
                     float speed = object.getProperties().get("speed", 50f, Float.class);
                     boolean cyclic;
@@ -64,6 +65,18 @@ public class StageLoader {
                         throw new IllegalStateException("Invalid movable");
                     }
                     buildMovableEntity(engine, resources, vertices, speed, cyclic, level);
+                }
+
+                // Build switches
+                if (object instanceof TiledMapTileMapObject && object.getName().startsWith("switch")) {
+                    TiledMapTileMapObject tiledObject = (TiledMapTileMapObject) object;
+                    buildSwitch(engine, tiledObject.getTextureRegion(), tiledObject.getX(), tiledObject.getY(), level, object.getName());
+                }
+
+                // Build doors
+                if (object instanceof TiledMapTileMapObject && object.getName().startsWith("door")) {
+                    TiledMapTileMapObject tiledObject = (TiledMapTileMapObject) object;
+                    buildDoor(engine, tiledObject.getTextureRegion(), tiledObject.getX(), tiledObject.getY(), level, object.getName());
                 }
             }
 
@@ -154,4 +167,49 @@ public class StageLoader {
                 .add(movable)
         );
     }
+
+    private static void buildSwitch(Engine engine, TextureRegion texture, float x, float y, int level, String name) {
+        engine.addEntity(new Entity()
+                .add(engine.createComponent(Transform.class)
+                        .setPosition(x, y)
+                )
+                .add(engine.createComponent(Renderable.class)
+                        .setTexture(texture)
+                )
+                .add(engine.createComponent(Collider.class)
+                        .setSensor(true)
+                        .setWidth(texture.getRegionWidth())
+                        .setHeight(texture.getRegionHeight())
+                )
+                .add(engine.createComponent(Tag.class)
+                        .addTag(level)
+                )
+                .add(engine.createComponent(Switch.class)
+                        .setName(name)
+                )
+        );
+    }
+
+    private static void buildDoor(Engine engine, TextureRegion texture, float x, float y, int level, String name) {
+        engine.addEntity(new Entity()
+                .add(engine.createComponent(Transform.class)
+                        .setPosition(x, y)
+                )
+                .add(engine.createComponent(Renderable.class)
+                        .setTexture(texture)
+                )
+                .add(engine.createComponent(Collider.class)
+                        .setWidth(texture.getRegionWidth())
+                        .setHeight(texture.getRegionHeight())
+                )
+                .add(engine.createComponent(Tag.class)
+                        .addTag(level)
+                )
+                .add(engine.createComponent(Door.class)
+                        .setName(name)
+                )
+        );
+    }
+
+
 }
