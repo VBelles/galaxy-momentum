@@ -2,6 +2,7 @@ package com.momentum.game;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.Family;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapLayer;
@@ -74,6 +75,13 @@ public class StageLoader {
                     buildSwitch(engine, tiledObject.getTextureRegion(), tiledObject.getX(), tiledObject.getY(), level, object.getName());
                 }
 
+                // Build Gravity Field
+                if (object instanceof TiledMapTileMapObject && object.getName().startsWith("gravity")) {
+                    TiledMapTileMapObject tiledObject = (TiledMapTileMapObject) object;
+                    boolean constant = tiledObject.getProperties().get("constant", false, Boolean.class);
+                    buildGravityField(engine, resources, tiledObject.getX(), tiledObject.getY(), constant, level);
+                }
+
                 // Build doors
                 if (object instanceof TiledMapTileMapObject && object.getName().startsWith("door")) {
                     TiledMapTileMapObject tiledObject = (TiledMapTileMapObject) object;
@@ -82,6 +90,15 @@ public class StageLoader {
             }
 
         }
+//        Iterable<Entity> gravityFieldEntities;
+//        gravityFieldEntities = engine.getEntitiesFor(Family.all(GravityField.class).get());
+//        for (Entity gravityFieldEntity : gravityFieldEntities) {
+//            GravityField field = GravityField.mapper.get(gravityFieldEntity);
+//            if(field.constantField){
+//                gravityFieldEntity.add(engine.createComponent(Killer.class));
+//            }
+//        }
+        System.out.print("aquí sí arriba però no a lo de dalt");
     }
 
     private static void buildTileEntity(Engine engine, TiledMapTileLayer.Cell cell, int row, int column, int size,
@@ -197,6 +214,37 @@ public class StageLoader {
         );
     }
 
+    private static void buildGravityField(Engine engine, Resources resources, float x, float y, boolean constant, int level){
+
+        TextureRegion tex = constant ? resources.playerDead.getKeyFrame(0) : resources.playerMove.getKeyFrame(0);
+        float minPull = constant ? 0 : 300;
+        float maxPull = constant ? 400 : 500;
+
+        engine.addEntity(new Entity()
+                .add(engine.createComponent(Transform.class)
+                        .setPosition(x, y)
+                )
+                .add(engine.createComponent(Renderable.class)
+                        .setTexture(tex)
+                )
+                .add(engine.createComponent(Collider.class)
+                        .setSensor(true)
+                        .setWidth(tex.getRegionWidth())
+                        .setHeight(tex.getRegionHeight())
+                )
+                .add(engine.createComponent(Tag.class)
+                        .addTag(level)
+                )
+                .add(engine.createComponent(GravityField.class)
+                        .setConstantField(constant)
+                        .setMinPull(minPull)
+                        .setMaxPull(maxPull)
+                )
+        );
+
+    }
+
+
     private static void buildDoor(Engine engine, TextureRegion texture, float x, float y, int level, String name) {
         engine.addEntity(new Entity()
                 .add(engine.createComponent(Transform.class)
@@ -219,4 +267,4 @@ public class StageLoader {
     }
 
 
-}
+    }

@@ -18,6 +18,7 @@ public class PlayerSystem extends IteratingSystem {
     private final Camera camera;
     private final World<Entity> world;
     private Iterable<Entity> stageEntity;
+    private Iterable<Entity> gravityFieldEntities;
 
     public PlayerSystem(Camera camera, World<Entity> world) {
         super(Family.all(Player.class, Transform.class, Collider.class, Animated.class, Renderable.class).get());
@@ -29,6 +30,7 @@ public class PlayerSystem extends IteratingSystem {
     public void addedToEngine(Engine engine) {
         super.addedToEngine(engine);
         stageEntity = engine.getEntitiesFor(Family.all(Stage.class).get());
+        gravityFieldEntities = engine.getEntitiesFor(Family.all(GravityField.class).get());
     }
 
     @Override
@@ -52,19 +54,56 @@ public class PlayerSystem extends IteratingSystem {
         //reset acceleration
         player.setAcceleration(Vector2.Zero);
 
-        //if there are gravity points the touched checks should be there
-        if (Gdx.input.isTouched()) {
-            Vector3 worldCoordinates = getWorldInputCoordinates();
-            float pullAccelerationMagnitude = 500;//TODO pick acceleration from object (getPull(Vector2 playerPos))
-            //MathUtils.lerp
+        boolean isClicking = Gdx.input.isTouched();//cached
 
-            //foreach pull point (maybe we only have 1... probably)
+        //for each pull point we add the accelerations it generates on the player
+        for (Entity gravityFieldEntity : gravityFieldEntities) {
+            GravityField field = GravityField.mapper.get(gravityFieldEntity);
+            Collider fieldCollider = Collider.mapper.get(gravityFieldEntity);
+            Transform fieldTransform = Transform.mapper.get(gravityFieldEntity);
+
+            //only have to check click if it's not constant and the player is clicking
+            if (field.constantField == false)
+            {
+                if(isClicking == true) {
+                    //we check if the player is clicking on the collider
+                    Vector3 worldCoordinates = getWorldInputCoordinates();
+                    if(worldCoordinates.x >= fieldTransform.position.x - collider.width/2
+                            && worldCoordinates.x <= fieldTransform.position.x + collider.width/2
+                            && worldCoordinates.y >= fieldTransform.position.y - collider.height/2
+                            && worldCoordinates.y <= fieldTransform.position.y + collider.height/2
+                    ){
+                        field.active = true;
+                    }
+                    else{
+                        field.active = false;
+                    }
+                }else{
+                    field.active = false;
+                }
+
+            }
+            //only has pull if active or constant field (always active)
+            if(field.active == false && field.constantField == false) continue;
+
+
+            //calculate direction of the pull
             Vector2 pullDirection = new Vector2(
-                    worldCoordinates.x - transform.position.x,
-                    worldCoordinates.y - transform.position.y
+                    fieldTransform.position.x - transform.position.x,
+                    fieldTransform.position.y - transform.position.y
             );
-
+            float distance = pullDirection.len();
             pullDirection.nor();
+
+            //calculate magnitude of the pull
+            float pullAccelerationMagnitude = field.maxPull;
+            if(field.constantField){
+                float maxAffectedDistance = 300;
+                float progress =
+                        MathUtils.clamp(distance*distance, 0, maxAffectedDistance*maxAffectedDistance)
+                                / (maxAffectedDistance * maxAffectedDistance);
+                pullAccelerationMagnitude = MathUtils.lerp(field.maxPull, field.minPull, progress);
+            }
 
             Vector2 newAcceleration = new Vector2(
                     player.acceleration.x + pullDirection.x * pullAccelerationMagnitude,
@@ -72,7 +111,9 @@ public class PlayerSystem extends IteratingSystem {
             );
 
             player.setAcceleration(newAcceleration);
+
         }
+
 
         Vector2 targetPosition = transform.position;
         Vector2 previousPosition = targetPosition.cpy();
@@ -96,10 +137,15 @@ public class PlayerSystem extends IteratingSystem {
                 IntPoint normalIntPoint = collision.normal;
                 Vector2 normal = new Vector2(normalIntPoint.x, normalIntPoint.y);
                 Vector2 projectedVector = normal.scl(player.velocity.dot(normal));
-                Vector2 reflectedVector = player.velocity.add(projectedVector.scl(-2));
-                player.setVelocity(reflectedVector.scl(0.5f));
+                Vector2 reflectedVector = projectedVector.scl(-2).add(player.velocity);
+                if(reflectedVector.len() > 30){
+                    reflectedVector.scl(0.5f);//magic number for elasticity
+                    animated.setCurrentAnimation(Player.STATE_HIT);
+                }else{
+                    reflectedVector.scl(0.8f);//magic number for elasticity
+                }
 
-                animated.setCurrentAnimation(Player.STATE_HIT);
+                player.setVelocity(reflectedVector);
             }
 
             Goal goal = Goal.mapper.get(collidedEntity);
@@ -125,7 +171,7 @@ public class PlayerSystem extends IteratingSystem {
         transform.position.set(rect.x, rect.y);
 
         //set velocity for next frame
-        player.setVelocity(player.velocity.add(player.acceleration.scl(deltaTime)));
+        player.velocity.mulAdd(player.acceleration, deltaTime);
     }
 
     private Vector3 getWorldInputCoordinates() {

@@ -16,15 +16,15 @@ public class GravityField implements Component, Pool.Poolable {
     public float minPull = 200;// lerped from min to max depending on distance
     public float maxPull = 500;
 
-    private boolean active = false;// set by clicking on it unless constant field
+    public boolean active = false;// set by clicking on it unless constant field
 
     public GravityField setConstantField(boolean constantField) {
         this.constantField = constantField;
         return this;
     }
 
-    public GravityField setToggleable(boolean toggleable) {
-        this.toggleable = toggleable;
+    public GravityField setMinPull(float minPull) {
+        this.minPull = minPull;
         return this;
     }
 
@@ -39,10 +39,6 @@ public class GravityField implements Component, Pool.Poolable {
         toggleable = false;
         active = false;
         maxPull = 500;
-    }
-
-    public float getPull(){
-        return maxPull;
     }
 
     public static final ComponentMapper<GravityField> mapper = ComponentMapper.getFor(GravityField.class);
