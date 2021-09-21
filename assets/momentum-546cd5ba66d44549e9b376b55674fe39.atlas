@@ -1,0 +1,41 @@
+
+momentum.png
+size: 128,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+enemy
+  rotate: false
+  xy: 48, 43
+  size: 42, 40
+  orig: 42, 40
+  offset: 0, 0
+  index: -1
+player_dead
+  rotate: false
+  xy: 47, 2
+  size: 36, 39
+  orig: 36, 39
+  offset: 0, 0
+  index: -1
+player_hit
+  rotate: false
+  xy: 48, 85
+  size: 49, 36
+  orig: 49, 36
+  offset: 0, 0
+  index: -1
+player_move
+  rotate: false
+  xy: 2, 79
+  size: 44, 42
+  orig: 44, 42
+  offset: 0, 0
+  index: 1
+player_move
+  rotate: false
+  xy: 2, 36
+  size: 43, 41
+  orig: 43, 41
+  offset: 0, 0
+  index: 2
