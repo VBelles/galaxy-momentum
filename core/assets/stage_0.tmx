@@ -74,7 +74,7 @@
  <objectgroup id="3" name="objects">
   <object id="1" name="spawn" gid="170" x="480" y="80" width="16" height="16"/>
   <object id="2" name="goal" gid="59" x="128" y="224" width="16" height="16"/>
-  <object id="13" name="movable_1" x="432" y="336">
+  <object id="13" name="movable_1" x="432" y="352">
    <polyline points="0,0 0,48"/>
   </object>
   <object id="14" name="movable_2" x="512" y="352">

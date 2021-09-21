@@ -23,6 +23,7 @@ public class Resources implements Disposable {
     public Animation<TextureRegion> playerMove;
     public Animation<TextureRegion> playerDead;
     public Animation<TextureRegion> playerHit;
+    public TextureRegion enemy;
 
     public TextureAtlas atlas;
 
@@ -42,6 +43,7 @@ public class Resources implements Disposable {
         playerMove = new Animation<TextureRegion>(0.5f, atlas.findRegions("player_move"));
         playerDead = new Animation<TextureRegion>(0.2f, atlas.findRegions("player_dead"));
         playerHit = new Animation<TextureRegion>(0.5f, atlas.findRegions("player_hit"));
+        enemy = atlas.findRegion("enemy");
     }
 
     public <T> T get(AssetDescriptor<T> assetDescriptor) {
