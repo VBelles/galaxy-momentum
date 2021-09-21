@@ -81,7 +81,8 @@ public class PlayerSystem extends IteratingSystem {
             for (@SuppressWarnings("rawtypes") Item item : result.projectedCollisions.others) {
                 Entity collidedEntity = ((Entity) item.userData);
                 Goal goal = Goal.mapper.get(collidedEntity);
-                if (goal != null) {
+                if (goal != null && !goal.achieved) {
+                    Gdx.app.log("PlayerSystem", "Goal achieved");
                     goal.achieved = true;
                 }
             }

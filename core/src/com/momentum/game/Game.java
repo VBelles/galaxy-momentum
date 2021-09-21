@@ -26,9 +26,9 @@ public class Game extends ApplicationAdapter {
         world = new World<>();
 
         engine.addSystem(new PhysicsSystem(world));
+        engine.addSystem(new MovableSystem(world));
         engine.addSystem(new PlayerSystem(camera, world));
         engine.addSystem(new StageSystem(resources));
-        engine.addSystem(new MovableSystem(world));
         engine.addSystem(new RenderSystem(camera));
         engine.addSystem(new RenderDebugSystem(camera));
 

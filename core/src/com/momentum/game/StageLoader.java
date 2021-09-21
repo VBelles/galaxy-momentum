@@ -2,6 +2,7 @@ package com.momentum.game;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
@@ -17,6 +18,7 @@ import com.momentum.game.resources.Resources;
 public class StageLoader {
 
     public static void load(Engine engine, Resources resources, int level) {
+        Gdx.app.log("StageLoader", "Load level " + level);
         TiledMap map = resources.get(resources.stages.get(level));
         for (MapLayer layer : map.getLayers()) {
             if (layer instanceof TiledMapTileLayer) {
@@ -35,6 +37,7 @@ public class StageLoader {
             // Find spawn
             TiledMapTileMapObject spawn = (TiledMapTileMapObject) layer.getObjects().get("spawn");
             if (spawn != null) {
+                Gdx.app.log("StageLoader", "Build spawn");
                 buildPlayerEntity(engine, resources, spawn.getX(), spawn.getY(), level);
             }
 
@@ -42,6 +45,7 @@ public class StageLoader {
             TiledMapTileMapObject goal = (TiledMapTileMapObject) layer.getObjects().get("goal");
             if (goal != null) {
                 buildGoalEntity(engine, resources, goal.getX(), goal.getY(), level);
+                Gdx.app.log("StageLoader", "Build goal");
             }
 
             // Build movables
@@ -140,7 +144,6 @@ public class StageLoader {
                 .add(engine.createComponent(Renderable.class)
                         .setTexture(new TextureRegion(resources.get(resources.player)))
                 )
-                .add(engine.createComponent(Goal.class))
                 .add(engine.createComponent(Collider.class)
                         .setWidth(resources.get(resources.player).getWidth())
                         .setHeight(resources.get(resources.player).getHeight())
