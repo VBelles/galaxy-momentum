@@ -4,9 +4,13 @@ import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.PolygonMapObject;
+import com.badlogic.gdx.maps.objects.PolylineMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
+import com.badlogic.gdx.math.Vector2;
 import com.momentum.game.components.*;
 import com.momentum.game.resources.Resources;
 
@@ -39,6 +43,26 @@ public class StageLoader {
             if (goal != null) {
                 buildGoalEntity(engine, resources, goal.getX(), goal.getY(), level);
             }
+
+            // Build movables
+            for (MapObject object : layer.getObjects()) {
+                if (object.getName().startsWith("movable")) {
+                    float speed = object.getProperties().get("speed", 50f, Float.class);
+                    boolean cyclic;
+                    float[] vertices;
+                    if (object instanceof PolygonMapObject) {
+                        vertices = ((PolygonMapObject) object).getPolygon().getTransformedVertices();
+                        cyclic = true;
+                    } else if (object instanceof PolylineMapObject) {
+                        vertices = ((PolylineMapObject) object).getPolyline().getTransformedVertices();
+                        cyclic = false;
+                    } else {
+                        throw new IllegalStateException("Invalid movable");
+                    }
+                    buildMovableEntity(engine, resources, vertices, speed, cyclic, level);
+                }
+            }
+
         }
     }
 
@@ -98,6 +122,33 @@ public class StageLoader {
                 .add(engine.createComponent(Tag.class)
                         .addTag(level)
                 )
+        );
+    }
+
+    private static void buildMovableEntity(Engine engine, Resources resources, float[] vertices, float speed,
+                                           boolean cyclic, int level) {
+        Movable movable = engine.createComponent(Movable.class);
+        for (int i = 0; i < vertices.length; i += 2) {
+            movable.path.add(new Vector2(vertices[i], vertices[i + 1]));
+            movable.speed = speed;
+            movable.cyclic = cyclic;
+        }
+        engine.addEntity(new Entity()
+                .add(engine.createComponent(Transform.class)
+                        .setPosition(vertices[0], vertices[1])
+                )
+                .add(engine.createComponent(Renderable.class)
+                        .setTexture(new TextureRegion(resources.get(resources.player)))
+                )
+                .add(engine.createComponent(Goal.class))
+                .add(engine.createComponent(Collider.class)
+                        .setWidth(resources.get(resources.player).getWidth())
+                        .setHeight(resources.get(resources.player).getHeight())
+                )
+                .add(engine.createComponent(Tag.class)
+                        .addTag(level)
+                )
+                .add(movable)
         );
     }
 }

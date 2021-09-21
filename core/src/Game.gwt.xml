@@ -9,5 +9,7 @@
 	<extend-configuration-property name="gdx.reflect.include" value="com.momentum.game.components.Stage" />
 	<extend-configuration-property name="gdx.reflect.include" value="com.momentum.game.components.Tag" />
 	<extend-configuration-property name="gdx.reflect.include" value="com.momentum.game.components.Goal" />
+	<extend-configuration-property name="gdx.reflect.include" value="com.momentum.game.components.GravityField" />
+	<extend-configuration-property name="gdx.reflect.include" value="com.momentum.game.components.Movable" />
 	<inherits name="com.dongbat.jbump" />
 </module>
