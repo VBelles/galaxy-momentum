@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.Pool;
 public class Stage implements Component, Pool.Poolable {
 
     public int level = -1;
+    public boolean failure = false;
 
     public Stage setLevel(int level) {
         this.level = level;
@@ -16,6 +17,7 @@ public class Stage implements Component, Pool.Poolable {
     @Override
     public void reset() {
         level = -1;
+        failure = false;
     }
 
     public static final ComponentMapper<Stage> mapper = ComponentMapper.getFor(Stage.class);

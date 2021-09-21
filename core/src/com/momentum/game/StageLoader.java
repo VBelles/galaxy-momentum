@@ -28,7 +28,8 @@ public class StageLoader {
                     for (int col = 0; col < tiledLayer.getHeight(); col++) {
                         TiledMapTileLayer.Cell cell = tiledLayer.getCell(row, col);
                         if (cell != null) {
-                            buildTileEntity(engine, cell, row, col, ((TiledMapTileLayer) layer).getTileWidth(), physics, level);
+                            boolean killer = cell.getTile().getProperties().get("killer", false, Boolean.class);
+                            buildTileEntity(engine, cell, row, col, ((TiledMapTileLayer) layer).getTileWidth(), physics, killer, level);
                         }
                     }
                 }
@@ -84,7 +85,7 @@ public class StageLoader {
     }
 
     private static void buildTileEntity(Engine engine, TiledMapTileLayer.Cell cell, int row, int column, int size,
-                                        boolean physics, int level) {
+                                        boolean physics, boolean killer, int level) {
         Entity entity = new Entity()
                 .add(engine.createComponent(Transform.class)
                         .setPosition(row * size, column * size)
@@ -99,6 +100,9 @@ public class StageLoader {
             entity.add(engine.createComponent(Collider.class)
                     .setWidth(size)
                     .setHeight(size));
+        }
+        if (killer) {
+            entity.add(engine.createComponent(Killer.class));
         }
         engine.addEntity(entity);
     }

@@ -14,5 +14,6 @@
 	<extend-configuration-property name="gdx.reflect.include" value="com.momentum.game.components.Switch" />
 	<extend-configuration-property name="gdx.reflect.include" value="com.momentum.game.components.Door" />
 	<extend-configuration-property name="gdx.reflect.include" value="com.momentum.game.components.Animated" />
+	<extend-configuration-property name="gdx.reflect.include" value="com.momentum.game.components.Killer" />
 	<inherits name="com.dongbat.jbump" />
 </module>

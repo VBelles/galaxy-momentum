@@ -1,5 +1,6 @@
 package com.momentum.game.systems;
 
+import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
@@ -16,11 +17,18 @@ public class PlayerSystem extends IteratingSystem {
 
     private final Camera camera;
     private final World<Entity> world;
+    private Iterable<Entity> stageEntity;
 
     public PlayerSystem(Camera camera, World<Entity> world) {
         super(Family.all(Player.class, Transform.class, Collider.class, Animated.class, Renderable.class).get());
         this.camera = camera;
         this.world = world;
+    }
+
+    @Override
+    public void addedToEngine(Engine engine) {
+        super.addedToEngine(engine);
+        stageEntity = engine.getEntitiesFor(Family.all(Stage.class).get());
     }
 
     @Override
@@ -103,6 +111,12 @@ public class PlayerSystem extends IteratingSystem {
             if (aSwitch != null && !aSwitch.pressed) {
                 Gdx.app.log("PlayerSystem", "Pressed switch");
                 aSwitch.justPressed = true;
+            }
+
+            Killer killer = Killer.mapper.get(collidedEntity);
+            if (killer != null) {
+                Stage stage = Stage.mapper.get(stageEntity.iterator().next());
+                stage.failure = true;
             }
         }
 

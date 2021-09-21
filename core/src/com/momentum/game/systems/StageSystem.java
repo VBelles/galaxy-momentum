@@ -40,6 +40,10 @@ public class StageSystem extends IteratingSystem {
             stage.level++;
             loadStage(stage.level - 1, stage.level);
         }
+        if (stage.failure) {
+            loadStage(stage.level, stage.level);
+            stage.failure = false;
+        }
     }
 
     private boolean areGoalsAchieved() {

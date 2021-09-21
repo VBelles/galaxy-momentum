@@ -2,6 +2,11 @@
 <map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="48" height="27" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="28">
  <tileset firstgid="1" name="alienworld_tileset" tilewidth="16" tileheight="16" tilecount="368" columns="16">
   <image source="alienworld_tileset.png" width="256" height="368"/>
+  <tile id="24">
+   <properties>
+    <property name="killer" type="bool" value="true"/>
+   </properties>
+  </tile>
  </tileset>
  <layer id="1" name="background" width="48" height="27">
   <properties>
