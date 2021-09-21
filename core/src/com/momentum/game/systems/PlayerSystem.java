@@ -63,29 +63,35 @@ public class PlayerSystem extends IteratingSystem {
         targetPosition.add(deltaMovement);
 
 
-        // Try to move in world (checks collision with other collides)
+        // Try to move in world (checks collision with other colliders)
         Response.Result result = world.move(collider.item, targetPosition.x, targetPosition.y,
                 DefaultFilter.instance);
-        if (!result.projectedCollisions.isEmpty()) {
 
-            IntPoint normalIntPoint = result.projectedCollisions.get(0).normal;
-            Vector2 normal = new Vector2(normalIntPoint.x, normalIntPoint.y);
-            Vector2 projectedVector = normal.scl(player.velocity.dot(normal));
-            Vector2 reflectedVector = player.velocity.add(projectedVector.scl(-2));
-            player.setVelocity(reflectedVector.scl(0.5f));//TODO material elasticity variable
+        boolean reacted = false;
+        for (int i = 0; i < result.projectedCollisions.size(); i++) {
+            Collision collision = result.projectedCollisions.get(i);
+            Entity collidedEntity = ((Entity) collision.other.userData);
+            Collider collided = Collider.mapper.get(collidedEntity);
 
-            for (@SuppressWarnings("rawtypes") Item item : result.projectedCollisions.others) {
-                Entity collidedEntity = ((Entity) item.userData);
-                Goal goal = Goal.mapper.get(collidedEntity);
-                if (goal != null && !goal.achieved) {
-                    Gdx.app.log("PlayerSystem", "Goal achieved");
-                    goal.achieved = true;
-                }
-                Switch aSwitch = Switch.mapper.get(collidedEntity);
-                if (aSwitch != null && !aSwitch.pressed) {
-                    Gdx.app.log("PlayerSystem", "Pressed switch");
-                    aSwitch.justPressed = true;
-                }
+            // Bounce against first not sensor collided
+            if (!reacted && !collided.isSensor) {
+                reacted = true;
+                IntPoint normalIntPoint = collision.normal;
+                Vector2 normal = new Vector2(normalIntPoint.x, normalIntPoint.y);
+                Vector2 projectedVector = normal.scl(player.velocity.dot(normal));
+                Vector2 reflectedVector = player.velocity.add(projectedVector.scl(-2));
+                player.setVelocity(reflectedVector.scl(0.5f));
+            }
+
+            Goal goal = Goal.mapper.get(collidedEntity);
+            if (goal != null && !goal.achieved) {
+                Gdx.app.log("PlayerSystem", "Goal achieved");
+                goal.achieved = true;
+            }
+            Switch aSwitch = Switch.mapper.get(collidedEntity);
+            if (aSwitch != null && !aSwitch.pressed) {
+                Gdx.app.log("PlayerSystem", "Pressed switch");
+                aSwitch.justPressed = true;
             }
         }
 
