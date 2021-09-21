@@ -5,6 +5,7 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.dongbat.jbump.*;
@@ -17,7 +18,7 @@ public class PlayerSystem extends IteratingSystem {
     private final World<Entity> world;
 
     public PlayerSystem(Camera camera, World<Entity> world) {
-        super(Family.all(Player.class, Transform.class, Collider.class, Animated.class).get());
+        super(Family.all(Player.class, Transform.class, Collider.class, Animated.class, Renderable.class).get());
         this.camera = camera;
         this.world = world;
     }
@@ -28,6 +29,7 @@ public class PlayerSystem extends IteratingSystem {
         Transform transform = Transform.mapper.get(entity);
         Collider collider = Collider.mapper.get(entity);
         Animated animated = Animated.mapper.get(entity);
+        Renderable renderable = Renderable.mapper.get(entity);
 
         if (animated.isCurrentAnimationFinished()) {
             animated.setCurrentAnimation(Player.STATE_MOVING);
@@ -65,8 +67,10 @@ public class PlayerSystem extends IteratingSystem {
         }
 
         Vector2 targetPosition = transform.position;
+        Vector2 previousPosition = targetPosition.cpy();
         targetPosition.add(deltaMovement);
-
+        Vector2 dir = targetPosition.cpy().sub(previousPosition).nor();
+        renderable.angle = MathUtils.atan2(dir.y, dir.x) * MathUtils.radDeg;
 
         // Try to move in world (checks collision with other colliders)
         Response.Result result = world.move(collider.item, targetPosition.x, targetPosition.y,

@@ -33,8 +33,23 @@ public class RenderSystem extends IteratingSystem {
     protected void processEntity(Entity entity, float deltaTime) {
         Renderable renderable = Renderable.mapper.get(entity);
         Transform transform = Transform.mapper.get(entity);
-        if(renderable.texture != null) {
-            batch.draw(renderable.texture, transform.position.x, transform.position.y);
+        if (renderable.texture != null) {
+            if (renderable.angle != 0f) {
+                batch.draw(renderable.texture,
+                        transform.position.x,
+                        transform.position.y,
+                        renderable.texture.getRegionWidth() / 2f,
+                        renderable.texture.getRegionHeight() / 2f,
+                        renderable.texture.getRegionWidth(),
+                        renderable.texture.getRegionHeight(),
+                        1f,
+                        1f,
+                        renderable.angle
+                );
+            } else {
+                batch.draw(renderable.texture, transform.position.x, transform.position.y);
+            }
+
         }
     }
 

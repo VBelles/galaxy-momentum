@@ -8,10 +8,12 @@ import com.badlogic.gdx.utils.Pool;
 public class Renderable implements Component, Pool.Poolable {
 
     public TextureRegion texture;
+    public float angle = 0f;
 
     @Override
     public void reset() {
         texture = null;
+        angle = 0;
     }
 
     public Renderable setTexture(TextureRegion texture) {
