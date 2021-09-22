@@ -2,7 +2,6 @@ package com.momentum.game;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
-import com.badlogic.ashley.core.Family;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapLayer;
@@ -90,15 +89,7 @@ public class StageLoader {
             }
 
         }
-//        Iterable<Entity> gravityFieldEntities;
-//        gravityFieldEntities = engine.getEntitiesFor(Family.all(GravityField.class).get());
-//        for (Entity gravityFieldEntity : gravityFieldEntities) {
-//            GravityField field = GravityField.mapper.get(gravityFieldEntity);
-//            if(field.constantField){
-//                gravityFieldEntity.add(engine.createComponent(Killer.class));
-//            }
-//        }
-        System.out.print("aquí sí arriba però no a lo de dalt");
+
     }
 
     private static void buildTileEntity(Engine engine, TiledMapTileLayer.Cell cell, int row, int column, int size,
@@ -214,13 +205,13 @@ public class StageLoader {
         );
     }
 
-    private static void buildGravityField(Engine engine, Resources resources, float x, float y, boolean constant, int level){
+    private static void buildGravityField(Engine engine, Resources resources, float x, float y, boolean constant, int level) {
 
         TextureRegion tex = constant ? resources.playerDead.getKeyFrame(0) : resources.playerMove.getKeyFrame(0);
         float minPull = constant ? 0 : 300;
         float maxPull = constant ? 400 : 500;
 
-        engine.addEntity(new Entity()
+        Entity entity = new Entity()
                 .add(engine.createComponent(Transform.class)
                         .setPosition(x, y)
                 )
@@ -239,8 +230,12 @@ public class StageLoader {
                         .setConstantField(constant)
                         .setMinPull(minPull)
                         .setMaxPull(maxPull)
-                )
-        );
+                );
+
+        if (constant) {
+            entity.add(engine.createComponent(Killer.class));
+        }
+        engine.addEntity(entity);
 
     }
 
@@ -267,4 +262,4 @@ public class StageLoader {
     }
 
 
-    }
+}
