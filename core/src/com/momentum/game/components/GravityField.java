@@ -9,10 +9,6 @@ public class GravityField implements Component, Pool.Poolable {
 
     public boolean constantField = false;// true is always pulling
 
-    // only when not constant, debug variable for testing which option is better
-    // in the final game all of them should be true or false
-    public boolean toggleable = false;
-
     public float minPull = 200;// lerped from min to max depending on distance
     public float maxPull = 500;
 
@@ -36,7 +32,6 @@ public class GravityField implements Component, Pool.Poolable {
     @Override
     public void reset() {
         constantField = false;
-        toggleable = false;
         active = false;
         maxPull = 500;
     }

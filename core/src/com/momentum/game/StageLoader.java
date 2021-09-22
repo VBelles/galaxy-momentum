@@ -187,10 +187,12 @@ public class StageLoader {
                 )
                 .add(engine.createComponent(Collider.class)
                         .setSize(texture.getRegionWidth(), texture.getRegionHeight())
+                        .setSensor(true)
                 )
                 .add(engine.createComponent(Tag.class)
                         .addTag(level)
                 )
+                .add(engine.createComponent(Killer.class))
                 .add(movable)
         );
     }
@@ -219,8 +221,8 @@ public class StageLoader {
     private static void buildGravityField(Engine engine, Resources resources, Vector2 position, boolean constant, int level) {
 
         TextureRegion tex = constant ? resources.playerDead.getKeyFrame(0) : resources.playerMove.getKeyFrame(0);
-        float minPull = constant ? 0 : 300;
-        float maxPull = constant ? 400 : 500;
+        float minPull = constant ? 0 : 0;
+        float maxPull = constant ? 100 : 200;
 
         Entity entity = new Entity()
                 .add(engine.createComponent(Transform.class)

@@ -22,6 +22,10 @@ public class PlayerSystem extends IteratingSystem {
     private Iterable<Entity> stageEntity;
     private Iterable<Entity> gravityFieldEntities;
 
+    // only when not constant, debug variable for testing which option is better
+    // in the final game all of them should be true or false
+    public boolean toggleableGravityFields = false;
+
     public PlayerSystem(Camera camera, World<Entity> world) {
         super(Family.all(Player.class, Transform.class, Collider.class, Animated.class, Renderable.class).get());
         this.camera = camera;
@@ -62,7 +66,22 @@ public class PlayerSystem extends IteratingSystem {
 
         // Obtain clicked entities;
         ArrayList<Item> clickedItems = new ArrayList<>();
-        if (Gdx.input.isTouched()) {
+        if(toggleableGravityFields)
+        {
+            if(Gdx.input.justTouched()){
+                Vector3 worldCoordinates = getWorldInputCoordinates();
+                world.queryPoint(worldCoordinates.x, worldCoordinates.y, CollisionFilter.defaultFilter, clickedItems);
+                for (Item clickedItem : clickedItems) {
+                    Entity clickedEntity = (Entity) clickedItem.userData;
+                    GravityField field = GravityField.mapper.get(clickedEntity);
+                    if(field != null && !field.constantField)
+                    {
+                        field.active = !field.active;
+                    }
+                }
+            }
+        }
+        else if (Gdx.input.isTouched()) {
             Vector3 worldCoordinates = getWorldInputCoordinates();
             world.queryPoint(worldCoordinates.x, worldCoordinates.y, CollisionFilter.defaultFilter, clickedItems);
         }
@@ -74,7 +93,7 @@ public class PlayerSystem extends IteratingSystem {
             Transform fieldTransform = Transform.mapper.get(gravityFieldEntity);
 
             //only have to check click if it's not constant and the player is clicking
-            field.active = field.constantField || clickedItems.contains(fieldCollider.item);
+            if(!toggleableGravityFields) field.active = field.constantField || clickedItems.contains(fieldCollider.item);
 
             //only has pull if active or constant field (always active)
             if (!field.active) continue;
