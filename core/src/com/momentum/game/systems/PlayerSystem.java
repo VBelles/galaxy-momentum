@@ -10,9 +10,10 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.dongbat.jbump.*;
-import com.momentum.game.DefaultFilter;
 import com.momentum.game.PhysicsUtils;
 import com.momentum.game.components.*;
+
+import java.util.ArrayList;
 
 public class PlayerSystem extends IteratingSystem {
 
@@ -52,10 +53,19 @@ public class PlayerSystem extends IteratingSystem {
                 (player.velocity.y + ((0.5f) * player.acceleration.y * deltaTime)) * deltaTime
         );
 
+        transform.position.add(deltaMovement);
+        Vector2 dir = deltaMovement.cpy().nor();
+        renderable.angle = MathUtils.atan2(dir.y, dir.x) * MathUtils.radDeg;
+
         //reset acceleration
         player.setAcceleration(Vector2.Zero);
 
-        boolean isClicking = Gdx.input.isTouched();//cached
+        // Obtain clicked entities;
+        ArrayList<Item> clickedItems = new ArrayList<>();
+        if (Gdx.input.isTouched()) {
+            Vector3 worldCoordinates = getWorldInputCoordinates();
+            world.queryPoint(worldCoordinates.x, worldCoordinates.y, CollisionFilter.defaultFilter, clickedItems);
+        }
 
         //for each pull point we add the accelerations it generates on the player
         for (Entity gravityFieldEntity : gravityFieldEntities) {
@@ -64,35 +74,13 @@ public class PlayerSystem extends IteratingSystem {
             Transform fieldTransform = Transform.mapper.get(gravityFieldEntity);
 
             //only have to check click if it's not constant and the player is clicking
-            if (field.constantField == false)
-            {
-                if(isClicking == true) {
-                    //we check if the player is clicking on the collider
-                    Vector3 worldCoordinates = getWorldInputCoordinates();
-                    if(worldCoordinates.x >= fieldTransform.position.x - collider.width/2
-                            && worldCoordinates.x <= fieldTransform.position.x + collider.width/2
-                            && worldCoordinates.y >= fieldTransform.position.y - collider.height/2
-                            && worldCoordinates.y <= fieldTransform.position.y + collider.height/2
-                    ){
-                        field.active = true;
-                    }
-                    else{
-                        field.active = false;
-                    }
-                }else{
-                    field.active = false;
-                }
+            field.active = field.constantField || clickedItems.contains(fieldCollider.item);
 
-            }
             //only has pull if active or constant field (always active)
-            if (field.active == false && field.constantField == false) continue;
-
+            if (!field.active) continue;
 
             //calculate direction of the pull
-            Vector2 pullDirection = new Vector2(
-                    fieldTransform.position.x - transform.position.x,
-                    fieldTransform.position.y - transform.position.y
-            );
+            Vector2 pullDirection = fieldTransform.position.cpy().sub(transform.position);
             float distance = pullDirection.len();
             pullDirection.nor();
 
@@ -114,13 +102,6 @@ public class PlayerSystem extends IteratingSystem {
             player.setAcceleration(newAcceleration);
 
         }
-
-
-        Vector2 targetPosition = transform.position;
-        Vector2 previousPosition = targetPosition.cpy();
-        targetPosition.add(deltaMovement);
-        Vector2 dir = targetPosition.cpy().sub(previousPosition).nor();
-        renderable.angle = MathUtils.atan2(dir.y, dir.x) * MathUtils.radDeg;
 
         // Try to move in world (checks collision with other colliders)
         Response.Result result = PhysicsUtils.move(world, collider, transform);
@@ -159,8 +140,8 @@ public class PlayerSystem extends IteratingSystem {
                 aSwitch.justPressed = true;
             }
 
-            Killer killer = Killer.mapper.get(collidedEntity);
-            if (killer != null) {
+            if (Killer.mapper.has(collidedEntity)) {
+                Gdx.app.log("PlayerSystem", "You died");
                 Stage stage = Stage.mapper.get(stageEntity.iterator().next());
                 stage.failure = true;
             }
@@ -173,8 +154,5 @@ public class PlayerSystem extends IteratingSystem {
     private Vector3 getWorldInputCoordinates() {
         return camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
     }
-
-
-
 
 }
