@@ -4,9 +4,8 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.math.Vector2;
-import com.dongbat.jbump.Rect;
 import com.dongbat.jbump.World;
-import com.momentum.game.DefaultFilter;
+import com.momentum.game.PhysicsUtils;
 import com.momentum.game.components.Collider;
 import com.momentum.game.components.Movable;
 import com.momentum.game.components.Transform;
@@ -37,10 +36,7 @@ public class MovableSystem extends IteratingSystem {
         float delta = movable.speed * deltaTime;
         transform.position.mulAdd(movable.dir, delta);
 
-        // TODO: Make the movement "kinematic"
-        world.move(collider.item, transform.position.x, transform.position.y, DefaultFilter.instance);
-        Rect rect = world.getRect(collider.item);
-        transform.position.set(rect.x, rect.y);
+        PhysicsUtils.move(world, collider, transform);
 
         if (target.dst(transform.position) < delta) {
             movable.nextPoint += movable.increment;

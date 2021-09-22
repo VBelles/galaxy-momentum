@@ -105,20 +105,20 @@ public class StageLoader {
     private static void buildTileEntity(Engine engine, TiledMapTileLayer.Cell cell, Vector2 position,
                                         boolean physics, boolean killer, int level) {
 
+        TextureRegion texture = cell.getTile().getTextureRegion();
         Entity entity = new Entity()
                 .add(engine.createComponent(Transform.class)
                         .setPosition(position.x, position.y)
                 )
                 .add(engine.createComponent(Renderable.class)
-                        .setTexture(cell.getTile().getTextureRegion())
+                        .setTexture(texture)
                 )
                 .add(engine.createComponent(Tag.class)
                         .addTag(level)
                 );
         if (physics) {
             entity.add(engine.createComponent(Collider.class)
-                    .setWidth(cell.getTile().getTextureRegion().getRegionWidth())
-                    .setHeight(cell.getTile().getTextureRegion().getRegionHeight()));
+                    .setSize(texture.getRegionWidth(), texture.getRegionHeight()));
         }
         if (killer) {
             entity.add(engine.createComponent(Killer.class));
@@ -127,11 +127,14 @@ public class StageLoader {
     }
 
     private static void buildPlayerEntity(Engine engine, Resources resources, Vector2 position, int level) {
+        TextureRegion texture = resources.playerMove.getKeyFrame(0);
         engine.addEntity(new Entity()
                 .add(engine.createComponent(Transform.class)
                         .setPosition(position.x, position.y)
                 )
-                .add(engine.createComponent(Renderable.class))
+                .add(engine.createComponent(Renderable.class)
+                        .setSize(30f, 30f)
+                )
                 .add(engine.createComponent(Player.class))
                 .add(engine.createComponent(Animated.class)
                         .addAnimation(Player.STATE_MOVING, resources.playerMove)
@@ -140,8 +143,7 @@ public class StageLoader {
                         .setCurrentAnimation(0)
                 )
                 .add(engine.createComponent(Collider.class)
-                        .setWidth(resources.playerMove.getKeyFrame(0).getRegionWidth())
-                        .setHeight(resources.playerMove.getKeyFrame(0).getRegionHeight())
+                        .setSize(25f, 25f)
                 ).add(engine.createComponent(Tag.class)
                         .addTag(level)
                 )
@@ -149,18 +151,18 @@ public class StageLoader {
     }
 
     private static void buildGoalEntity(Engine engine, Resources resources, Vector2 position, int level) {
+        TextureRegion texture = resources.playerMove.getKeyFrame(0);
         engine.addEntity(new Entity()
                 .add(engine.createComponent(Transform.class)
                         .setPosition(position.x, position.y)
                 )
                 .add(engine.createComponent(Renderable.class)
-                        .setTexture(resources.playerDead.getKeyFrame(0))
+                        .setTexture(texture)
                 )
                 .add(engine.createComponent(Goal.class))
                 .add(engine.createComponent(Collider.class)
+                        .setSize(texture.getRegionWidth(), texture.getRegionHeight())
                         .setSensor(true)
-                        .setWidth(resources.playerMove.getKeyFrame(0).getRegionWidth())
-                        .setHeight(resources.playerMove.getKeyFrame(0).getRegionHeight())
                 )
                 .add(engine.createComponent(Tag.class)
                         .addTag(level)
@@ -176,16 +178,16 @@ public class StageLoader {
             movable.speed = speed;
             movable.cyclic = cyclic;
         }
+        TextureRegion texture = resources.enemy;
         engine.addEntity(new Entity()
                 .add(engine.createComponent(Transform.class)
                         .setPosition(vertices[0], vertices[1])
                 )
                 .add(engine.createComponent(Renderable.class)
-                        .setTexture(resources.enemy)
+                        .setTexture(texture)
                 )
                 .add(engine.createComponent(Collider.class)
-                        .setWidth(resources.enemy.getRegionWidth())
-                        .setHeight(resources.enemy.getRegionHeight())
+                        .setSize(texture.getRegionWidth(), texture.getRegionHeight())
                 )
                 .add(engine.createComponent(Tag.class)
                         .addTag(level)
@@ -203,9 +205,8 @@ public class StageLoader {
                         .setTexture(texture)
                 )
                 .add(engine.createComponent(Collider.class)
+                        .setSize(texture.getRegionWidth(), texture.getRegionHeight())
                         .setSensor(true)
-                        .setWidth(texture.getRegionWidth())
-                        .setHeight(texture.getRegionHeight())
                 )
                 .add(engine.createComponent(Tag.class)
                         .addTag(level)
@@ -230,9 +231,8 @@ public class StageLoader {
                         .setTexture(tex)
                 )
                 .add(engine.createComponent(Collider.class)
+                        .setSize(tex.getRegionWidth(), tex.getRegionHeight())
                         .setSensor(true)
-                        .setWidth(tex.getRegionWidth())
-                        .setHeight(tex.getRegionHeight())
                 )
                 .add(engine.createComponent(Tag.class)
                         .addTag(level)
@@ -260,8 +260,7 @@ public class StageLoader {
                         .setTexture(texture)
                 )
                 .add(engine.createComponent(Collider.class)
-                        .setWidth(texture.getRegionWidth())
-                        .setHeight(texture.getRegionHeight())
+                        .setSize(texture.getRegionWidth(), texture.getRegionHeight())
                 )
                 .add(engine.createComponent(Tag.class)
                         .addTag(level)

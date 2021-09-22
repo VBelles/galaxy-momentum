@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.dongbat.jbump.*;
 import com.momentum.game.DefaultFilter;
+import com.momentum.game.PhysicsUtils;
 import com.momentum.game.components.*;
 
 public class PlayerSystem extends IteratingSystem {
@@ -84,7 +85,7 @@ public class PlayerSystem extends IteratingSystem {
 
             }
             //only has pull if active or constant field (always active)
-            if(field.active == false && field.constantField == false) continue;
+            if (field.active == false && field.constantField == false) continue;
 
 
             //calculate direction of the pull
@@ -97,10 +98,10 @@ public class PlayerSystem extends IteratingSystem {
 
             //calculate magnitude of the pull
             float pullAccelerationMagnitude = field.maxPull;
-            if(field.constantField){
+            if (field.constantField) {
                 float maxAffectedDistance = 300;
                 float progress =
-                        MathUtils.clamp(distance*distance, 0, maxAffectedDistance*maxAffectedDistance)
+                        MathUtils.clamp(distance * distance, 0, maxAffectedDistance * maxAffectedDistance)
                                 / (maxAffectedDistance * maxAffectedDistance);
                 pullAccelerationMagnitude = MathUtils.lerp(field.maxPull, field.minPull, progress);
             }
@@ -122,10 +123,7 @@ public class PlayerSystem extends IteratingSystem {
         renderable.angle = MathUtils.atan2(dir.y, dir.x) * MathUtils.radDeg;
 
         // Try to move in world (checks collision with other colliders)
-        Response.Result result = world.move(collider.item,
-                targetPosition.x - collider.width / 2,
-                targetPosition.y - collider.height / 2,
-                DefaultFilter.instance);
+        Response.Result result = PhysicsUtils.move(world, collider, transform);
 
         boolean reacted = false;
         for (int i = 0; i < result.projectedCollisions.size(); i++) {
@@ -140,10 +138,10 @@ public class PlayerSystem extends IteratingSystem {
                 Vector2 normal = new Vector2(normalIntPoint.x, normalIntPoint.y);
                 Vector2 projectedVector = normal.scl(player.velocity.dot(normal));
                 Vector2 reflectedVector = projectedVector.scl(-2).add(player.velocity);
-                if(reflectedVector.len() > 30){
+                if (reflectedVector.len() > 30) {
                     reflectedVector.scl(0.5f);//magic number for elasticity
                     animated.setCurrentAnimation(Player.STATE_HIT);
-                }else{
+                } else {
                     reflectedVector.scl(0.8f);//magic number for elasticity
                 }
 
@@ -168,13 +166,6 @@ public class PlayerSystem extends IteratingSystem {
             }
         }
 
-        // Update transform position given world position
-        Rect rect = world.getRect(collider.item);
-        transform.position.set(
-                rect.x + collider.width / 2,
-                rect.y + collider.height / 2
-        );
-
         //set velocity for next frame
         player.velocity.mulAdd(player.acceleration, deltaTime);
     }
@@ -182,4 +173,8 @@ public class PlayerSystem extends IteratingSystem {
     private Vector3 getWorldInputCoordinates() {
         return camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
     }
+
+
+
+
 }

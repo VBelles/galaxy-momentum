@@ -39,8 +39,8 @@ public class RenderDebugSystem extends IteratingSystem {
         Collider collider = Collider.mapper.get(entity);
         Transform transform = Transform.mapper.get(entity);
         renderer.rect(
-                transform.position.x - collider.width / 2f,
-                transform.position.y - collider.height / 2f,
+                transform.position.x - collider.width / 2f + collider.offset.x,
+                transform.position.y - collider.height / 2f + collider.offset.y,
                 collider.width,
                 collider.height
         );

@@ -34,8 +34,22 @@ public class RenderSystem extends IteratingSystem {
         Renderable renderable = Renderable.mapper.get(entity);
         Transform transform = Transform.mapper.get(entity);
 
-        float halfWidth = renderable.texture.getRegionWidth() / 2f;
-        float halfHeight = renderable.texture.getRegionHeight() / 2f;
+        float width = renderable.width >= 0 ? renderable.width : renderable.texture.getRegionWidth();
+        float height = renderable.height >= 0 ? renderable.height : renderable.texture.getRegionHeight();
+
+        // Fit
+        if (width != renderable.texture.getRegionWidth() || height != renderable.texture.getRegionHeight()) {
+            float defaultAspectRatio = (float) renderable.texture.getRegionWidth() / renderable.texture.getRegionHeight();
+            float aspectRatio = width / height;
+            if (aspectRatio > defaultAspectRatio) {
+                height = width / defaultAspectRatio;
+            } else if (aspectRatio < defaultAspectRatio) {
+                width = height * defaultAspectRatio;
+            }
+        }
+
+        float halfWidth = width / 2f;
+        float halfHeight = height / 2f;
 
         if (renderable.texture != null) {
             batch.draw(renderable.texture,
@@ -43,8 +57,8 @@ public class RenderSystem extends IteratingSystem {
                     transform.position.y - halfHeight,
                     halfWidth,
                     halfHeight,
-                    renderable.texture.getRegionWidth(),
-                    renderable.texture.getRegionHeight(),
+                    width,
+                    height,
                     1f,
                     1f,
                     renderable.angle
