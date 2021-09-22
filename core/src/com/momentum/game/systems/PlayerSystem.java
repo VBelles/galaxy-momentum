@@ -122,7 +122,9 @@ public class PlayerSystem extends IteratingSystem {
         renderable.angle = MathUtils.atan2(dir.y, dir.x) * MathUtils.radDeg;
 
         // Try to move in world (checks collision with other colliders)
-        Response.Result result = world.move(collider.item, targetPosition.x, targetPosition.y,
+        Response.Result result = world.move(collider.item,
+                targetPosition.x - collider.width / 2,
+                targetPosition.y - collider.height / 2,
                 DefaultFilter.instance);
 
         boolean reacted = false;
@@ -168,7 +170,10 @@ public class PlayerSystem extends IteratingSystem {
 
         // Update transform position given world position
         Rect rect = world.getRect(collider.item);
-        transform.position.set(rect.x, rect.y);
+        transform.position.set(
+                rect.x + collider.width / 2,
+                rect.y + collider.height / 2
+        );
 
         //set velocity for next frame
         player.velocity.mulAdd(player.acceleration, deltaTime);

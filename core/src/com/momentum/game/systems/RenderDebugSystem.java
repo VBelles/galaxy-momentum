@@ -38,7 +38,12 @@ public class RenderDebugSystem extends IteratingSystem {
     protected void processEntity(Entity entity, float deltaTime) {
         Collider collider = Collider.mapper.get(entity);
         Transform transform = Transform.mapper.get(entity);
-        renderer.rect(transform.position.x, transform.position.y, collider.width, collider.height);
+        renderer.rect(
+                transform.position.x - collider.width / 2f,
+                transform.position.y - collider.height / 2f,
+                collider.width,
+                collider.height
+        );
     }
 
 

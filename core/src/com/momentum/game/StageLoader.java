@@ -9,6 +9,7 @@ import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.PolylineMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.math.Vector2;
@@ -29,7 +30,7 @@ public class StageLoader {
                         TiledMapTileLayer.Cell cell = tiledLayer.getCell(row, col);
                         if (cell != null) {
                             boolean killer = cell.getTile().getProperties().get("killer", false, Boolean.class);
-                            buildTileEntity(engine, cell, row, col, ((TiledMapTileLayer) layer).getTileWidth(), physics, killer, level);
+                            buildTileEntity(engine, cell, getWorldPosition(cell.getTile(), row, col), physics, killer, level);
                         }
                     }
                 }
@@ -39,13 +40,13 @@ public class StageLoader {
             TiledMapTileMapObject spawn = (TiledMapTileMapObject) layer.getObjects().get("spawn");
             if (spawn != null) {
                 Gdx.app.log("StageLoader", "Build spawn");
-                buildPlayerEntity(engine, resources, spawn.getX(), spawn.getY(), level);
+                buildPlayerEntity(engine, resources, getWorldPosition(spawn), level);
             }
 
             // Find goal
             TiledMapTileMapObject goal = (TiledMapTileMapObject) layer.getObjects().get("goal");
             if (goal != null) {
-                buildGoalEntity(engine, resources, goal.getX(), goal.getY(), level);
+                buildGoalEntity(engine, resources, getWorldPosition(goal), level);
                 Gdx.app.log("StageLoader", "Build goal");
             }
 
@@ -71,32 +72,42 @@ public class StageLoader {
                 // Build switches
                 if (object instanceof TiledMapTileMapObject && object.getName().startsWith("switch")) {
                     TiledMapTileMapObject tiledObject = (TiledMapTileMapObject) object;
-                    buildSwitch(engine, tiledObject.getTextureRegion(), tiledObject.getX(), tiledObject.getY(), level, object.getName());
+                    buildSwitch(engine, tiledObject.getTextureRegion(), getWorldPosition(tiledObject), level, object.getName());
                 }
 
                 // Build Gravity Field
                 if (object instanceof TiledMapTileMapObject && object.getName().startsWith("gravity")) {
                     TiledMapTileMapObject tiledObject = (TiledMapTileMapObject) object;
                     boolean constant = tiledObject.getProperties().get("constant", false, Boolean.class);
-                    buildGravityField(engine, resources, tiledObject.getX(), tiledObject.getY(), constant, level);
+                    buildGravityField(engine, resources, getWorldPosition(tiledObject), constant, level);
                 }
 
                 // Build doors
                 if (object instanceof TiledMapTileMapObject && object.getName().startsWith("door")) {
                     TiledMapTileMapObject tiledObject = (TiledMapTileMapObject) object;
-                    buildDoor(engine, tiledObject.getTextureRegion(), tiledObject.getX(), tiledObject.getY(), level, object.getName());
+                    buildDoor(engine, tiledObject.getTextureRegion(), getWorldPosition(tiledObject), level, object.getName());
                 }
             }
 
         }
-
     }
 
-    private static void buildTileEntity(Engine engine, TiledMapTileLayer.Cell cell, int row, int column, int size,
+    private static Vector2 getWorldPosition(TiledMapTile tile, int row, int column) {
+        return new Vector2(row * tile.getTextureRegion().getRegionWidth(), column * tile.getTextureRegion().getRegionHeight())
+                .add(tile.getTextureRegion().getRegionWidth() / 2f, tile.getTextureRegion().getRegionHeight() / 2f);
+    }
+
+    private static Vector2 getWorldPosition(TiledMapTileMapObject tile) {
+        return new Vector2(tile.getX(), tile.getY())
+                .add(tile.getTextureRegion().getRegionWidth() / 2f, tile.getTextureRegion().getRegionHeight() / 2f);
+    }
+
+    private static void buildTileEntity(Engine engine, TiledMapTileLayer.Cell cell, Vector2 position,
                                         boolean physics, boolean killer, int level) {
+
         Entity entity = new Entity()
                 .add(engine.createComponent(Transform.class)
-                        .setPosition(row * size, column * size)
+                        .setPosition(position.x, position.y)
                 )
                 .add(engine.createComponent(Renderable.class)
                         .setTexture(cell.getTile().getTextureRegion())
@@ -106,8 +117,8 @@ public class StageLoader {
                 );
         if (physics) {
             entity.add(engine.createComponent(Collider.class)
-                    .setWidth(size)
-                    .setHeight(size));
+                    .setWidth(cell.getTile().getTextureRegion().getRegionWidth())
+                    .setHeight(cell.getTile().getTextureRegion().getRegionHeight()));
         }
         if (killer) {
             entity.add(engine.createComponent(Killer.class));
@@ -115,10 +126,10 @@ public class StageLoader {
         engine.addEntity(entity);
     }
 
-    private static void buildPlayerEntity(Engine engine, Resources resources, float x, float y, int level) {
+    private static void buildPlayerEntity(Engine engine, Resources resources, Vector2 position, int level) {
         engine.addEntity(new Entity()
                 .add(engine.createComponent(Transform.class)
-                        .setPosition(x, y)
+                        .setPosition(position.x, position.y)
                 )
                 .add(engine.createComponent(Renderable.class))
                 .add(engine.createComponent(Player.class))
@@ -137,10 +148,10 @@ public class StageLoader {
         );
     }
 
-    private static void buildGoalEntity(Engine engine, Resources resources, float x, float y, int level) {
+    private static void buildGoalEntity(Engine engine, Resources resources, Vector2 position, int level) {
         engine.addEntity(new Entity()
                 .add(engine.createComponent(Transform.class)
-                        .setPosition(x, y)
+                        .setPosition(position.x, position.y)
                 )
                 .add(engine.createComponent(Renderable.class)
                         .setTexture(resources.playerDead.getKeyFrame(0))
@@ -183,10 +194,10 @@ public class StageLoader {
         );
     }
 
-    private static void buildSwitch(Engine engine, TextureRegion texture, float x, float y, int level, String name) {
+    private static void buildSwitch(Engine engine, TextureRegion texture, Vector2 position, int level, String name) {
         engine.addEntity(new Entity()
                 .add(engine.createComponent(Transform.class)
-                        .setPosition(x, y)
+                        .setPosition(position.x, position.y)
                 )
                 .add(engine.createComponent(Renderable.class)
                         .setTexture(texture)
@@ -205,7 +216,7 @@ public class StageLoader {
         );
     }
 
-    private static void buildGravityField(Engine engine, Resources resources, float x, float y, boolean constant, int level) {
+    private static void buildGravityField(Engine engine, Resources resources, Vector2 position, boolean constant, int level) {
 
         TextureRegion tex = constant ? resources.playerDead.getKeyFrame(0) : resources.playerMove.getKeyFrame(0);
         float minPull = constant ? 0 : 300;
@@ -213,7 +224,7 @@ public class StageLoader {
 
         Entity entity = new Entity()
                 .add(engine.createComponent(Transform.class)
-                        .setPosition(x, y)
+                        .setPosition(position.x, position.y)
                 )
                 .add(engine.createComponent(Renderable.class)
                         .setTexture(tex)
@@ -240,10 +251,10 @@ public class StageLoader {
     }
 
 
-    private static void buildDoor(Engine engine, TextureRegion texture, float x, float y, int level, String name) {
+    private static void buildDoor(Engine engine, TextureRegion texture, Vector2 position, int level, String name) {
         engine.addEntity(new Entity()
                 .add(engine.createComponent(Transform.class)
-                        .setPosition(x, y)
+                        .setPosition(position.x, position.y)
                 )
                 .add(engine.createComponent(Renderable.class)
                         .setTexture(texture)

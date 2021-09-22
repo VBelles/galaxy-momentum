@@ -29,7 +29,12 @@ public class PhysicsSystem extends EntitySystem implements EntityListener {
         Transform transform = Transform.mapper.get(entity);
         Collider collider = Collider.mapper.get(entity);
         collider.item = new Item<>(entity);
-        world.add(collider.item, transform.position.x, transform.position.y, collider.width, collider.height);
+        world.add(collider.item,
+                transform.position.x - collider.width / 2f,
+                transform.position.y - collider.height / 2f,
+                collider.width,
+                collider.height
+        );
     }
 
     @Override
