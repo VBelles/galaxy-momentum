@@ -127,7 +127,6 @@ public class StageLoader {
     }
 
     private static void buildPlayerEntity(Engine engine, Resources resources, Vector2 position, int level) {
-        TextureRegion texture = resources.playerMove.getKeyFrame(0);
         engine.addEntity(new Entity()
                 .add(engine.createComponent(Transform.class)
                         .setPosition(position.x, position.y)
