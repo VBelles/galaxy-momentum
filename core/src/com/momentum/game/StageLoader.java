@@ -80,7 +80,7 @@ public class StageLoader {
                 if (object instanceof TiledMapTileMapObject && object.getName() != null && object.getName().startsWith("gravity")) {
                     TiledMapTileMapObject tiledObject = (TiledMapTileMapObject) object;
                     boolean constant = tiledObject.getProperties().get("constant", false, Boolean.class);
-                    buildGravityField(engine, tiledObject.getTextureRegion(), getWorldPosition(tiledObject), constant, level);
+                    buildGravityField(engine, resources, tiledObject.getTextureRegion(), getWorldPosition(tiledObject), constant, level);
                 }
 
                 // Build doors
@@ -264,7 +264,7 @@ public class StageLoader {
         );
     }
 
-    private static void buildGravityField(Engine engine, TextureRegion texture, Vector2 position, boolean constant, int level) {
+    private static void buildGravityField(Engine engine, Resources resources, TextureRegion texture, Vector2 position, boolean constant, int level) {
         float minPull = constant ? 0 : 0;
         float maxPull = constant ? 30 : 40;
 
@@ -276,8 +276,8 @@ public class StageLoader {
                         .setTexture(texture)
                 )
                 .add(engine.createComponent(Animated.class)
-                        .setScale(new Animated.Scale(1f, 1.1f, 0.1f))
-                        .setRotate(new Animated.Rotate(0f, Float.MAX_VALUE, 10f))
+                        .setScale(new Animated.Scale(1f, 1.2f, 0.1f))
+                        .setRotate(new Animated.Rotate(0f, Float.MAX_VALUE, -20f))
                 )
                 .add(engine.createComponent(Collider.class)
                         .setSize(texture.getRegionWidth(), texture.getRegionHeight())
@@ -294,6 +294,14 @@ public class StageLoader {
 
         if (constant) {
             entity.add(engine.createComponent(Killer.class));
+            engine.addEntity(new Entity()
+                    .add(engine.createComponent(Transform.class).setPosition(position.x, position.y))
+                    .add(engine.createComponent(Renderable.class).setTexture(resources.blackHole))
+                    .add(engine.createComponent(Animated.class)
+                            .setRotate(new Animated.Rotate(0f, Float.MAX_VALUE, 600f))
+                            .setScale(new Animated.Scale(0.8f, 1f, 0.3f))
+                    )
+            );
         }
         engine.addEntity(entity);
 
