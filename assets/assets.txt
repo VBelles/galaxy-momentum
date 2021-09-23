@@ -12,6 +12,7 @@ i:player.png:player-c99f73e93808e66baea8267c6ae12d04.png:148:image/png:1
 d:font:font:0:application/unknown:1
 t:font/pixel.fnt:font/pixel-beb1f36877e163ccf3bf429f5c71d567.fnt:11132:application/unknown:1
 i:font/pixel.png:font/pixel-f64570b363031b307678717604a3ee41.png:4284:image/png:1
+i:black_hole_area.png:black_hole_area-b4aa7f587a43b9256c5322fe89f931f6.png:2872:image/png:1
 t:momentum.atlas:momentum-546cd5ba66d44549e9b376b55674fe39.atlas:560:application/unknown:1
 i:portal.png:portal-412abe1c04b903fc372f2a7e8e5ad64b.png:24816:image/png:1
 t:com/badlogic/gdx/graphics/g3d/particles/particles.fragment.glsl:particles.fragment-b90524761fdf09b0a836056d590c30b8.glsl:820:application/unknown:1
