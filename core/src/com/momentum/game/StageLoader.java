@@ -183,15 +183,21 @@ public class StageLoader {
             movable.cyclic = cyclic;
         }
         TextureRegion texture = resources.enemy;
+        float size = 20f;
         engine.addEntity(new Entity()
                 .add(engine.createComponent(Transform.class)
                         .setPosition(vertices[0], vertices[1])
                 )
                 .add(engine.createComponent(Renderable.class)
                         .setTexture(texture)
+                        .setSize(size, size)
+                )
+                .add(engine.createComponent(Animated.class)
+                        .setScale(new Animated.Scale(1f, 1.1f, 0.1f))
+                        .setRotate(new Animated.Rotate(0f, Float.MAX_VALUE, 100f))
                 )
                 .add(engine.createComponent(Collider.class)
-                        .setSize(texture.getRegionWidth() * 0.85f, texture.getRegionHeight() * 0.85f)
+                        .setSize(size * 0.85f, size * 0.85f)
                         .setSensor(true)
                 )
                 .add(engine.createComponent(Tag.class)
