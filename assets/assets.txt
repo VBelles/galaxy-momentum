@@ -8,6 +8,7 @@ i:stages/industrial.v2.png:stages/industrial.v2-a755e0455b1fd9c8dea3d033698f079f
 b:stages/stage_2.tmx:stages/stage_2-df7c1048ce7583afacf1ffd347abb846.tmx:3803:application/unknown:1
 b:stages/stage_1.tmx:stages/stage_1-b5fcf15104aa8cac0f0d1e707905731f.tmx:4022:application/unknown:1
 b:stages/Dungeon Sprites.tsx:stages/Dungeon Sprites-a8496c13994c0c21de9461ac220adc36.tsx:353:application/unknown:1
+b:stages/stage_3.tmx:stages/stage_3-cf0bf1e736ce995a6fc738102fe7e1a3.tmx:3919:application/unknown:1
 b:stages/industrial.v2.tsx:stages/industrial.v2-c926852df5da24364e8fed29ed35830d.tsx:239:application/unknown:1
 i:player.png:player-c99f73e93808e66baea8267c6ae12d04.png:148:image/png:1
 d:font:font:0:application/unknown:1
