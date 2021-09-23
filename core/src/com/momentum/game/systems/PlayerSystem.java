@@ -25,7 +25,7 @@ public class PlayerSystem extends IteratingSystem {
 
     // only when not constant, debug variable for testing which option is better
     // in the final game all of them should be true or false
-    public boolean toggleableGravityFields = false;
+    public boolean toggleableGravityFields = true;
 
     public PlayerSystem(Camera camera, World<Entity> world) {
         super(Family.all(Player.class, Transform.class, Collider.class, Animated.class, Renderable.class).get());

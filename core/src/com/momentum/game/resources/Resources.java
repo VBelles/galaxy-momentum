@@ -2,13 +2,11 @@ package com.momentum.game.resources;
 
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.utils.Disposable;
 import com.momentum.game.resources.map.TmxMapLoaderText;
 
@@ -19,13 +17,14 @@ public class Resources implements Disposable {
 
     private final AssetManager assetManager = new AssetManager();
 
+    private static final int STAGE_COUNT = 3;
     public List<AssetDescriptor<TiledMap>> stages = new ArrayList<>();
-
 
     public Animation<TextureRegion> playerMove;
     public Animation<TextureRegion> playerDead;
     public Animation<TextureRegion> playerHit;
     public TextureRegion enemy;
+    public TextureRegion blackHole;
     public Animation<TextureRegion> goal;
 
     public TextureAtlas atlas;
@@ -36,8 +35,9 @@ public class Resources implements Disposable {
         assetManager.load("momentum.atlas", TextureAtlas.class);
 
         assetManager.load("portal.png", Texture.class);
+        assetManager.load("black_hole_area.png", Texture.class);
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < STAGE_COUNT; i++) {
             stages.add(new AssetDescriptor<>("stages/stage_" + i + ".tmx", TiledMap.class));
             assetManager.load(stages.get(i));
         }
@@ -55,6 +55,7 @@ public class Resources implements Disposable {
                 .split(portalTexture.getWidth() / 8, portalTexture.getHeight() / 3);
         goal = new Animation<>(0.16f, portalRegions[0][0], portalRegions[0][1], portalRegions[0][2],
                 portalRegions[0][3], portalRegions[0][4], portalRegions[0][5], portalRegions[0][6], portalRegions[0][7]);
+        blackHole = new TextureRegion((Texture) assetManager.get("black_hole_area.png"));
     }
 
     public <T> T get(AssetDescriptor<T> assetDescriptor) {
