@@ -25,8 +25,7 @@ public class Resources implements Disposable {
     public Animation<TextureRegion> playerDead;
     public Animation<TextureRegion> playerHit;
     public TextureRegion enemy;
-
-    //public TextureRegion goal;
+    public Animation<TextureRegion> goal;
 
     public TextureAtlas atlas;
 
@@ -35,7 +34,7 @@ public class Resources implements Disposable {
         assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
         assetManager.load("momentum.atlas", TextureAtlas.class);
 
-        //assetManager.load("goal.png", Texture.class);
+        assetManager.load("portal.png", Texture.class);
 
         for (int i = 0; i < 2; i++) {
             stages.add(new AssetDescriptor<>("stage_" + i + ".tmx", TiledMap.class));
@@ -45,12 +44,16 @@ public class Resources implements Disposable {
 
     public void finishLoading() {
         assetManager.finishLoading();
-        atlas = assetManager.get("momentum.atlas", TextureAtlas.class);
+        atlas = assetManager.get("momentum.atlas");
         playerMove = new Animation<TextureRegion>(0.5f, atlas.findRegions("player_move"));
         playerDead = new Animation<TextureRegion>(0.2f, atlas.findRegions("player_dead"));
         playerHit = new Animation<TextureRegion>(0.5f, atlas.findRegions("player_hit"));
         enemy = atlas.findRegion("enemy");
-        //goal = new TextureRegion(assetManager.get("goal.png", Texture.class));
+        Texture portalTexture = assetManager.get("portal.png");
+        TextureRegion[][] portalRegions = new TextureRegion(portalTexture)
+                .split(portalTexture.getWidth() / 8, portalTexture.getHeight() / 3);
+        goal = new Animation<>(0.16f, portalRegions[0][0], portalRegions[0][1], portalRegions[0][2],
+                portalRegions[0][3], portalRegions[0][4], portalRegions[0][5], portalRegions[0][6], portalRegions[0][7]);
     }
 
     public <T> T get(AssetDescriptor<T> assetDescriptor) {

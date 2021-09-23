@@ -46,7 +46,7 @@ public class StageLoader {
             // Find goal
             TiledMapTileMapObject goal = (TiledMapTileMapObject) layer.getObjects().get("goal");
             if (goal != null) {
-                buildGoalEntity(engine, goal.getTextureRegion(), getWorldPosition(goal), level);
+                buildGoalEntity(engine, resources, getWorldPosition(goal), level);
                 Gdx.app.log("StageLoader", "Build goal");
             }
 
@@ -149,7 +149,8 @@ public class StageLoader {
         );
     }
 
-    private static void buildGoalEntity(Engine engine, TextureRegion texture, Vector2 position, int level) {
+    private static void buildGoalEntity(Engine engine, Resources resources, Vector2 position, int level) {
+        TextureRegion texture = resources.goal.getKeyFrame(0);
         engine.addEntity(new Entity()
                 .add(engine.createComponent(Transform.class)
                         .setPosition(position.x, position.y)
@@ -158,11 +159,13 @@ public class StageLoader {
                         .setTexture(texture)
                 )
                 .add(engine.createComponent(Animated.class)
-                        .setScale(new Animated.Scale(1f, 1.4f, 0.3f))
+                        .addAnimation(0, resources.goal)
+                        .setCurrentAnimation(0)
                 )
                 .add(engine.createComponent(Goal.class))
                 .add(engine.createComponent(Collider.class)
-                        .setSize(texture.getRegionWidth(), texture.getRegionHeight())
+                        .setSize(texture.getRegionWidth() / 5f, texture.getRegionHeight() / 1.5f)
+                        .setOffset(0f, -5f)
                         .setSensor(true)
                 )
                 .add(engine.createComponent(Tag.class)
