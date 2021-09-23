@@ -77,7 +77,7 @@ public class StageLoader {
                 }
 
                 // Build Gravity Field
-                if (object instanceof TiledMapTileMapObject && object.getName() != null &&  object.getName().startsWith("gravity")) {
+                if (object instanceof TiledMapTileMapObject && object.getName() != null && object.getName().startsWith("gravity")) {
                     TiledMapTileMapObject tiledObject = (TiledMapTileMapObject) object;
                     boolean constant = tiledObject.getProperties().get("constant", false, Boolean.class);
                     buildGravityField(engine, tiledObject.getTextureRegion(), getWorldPosition(tiledObject), constant, level);
@@ -109,21 +109,47 @@ public class StageLoader {
 
     private static void buildTileEntity(Engine engine, TiledMapTileLayer.Cell cell, Vector2 position,
                                         boolean physics, boolean killer, int level) {
-
         TextureRegion texture = cell.getTile().getTextureRegion();
+
+        float angle = cell.getRotation() * 90f;
+        if (cell.getFlipHorizontally()) {
+            angle = 180f;
+        }
+
+        Vector2 colliderOffset = new Vector2();
+        Vector2 colliderSize = new Vector2(texture.getRegionWidth(), texture.getRegionHeight());
+        if (killer) {
+            if (angle == 0) {
+                colliderSize.y /= 2;
+                colliderOffset.y -= colliderSize.y / 2;
+            } else if (angle == 90) {
+                colliderSize.x /= 2;
+                colliderOffset.x += colliderSize.x / 2;
+            } else if (angle == 180) {
+                colliderSize.y /= 2;
+                colliderOffset.y += colliderSize.y / 2;
+            } else if (angle == 270) {
+                colliderSize.x /= 2;
+                colliderOffset.x -= colliderSize.x / 2;
+            }
+        }
+
         Entity entity = new Entity()
                 .add(engine.createComponent(Transform.class)
                         .setPosition(position.x, position.y)
                 )
                 .add(engine.createComponent(Renderable.class)
                         .setTexture(texture)
+                        .setAngle(angle)
                 )
                 .add(engine.createComponent(Tag.class)
                         .addTag(level)
                 );
         if (physics) {
             entity.add(engine.createComponent(Collider.class)
-                    .setSize(texture.getRegionWidth(), texture.getRegionHeight()));
+                    .setSize(colliderSize.x, colliderSize.y)
+                    .setOffset(colliderOffset.x, colliderOffset.y)
+            );
         }
         if (killer) {
             entity.add(engine.createComponent(Killer.class));
