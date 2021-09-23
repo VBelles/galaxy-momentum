@@ -6,6 +6,7 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
@@ -66,22 +67,19 @@ public class PlayerSystem extends IteratingSystem {
 
         // Obtain clicked entities;
         ArrayList<Item> clickedItems = new ArrayList<>();
-        if(toggleableGravityFields)
-        {
-            if(Gdx.input.justTouched()){
+        if (toggleableGravityFields) {
+            if (Gdx.input.justTouched()) {
                 Vector3 worldCoordinates = getWorldInputCoordinates();
                 world.queryPoint(worldCoordinates.x, worldCoordinates.y, CollisionFilter.defaultFilter, clickedItems);
                 for (Item clickedItem : clickedItems) {
                     Entity clickedEntity = (Entity) clickedItem.userData;
                     GravityField field = GravityField.mapper.get(clickedEntity);
-                    if(field != null && !field.constantField)
-                    {
+                    if (field != null && !field.constantField) {
                         field.active = !field.active;
                     }
                 }
             }
-        }
-        else if (Gdx.input.isTouched()) {
+        } else if (Gdx.input.isTouched()) {
             Vector3 worldCoordinates = getWorldInputCoordinates();
             world.queryPoint(worldCoordinates.x, worldCoordinates.y, CollisionFilter.defaultFilter, clickedItems);
         }
@@ -91,9 +89,24 @@ public class PlayerSystem extends IteratingSystem {
             GravityField field = GravityField.mapper.get(gravityFieldEntity);
             Collider fieldCollider = Collider.mapper.get(gravityFieldEntity);
             Transform fieldTransform = Transform.mapper.get(gravityFieldEntity);
+            Renderable gravityRenderable = Renderable.mapper.get(gravityFieldEntity);
+            Animated gravityAnimated = Animated.mapper.get(gravityFieldEntity);
 
             //only have to check click if it's not constant and the player is clicking
-            if(!toggleableGravityFields) field.active = field.constantField || clickedItems.contains(fieldCollider.item);
+            if (!toggleableGravityFields) {
+                field.active = field.constantField || clickedItems.contains(fieldCollider.item);
+            }
+
+            // Update scale and color
+            if (field.active) {
+                gravityRenderable.color = new Color(1, 1, 0.8f, 1);
+                gravityAnimated.scale.from = 1.15f;
+                gravityAnimated.scale.to = 1.25f;
+            } else {
+                gravityRenderable.color = Color.WHITE;
+                gravityAnimated.scale.from = 1f;
+                gravityAnimated.scale.to = 1.1f;
+            }
 
             //only has pull if active or constant field (always active)
             if (!field.active) continue;

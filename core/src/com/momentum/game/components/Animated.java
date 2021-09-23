@@ -16,8 +16,8 @@ public class Animated implements Component, Pool.Poolable {
     public Rotate rotate = null;
 
     public static class Scale {
-        public final float from;
-        public final float to;
+        public float from;
+        public float to;
         public float speed;
 
         public Scale(float from, float to, float speed) {
@@ -28,8 +28,8 @@ public class Animated implements Component, Pool.Poolable {
     }
 
     public static class Rotate {
-        public final float from;
-        public final float to;
+        public float from;
+        public float to;
         public float speed;
 
         public Rotate(float from, float to, float speed) {

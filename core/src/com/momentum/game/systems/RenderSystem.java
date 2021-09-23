@@ -54,6 +54,7 @@ public class RenderSystem extends IteratingSystem {
         float halfHeight = height / 2f;
 
         if (renderable.texture != null) {
+            batch.setColor(renderable.color);
             batch.draw(renderable.texture,
                     transform.position.x - halfWidth,
                     transform.position.y - halfHeight,
@@ -65,6 +66,7 @@ public class RenderSystem extends IteratingSystem {
                     renderable.scale,
                     renderable.angle
             );
+            batch.setColor(Color.WHITE);
         }
     }
 

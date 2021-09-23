@@ -2,6 +2,7 @@ package com.momentum.game.components;
 
 import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.ComponentMapper;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Pool;
 
@@ -12,6 +13,7 @@ public class Renderable implements Component, Pool.Poolable {
     public float height = -1;
     public float angle = 0f;
     public float scale = 1f;
+    public Color color = Color.WHITE;
 
     @Override
     public void reset() {
@@ -40,6 +42,11 @@ public class Renderable implements Component, Pool.Poolable {
 
     public Renderable setScale(float scale) {
         this.scale = scale;
+        return this;
+    }
+
+    public Renderable setColor(Color color) {
+        this.color = color;
         return this;
     }
 
