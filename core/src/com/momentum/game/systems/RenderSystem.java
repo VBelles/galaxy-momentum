@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.momentum.game.components.Renderable;
@@ -13,6 +14,7 @@ public class RenderSystem extends IteratingSystem {
 
     private final SpriteBatch batch = new SpriteBatch();
     private final Camera camera;
+    private final Color backgroundColor = new Color(29 / 256f, 33 / 256f, 45 / 256f, 1);
 
     public RenderSystem(Camera camera) {
         super(Family.all(Renderable.class, Transform.class).get());
@@ -22,7 +24,7 @@ public class RenderSystem extends IteratingSystem {
 
     @Override
     public void update(float deltaTime) {
-        ScreenUtils.clear(1, 0, 0, 1);
+        ScreenUtils.clear(backgroundColor);
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         super.update(deltaTime);
@@ -59,8 +61,8 @@ public class RenderSystem extends IteratingSystem {
                     halfHeight,
                     width,
                     height,
-                    1f,
-                    1f,
+                    renderable.scale,
+                    renderable.scale,
                     renderable.angle
             );
         }

@@ -12,7 +12,9 @@ import com.momentum.game.systems.*;
 
 public class Game extends ApplicationAdapter {
 
-    private static final float CAMERA_WIDTH = 768F;
+    private static final float TILES = 32f;
+    private static final float TILE_SIZE = 16f;
+    private static final float CAMERA_WIDTH = TILES * TILE_SIZE;
     private OrthographicCamera camera;
     private PooledEngine engine;
     private World<Entity> world;

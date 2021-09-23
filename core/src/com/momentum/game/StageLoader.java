@@ -46,7 +46,7 @@ public class StageLoader {
             // Find goal
             TiledMapTileMapObject goal = (TiledMapTileMapObject) layer.getObjects().get("goal");
             if (goal != null) {
-                buildGoalEntity(engine, resources, getWorldPosition(goal), level);
+                buildGoalEntity(engine, goal.getTextureRegion(), getWorldPosition(goal), level);
                 Gdx.app.log("StageLoader", "Build goal");
             }
 
@@ -79,7 +79,7 @@ public class StageLoader {
                 if (object instanceof TiledMapTileMapObject && object.getName().startsWith("gravity")) {
                     TiledMapTileMapObject tiledObject = (TiledMapTileMapObject) object;
                     boolean constant = tiledObject.getProperties().get("constant", false, Boolean.class);
-                    buildGravityField(engine, resources, getWorldPosition(tiledObject), constant, level);
+                    buildGravityField(engine, tiledObject.getTextureRegion(), getWorldPosition(tiledObject), constant, level);
                 }
 
                 // Build doors
@@ -132,7 +132,7 @@ public class StageLoader {
                         .setPosition(position.x, position.y)
                 )
                 .add(engine.createComponent(Renderable.class)
-                        .setSize(30f, 30f)
+                        .setSize(16f, 16f)
                 )
                 .add(engine.createComponent(Player.class))
                 .add(engine.createComponent(Animated.class)
@@ -142,15 +142,14 @@ public class StageLoader {
                         .setCurrentAnimation(0)
                 )
                 .add(engine.createComponent(Collider.class)
-                        .setSize(25f, 25f)
+                        .setSize(12f, 12f)
                 ).add(engine.createComponent(Tag.class)
                         .addTag(level)
                 )
         );
     }
 
-    private static void buildGoalEntity(Engine engine, Resources resources, Vector2 position, int level) {
-        TextureRegion texture = resources.playerMove.getKeyFrame(0);
+    private static void buildGoalEntity(Engine engine, TextureRegion texture, Vector2 position, int level) {
         engine.addEntity(new Entity()
                 .add(engine.createComponent(Transform.class)
                         .setPosition(position.x, position.y)
@@ -186,7 +185,7 @@ public class StageLoader {
                         .setTexture(texture)
                 )
                 .add(engine.createComponent(Collider.class)
-                        .setSize(texture.getRegionWidth(), texture.getRegionHeight())
+                        .setSize(texture.getRegionWidth() * 0.85f, texture.getRegionHeight() * 0.85f)
                         .setSensor(true)
                 )
                 .add(engine.createComponent(Tag.class)
@@ -218,9 +217,7 @@ public class StageLoader {
         );
     }
 
-    private static void buildGravityField(Engine engine, Resources resources, Vector2 position, boolean constant, int level) {
-
-        TextureRegion tex = constant ? resources.playerDead.getKeyFrame(0) : resources.playerMove.getKeyFrame(0);
+    private static void buildGravityField(Engine engine, TextureRegion texture, Vector2 position, boolean constant, int level) {
         float minPull = constant ? 0 : 0;
         float maxPull = constant ? 100 : 200;
 
@@ -229,10 +226,14 @@ public class StageLoader {
                         .setPosition(position.x, position.y)
                 )
                 .add(engine.createComponent(Renderable.class)
-                        .setTexture(tex)
+                        .setTexture(texture)
+                )
+                .add(engine.createComponent(Animated.class)
+                        .setScale(new Animated.Scale(1f, 1.5f, 1.5f))
+                        .setRotate(new Animated.Rotate(0f, Float.MAX_VALUE, 360f))
                 )
                 .add(engine.createComponent(Collider.class)
-                        .setSize(tex.getRegionWidth(), tex.getRegionHeight())
+                        .setSize(texture.getRegionWidth(), texture.getRegionHeight())
                         .setSensor(true)
                 )
                 .add(engine.createComponent(Tag.class)

@@ -11,6 +11,7 @@ public class Renderable implements Component, Pool.Poolable {
     public float width = -1;
     public float height = -1;
     public float angle = 0f;
+    public float scale = 1f;
 
     @Override
     public void reset() {
@@ -18,6 +19,7 @@ public class Renderable implements Component, Pool.Poolable {
         width = -1;
         height = -1;
         angle = 0f;
+        scale = 1f;
     }
 
     public Renderable setTexture(TextureRegion texture) {
@@ -33,6 +35,11 @@ public class Renderable implements Component, Pool.Poolable {
 
     public Renderable setAngle(float angle) {
         this.angle = angle;
+        return this;
+    }
+
+    public Renderable setScale(float scale) {
+        this.scale = scale;
         return this;
     }
 

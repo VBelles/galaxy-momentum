@@ -12,6 +12,32 @@ public class Animated implements Component, Pool.Poolable {
     public IntMap<Animation<TextureRegion>> animations = new IntMap<>();
     public int currentAnimation = -1;
     public float stateTime = 0;
+    public Scale scale = null;
+    public Rotate rotate = null;
+
+    public static class Scale {
+        public final float from;
+        public final float to;
+        public float speed;
+
+        public Scale(float from, float to, float speed) {
+            this.from = from;
+            this.to = to;
+            this.speed = speed;
+        }
+    }
+
+    public static class Rotate {
+        public final float from;
+        public final float to;
+        public float speed;
+
+        public Rotate(float from, float to, float speed) {
+            this.from = from;
+            this.to = to;
+            this.speed = speed;
+        }
+    }
 
     @Override
     public void reset() {
@@ -25,6 +51,16 @@ public class Animated implements Component, Pool.Poolable {
             this.currentAnimation = currentAnimation;
             stateTime = 0;
         }
+        return this;
+    }
+
+    public Animated setRotate(Rotate rotate) {
+        this.rotate = rotate;
+        return this;
+    }
+
+    public Animated setScale(Scale scale) {
+        this.scale = scale;
         return this;
     }
 
