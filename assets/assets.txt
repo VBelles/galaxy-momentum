@@ -1,14 +1,17 @@
 d:assets:assets:0:application/unknown:1
-i:Dungeon Sprites.png:Dungeon Sprites-fade8979984c821bd00c9e8c5dc6b901.png:11170:image/png:1
-b:stage_0.tmx:stage_0-2f7af8ab6b1d621ad6f2ed3f55f4abd8.tmx:4318:application/unknown:1
-i:industrial.v2.png:industrial.v2-a755e0455b1fd9c8dea3d033698f079f.png:22668:image/png:1
 i:alienworld_tileset.png:alienworld_tileset-09699095d0c0d57534ee4b4ec4b32191.png:32827:image/png:1
 i:momentum.png:momentum-4f3abe33d80aef8ebec7eb8855eae4ac.png:5851:image/png:1
+d:stages:stages:0:application/unknown:1
+i:stages/Dungeon Sprites.png:stages/Dungeon Sprites-fade8979984c821bd00c9e8c5dc6b901.png:11170:image/png:1
+b:stages/stage_0.tmx:stages/stage_0-6786cdd1bbdab00d6d311da9c1c38c1e.tmx:3943:application/unknown:1
+i:stages/industrial.v2.png:stages/industrial.v2-a755e0455b1fd9c8dea3d033698f079f.png:22668:image/png:1
+b:stages/stage_1.tmx:stages/stage_1-b5fcf15104aa8cac0f0d1e707905731f.tmx:4022:application/unknown:1
+b:stages/Dungeon Sprites.tsx:stages/Dungeon Sprites-a8496c13994c0c21de9461ac220adc36.tsx:353:application/unknown:1
+b:stages/industrial.v2.tsx:stages/industrial.v2-c926852df5da24364e8fed29ed35830d.tsx:239:application/unknown:1
 i:player.png:player-c99f73e93808e66baea8267c6ae12d04.png:148:image/png:1
 d:font:font:0:application/unknown:1
 t:font/pixel.fnt:font/pixel-beb1f36877e163ccf3bf429f5c71d567.fnt:11132:application/unknown:1
 i:font/pixel.png:font/pixel-f64570b363031b307678717604a3ee41.png:4284:image/png:1
-b:stage_1.tmx:stage_1-b094dc2098daa1c0ad33f4dd799e6245.tmx:3799:application/unknown:1
 t:momentum.atlas:momentum-546cd5ba66d44549e9b376b55674fe39.atlas:560:application/unknown:1
 i:portal.png:portal-412abe1c04b903fc372f2a7e8e5ad64b.png:24816:image/png:1
 t:com/badlogic/gdx/graphics/g3d/particles/particles.fragment.glsl:particles.fragment-b90524761fdf09b0a836056d590c30b8.glsl:820:application/unknown:1
