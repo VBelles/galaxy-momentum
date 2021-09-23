@@ -25,7 +25,7 @@ public class PlayerSystem extends IteratingSystem {
 
     // only when not constant, debug variable for testing which option is better
     // in the final game all of them should be true or false
-    public boolean toggleableGravityFields = false;
+    public boolean toggleableGravityFields = true;
 
     public PlayerSystem(Camera camera, World<Entity> world) {
         super(Family.all(Player.class, Transform.class, Collider.class, Animated.class, Renderable.class).get());
@@ -57,6 +57,13 @@ public class PlayerSystem extends IteratingSystem {
                 (player.velocity.x + ((0.5f) * player.acceleration.x * deltaTime)) * deltaTime,
                 (player.velocity.y + ((0.5f) * player.acceleration.y * deltaTime)) * deltaTime
         );
+
+        //cannot move more than the equivalent of one frame at max speed
+        if(deltaMovement.len() > player.maxSpeed * deltaTime)
+        {
+            deltaMovement.nor();
+            deltaMovement.scl(player.maxSpeed * deltaTime);
+        }
 
         transform.position.add(deltaMovement);
         Vector2 dir = deltaMovement.cpy().nor();
@@ -119,7 +126,7 @@ public class PlayerSystem extends IteratingSystem {
             //calculate magnitude of the pull
             float pullAccelerationMagnitude = field.maxPull;
             if (field.constantField) {
-                float maxAffectedDistance = 300;
+                float maxAffectedDistance = 250;
                 float progress =
                         MathUtils.clamp(distance * distance, 0, maxAffectedDistance * maxAffectedDistance)
                                 / (maxAffectedDistance * maxAffectedDistance);

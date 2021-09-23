@@ -13,6 +13,7 @@ public class Player implements Component, Pool.Poolable {
 
     public Vector2 velocity = new Vector2();
     public Vector2 acceleration = new Vector2();
+    public float maxSpeed = 50;
 
     @Override
     public void reset() {

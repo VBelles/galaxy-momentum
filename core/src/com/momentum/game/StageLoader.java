@@ -120,17 +120,21 @@ public class StageLoader {
         Vector2 colliderSize = new Vector2(texture.getRegionWidth(), texture.getRegionHeight());
         if (killer) {
             if (angle == 0) {
-                colliderSize.y /= 2;
-                colliderOffset.y -= colliderSize.y / 2;
+                colliderSize.y /= 3;
+                colliderOffset.y -= colliderSize.y;
+                colliderSize.x *= 0.66f;
             } else if (angle == 90) {
-                colliderSize.x /= 2;
-                colliderOffset.x += colliderSize.x / 2;
+                colliderSize.x /= 3;
+                colliderOffset.x += colliderSize.x;
+                colliderSize.y *= 0.66f;
             } else if (angle == 180) {
-                colliderSize.y /= 2;
-                colliderOffset.y += colliderSize.y / 2;
+                colliderSize.y /= 3;
+                colliderOffset.y += colliderSize.y;
+                colliderSize.x *= 0.66f;
             } else if (angle == 270) {
-                colliderSize.x /= 2;
-                colliderOffset.x -= colliderSize.x / 2;
+                colliderSize.x /= 3;
+                colliderOffset.x -= colliderSize.x;
+                colliderSize.y *= 0.66f;
             }
         }
 
@@ -262,7 +266,7 @@ public class StageLoader {
 
     private static void buildGravityField(Engine engine, TextureRegion texture, Vector2 position, boolean constant, int level) {
         float minPull = constant ? 0 : 0;
-        float maxPull = constant ? 100 : 200;
+        float maxPull = constant ? 30 : 40;
 
         Entity entity = new Entity()
                 .add(engine.createComponent(Transform.class)
