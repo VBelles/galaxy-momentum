@@ -5,8 +5,8 @@ i:alienworld_tileset.png:alienworld_tileset-09699095d0c0d57534ee4b4ec4b32191.png
 i:momentum.png:momentum-4f3abe33d80aef8ebec7eb8855eae4ac.png:5851:image/png:1
 i:player.png:player-c99f73e93808e66baea8267c6ae12d04.png:148:image/png:1
 d:font:font:0:application/unknown:1
-t:font/pixel.fnt:font/pixel-7de6252e02fc5b34150e7ea7ad706ebf.fnt:11132:application/unknown:1
-i:font/pixel.png:font/pixel-fbbfd1910a8fd5f4dec7abd32b431865.png:10334:image/png:1
+t:font/pixel.fnt:font/pixel-beb1f36877e163ccf3bf429f5c71d567.fnt:11132:application/unknown:1
+i:font/pixel.png:font/pixel-f64570b363031b307678717604a3ee41.png:4284:image/png:1
 b:stage_1.tmx:stage_1-b094dc2098daa1c0ad33f4dd799e6245.tmx:3799:application/unknown:1
 t:momentum.atlas:momentum-546cd5ba66d44549e9b376b55674fe39.atlas:560:application/unknown:1
 i:portal.png:portal-412abe1c04b903fc372f2a7e8e5ad64b.png:24816:image/png:1
