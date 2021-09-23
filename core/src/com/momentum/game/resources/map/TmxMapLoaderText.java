@@ -57,15 +57,14 @@ public class TmxMapLoaderText extends TmxMapLoader {
                     object = new PolylineMapObject(polyline);
                 } else if ((child = element.getChildByName("ellipse")) != null) {
                     object = new EllipseMapObject(x, flipY ? y - height : y, width, height);
-                }
-                else if ((child = element.getChildByName("text")) != null) {
+                } else if ((child = element.getChildByName("text")) != null) {
                     object = new TextLabelMapObject(child.getText(), x, flipY ? y - height : y, width, height);
                 }
             }
             if (object == null) {
                 String gid = null;
                 if ((gid = element.getAttribute("gid", null)) != null) {
-                    int id = (int)Long.parseLong(gid);
+                    int id = (int) Long.parseLong(gid);
                     boolean flipHorizontally = ((id & FLAG_FLIP_HORIZONTALLY) != 0);
                     boolean flipVertically = ((id & FLAG_FLIP_VERTICALLY) != 0);
 
