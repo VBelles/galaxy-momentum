@@ -52,9 +52,9 @@
  </layer>
  <objectgroup id="2" name="objects">
   <object id="2" name="spawn" gid="513" x="44" y="153.333" width="16" height="16"/>
-  <object id="3" name="goal" gid="330" x="248" y="152.667" width="16" height="16"/>
+  <object id="3" name="goal" gid="330" x="282" y="152.667" width="16" height="16"/>
   <object id="5" name="gravity" gid="526" x="410" y="155.333" width="16" height="16"/>
-  <object id="6" name="movable" x="159.5" y="64">
+  <object id="6" name="movable" x="172.5" y="64">
    <polyline points="0,0 0.5,144"/>
   </object>
  </objectgroup>
