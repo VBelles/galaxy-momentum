@@ -38,7 +38,7 @@ public class Resources implements Disposable {
         assetManager.load("portal.png", Texture.class);
 
         for (int i = 0; i < 2; i++) {
-            stages.add(new AssetDescriptor<>("stage_" + i + ".tmx", TiledMap.class));
+            stages.add(new AssetDescriptor<>("stages/stage_" + i + ".tmx", TiledMap.class));
             assetManager.load(stages.get(i));
         }
     }
