@@ -3,6 +3,7 @@ package com.momentum.game.systems;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -17,11 +18,12 @@ public class RenderSystem extends IteratingSystem {
     private final SpriteBatch batch = new SpriteBatch();
     private final Camera camera;
     private final Color backgroundColor = new Color(29 / 256f, 33 / 256f, 45 / 256f, 1);
-    private final BitmapFont defaultFont = new BitmapFont();
+    private final BitmapFont defaultFont = new BitmapFont(Gdx.files.internal("font/pixel.fnt"));
 
     public RenderSystem(Camera camera) {
         super(Family.all(Renderable.class, Transform.class).get());
         this.camera = camera;
+        defaultFont.getData().setScale(12f / defaultFont.getLineHeight());
     }
 
     @Override
