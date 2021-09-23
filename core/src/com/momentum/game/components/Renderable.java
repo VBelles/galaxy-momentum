@@ -14,6 +14,7 @@ public class Renderable implements Component, Pool.Poolable {
     public float angle = 0f;
     public float scale = 1f;
     public Color color = Color.WHITE;
+    public String text;
 
     @Override
     public void reset() {
@@ -22,6 +23,7 @@ public class Renderable implements Component, Pool.Poolable {
         height = -1;
         angle = 0f;
         scale = 1f;
+        text = null;
     }
 
     public Renderable setTexture(TextureRegion texture) {
@@ -47,6 +49,11 @@ public class Renderable implements Component, Pool.Poolable {
 
     public Renderable setColor(Color color) {
         this.color = color;
+        return this;
+    }
+
+    public Renderable setText(String text) {
+        this.text = text;
         return this;
     }
 

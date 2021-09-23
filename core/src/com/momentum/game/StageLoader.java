@@ -15,6 +15,7 @@ import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.math.Vector2;
 import com.momentum.game.components.*;
 import com.momentum.game.resources.Resources;
+import com.momentum.game.resources.map.TextLabelMapObject;
 
 public class StageLoader {
 
@@ -53,7 +54,7 @@ public class StageLoader {
             for (MapObject object : layer.getObjects()) {
 
                 // Build movables
-                if (object.getName().startsWith("movable")) {
+                if (object.getName() != null && object.getName().startsWith("movable")) {
                     float speed = object.getProperties().get("speed", 50f, Float.class);
                     boolean cyclic;
                     float[] vertices;
@@ -70,22 +71,26 @@ public class StageLoader {
                 }
 
                 // Build switches
-                if (object instanceof TiledMapTileMapObject && object.getName().startsWith("switch")) {
+                if (object instanceof TiledMapTileMapObject && object.getName() != null && object.getName().startsWith("switch")) {
                     TiledMapTileMapObject tiledObject = (TiledMapTileMapObject) object;
                     buildSwitch(engine, tiledObject.getTextureRegion(), getWorldPosition(tiledObject), level, object.getName());
                 }
 
                 // Build Gravity Field
-                if (object instanceof TiledMapTileMapObject && object.getName().startsWith("gravity")) {
+                if (object instanceof TiledMapTileMapObject && object.getName() != null &&  object.getName().startsWith("gravity")) {
                     TiledMapTileMapObject tiledObject = (TiledMapTileMapObject) object;
                     boolean constant = tiledObject.getProperties().get("constant", false, Boolean.class);
                     buildGravityField(engine, tiledObject.getTextureRegion(), getWorldPosition(tiledObject), constant, level);
                 }
 
                 // Build doors
-                if (object instanceof TiledMapTileMapObject && object.getName().startsWith("door")) {
+                if (object instanceof TiledMapTileMapObject && object.getName() != null && object.getName().startsWith("door")) {
                     TiledMapTileMapObject tiledObject = (TiledMapTileMapObject) object;
                     buildDoor(engine, tiledObject.getTextureRegion(), getWorldPosition(tiledObject), level, object.getName());
+                }
+
+                if (object instanceof TextLabelMapObject) {
+                    buildText(engine, (TextLabelMapObject) object, level);
                 }
             }
 
@@ -281,6 +286,21 @@ public class StageLoader {
                 )
                 .add(engine.createComponent(Door.class)
                         .setName(name)
+                )
+        );
+    }
+
+    private static void buildText(Engine engine, TextLabelMapObject text, int level) {
+        engine.addEntity(new Entity()
+                .add(engine.createComponent(Transform.class)
+                        .setPosition(text.getRectangle().x, text.getRectangle().y + text.getRectangle().height)
+                )
+                .add(engine.createComponent(Renderable.class)
+                        .setSize(text.getRectangle().width, text.getRectangle().height)
+                        .setText(text.getText())
+                )
+                .add(engine.createComponent(Tag.class)
+                        .addTag(level)
                 )
         );
     }

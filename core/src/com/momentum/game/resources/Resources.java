@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.utils.Disposable;
+import com.momentum.game.resources.map.TmxMapLoaderText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class Resources implements Disposable {
 
 
     public Resources() {
-        assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
+        assetManager.setLoader(TiledMap.class, new TmxMapLoaderText());
         assetManager.load("momentum.atlas", TextureAtlas.class);
 
         assetManager.load("portal.png", Texture.class);
