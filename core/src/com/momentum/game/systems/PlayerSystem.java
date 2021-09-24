@@ -13,6 +13,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.dongbat.jbump.*;
 import com.momentum.game.PhysicsUtils;
 import com.momentum.game.components.*;
+import com.momentum.game.resources.Resources;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,7 @@ public class PlayerSystem extends IteratingSystem {
 
     private final Camera camera;
     private final World<Entity> world;
+    private final Resources resources;
     private Iterable<Entity> stageEntity;
     private Iterable<Entity> gravityFieldEntities;
 
@@ -27,10 +29,11 @@ public class PlayerSystem extends IteratingSystem {
     // in the final game all of them should be true or false
     public boolean toggleableGravityFields = true;
 
-    public PlayerSystem(Camera camera, World<Entity> world) {
+    public PlayerSystem(Camera camera, World<Entity> world, Resources resources) {
         super(Family.all(Player.class, Transform.class, Collider.class, Animated.class, Renderable.class).get());
         this.camera = camera;
         this.world = world;
+        this.resources = resources;
     }
 
     @Override
@@ -59,8 +62,7 @@ public class PlayerSystem extends IteratingSystem {
         );
 
         //cannot move more than the equivalent of one frame at max speed
-        if(deltaMovement.len() > player.maxSpeed * deltaTime)
-        {
+        if (deltaMovement.len() > player.maxSpeed * deltaTime) {
             deltaMovement.nor();
             deltaMovement.scl(player.maxSpeed * deltaTime);
         }
@@ -165,6 +167,10 @@ public class PlayerSystem extends IteratingSystem {
                     reflectedVector.scl(0.8f);//magic number for elasticity
                 }
 
+                if (reflectedVector.len() > 1) {
+                    resources.bounceSound.play();
+                }
+
                 player.setVelocity(reflectedVector);
             }
 
@@ -177,6 +183,7 @@ public class PlayerSystem extends IteratingSystem {
             if (aSwitch != null && !aSwitch.pressed) {
                 Gdx.app.log("PlayerSystem", "Pressed switch");
                 aSwitch.justPressed = true;
+                resources.switchSound.play();
             }
 
             if (Killer.mapper.has(collidedEntity)) {

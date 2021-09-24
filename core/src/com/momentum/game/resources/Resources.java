@@ -3,6 +3,7 @@ package com.momentum.game.resources;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -24,11 +25,12 @@ public class Resources implements Disposable {
     public Animation<TextureRegion> playerMove;
     public Animation<TextureRegion> playerDead;
     public Animation<TextureRegion> playerHit;
+    public Animation<TextureRegion> goal;
     public TextureRegion enemy;
     public TextureRegion blackHole;
-    public Animation<TextureRegion> goal;
 
-    public TextureAtlas atlas;
+    public Sound bounceSound;
+    public Sound switchSound;
 
 
     public Resources() {
@@ -38,18 +40,20 @@ public class Resources implements Disposable {
         assetManager.load("portal.png", Texture.class);
         assetManager.load("black_hole_area.png", Texture.class);
 
-
         FileHandle fileHandle = Gdx.files.internal("stages/stages.txt");
         for (String stage : fileHandle.readString().split("\n")) {
             AssetDescriptor<TiledMap> descriptor = new AssetDescriptor<>("stages/" + stage.trim(), TiledMap.class);
             assetManager.load(descriptor);
             stages.add(descriptor);
         }
+
+        assetManager.load("sound/switch.mp3", Sound.class);
+        assetManager.load("sound/bounce.mp3", Sound.class);
     }
 
     public void finishLoading() {
         assetManager.finishLoading();
-        atlas = assetManager.get("momentum.atlas");
+        TextureAtlas atlas = assetManager.get("momentum.atlas");
         playerMove = new Animation<TextureRegion>(0.5f, atlas.findRegions("player_move"));
         playerDead = new Animation<TextureRegion>(0.2f, atlas.findRegions("player_dead"));
         playerHit = new Animation<TextureRegion>(0.5f, atlas.findRegions("player_hit"));
@@ -60,6 +64,8 @@ public class Resources implements Disposable {
         goal = new Animation<>(0.16f, portalRegions[0][0], portalRegions[0][1], portalRegions[0][2],
                 portalRegions[0][3], portalRegions[0][4], portalRegions[0][5], portalRegions[0][6], portalRegions[0][7]);
         blackHole = new TextureRegion((Texture) assetManager.get("black_hole_area.png"));
+        bounceSound = assetManager.get("sound/bounce.mp3");
+        switchSound = assetManager.get("sound/switch.mp3");
     }
 
     public <T> T get(AssetDescriptor<T> assetDescriptor) {
