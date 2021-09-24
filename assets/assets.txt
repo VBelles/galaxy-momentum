@@ -6,13 +6,13 @@ b:stages/stage_04.tmx:stages/stage_04-a40a704be8ef930ec70e077031c453a7.tmx:3921:
 i:stages/industrial.v2.png:stages/industrial.v2-a755e0455b1fd9c8dea3d033698f079f.png:22668:image/png:1
 b:stages/stage_03.tmx:stages/stage_03-85de2a51ed423f1df8da6fbf27548768.tmx:3799:application/unknown:1
 b:stages/stage_01.tmx:stages/stage_01-820796f18d684fc0995b614632dbdc9d.tmx:3646:application/unknown:1
-b:stages/stage_08.tmx:stages/stage_08-32284ec68b5b0d462c598bea3d7f73ef.tmx:3915:application/unknown:1
+b:stages/stage_08.tmx:stages/stage_08-6ada870c189e9333606061b49d0fd231.tmx:15413:application/unknown:1
 b:stages/stage_07.tmx:stages/stage_07-2c24f6e40c71c1f4240cd290ecdd74cb.tmx:4404:application/unknown:1
 b:stages/stage_09.tmx:stages/stage_09-61b40237f20ca9d5a4578b6f42f262c3.tmx:4824:application/unknown:1
 b:stages/stage_05.tmx:stages/stage_05-2371c8da21614a64aceb56c28c44ac36.tmx:4538:application/unknown:1
 b:stages/Dungeon Sprites.tsx:stages/Dungeon Sprites-a8496c13994c0c21de9461ac220adc36.tsx:353:application/unknown:1
 b:stages/00_Prefabs.tmx:stages/00_Prefabs-691021e21bc3dcbafd7075591ff61ec3.tmx:5672:application/unknown:1
-t:stages/stages.txt:stages/stages-053e491b3cc75d212c64ce1f64e7ca9e.txt:116:text/plain:1
+t:stages/stages.txt:stages/stages-90a0d0ec9ba7b3797299385b1de1a313.txt:116:text/plain:1
 b:stages/stage_06.tmx:stages/stage_06-85ebb642ce6624c6149a1b261da83aff.tmx:3601:application/unknown:1
 b:stages/stage_02.tmx:stages/stage_02-3f733be842f40de0d2796d37129bc8ac.tmx:4018:application/unknown:1
 b:stages/industrial.v2.tsx:stages/industrial.v2-c926852df5da24364e8fed29ed35830d.tsx:239:application/unknown:1
