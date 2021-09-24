@@ -37,6 +37,7 @@ public class StageSystem extends IteratingSystem {
         Stage stage = Stage.mapper.get(entity);
         boolean goalsAchieved = areGoalsAchieved();
         if (stage.level == -1 || goalsAchieved || Gdx.input.isKeyJustPressed(Input.Keys.N)) {
+            if (stage.level != -1) resources.goalSound.play();
             stage.level++;
             loadStage(stage.level - 1, stage.level);
         }
