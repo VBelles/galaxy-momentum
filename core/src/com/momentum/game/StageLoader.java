@@ -93,7 +93,8 @@ public class StageLoader {
                 // Build doors
                 if (object instanceof TiledMapTileMapObject && object.getName() != null && object.getName().startsWith("door")) {
                     TiledMapTileMapObject tiledObject = (TiledMapTileMapObject) object;
-                    buildDoor(engine, tiledObject.getTextureRegion(), getWorldPosition(tiledObject), level, object.getName());
+                    boolean horizontal = tiledObject.getProperties().get("horizontal", true, Boolean.class);
+                    buildDoor(engine, tiledObject.getTextureRegion(), getWorldPosition(tiledObject), level, object.getName(), horizontal);
                 }
 
                 if (object instanceof TextLabelMapObject) {
@@ -206,8 +207,8 @@ public class StageLoader {
                 )
                 .add(engine.createComponent(Goal.class))
                 .add(engine.createComponent(Collider.class)
-                        .setSize(texture.getRegionWidth() / 5f, texture.getRegionHeight() / 1.5f)
-                        .setOffset(0f, -5f)
+                        .setSize(texture.getRegionWidth() / 8.8f, texture.getRegionHeight() / 2.5f)
+                        .setOffset(-1f, -5f)
                         .setSensor(true)
                 )
                 .add(engine.createComponent(Tag.class)
@@ -293,7 +294,7 @@ public class StageLoader {
                         .addAnimation(1, new Animation<>(0, tex2))
                 )
                 .add(engine.createComponent(Collider.class)
-                        .setSize(tex1.getRegionWidth(), tex1.getRegionHeight())
+                        .setSize(tex1.getRegionWidth() * 0.5f, tex1.getRegionHeight() * 0.5f)
                         .setSensor(true)
                 )
                 .add(engine.createComponent(Tag.class)
@@ -309,6 +310,9 @@ public class StageLoader {
         float minPull = constant ? 0 : 0;
         float maxPull = constant ? 30 : 40;
 
+        float scaleFactor = 1;
+        if(!constant) scaleFactor = 1.4f;
+
         Entity entity = new Entity()
                 .add(engine.createComponent(Transform.class)
                         .setPosition(position.x, position.y)
@@ -321,7 +325,7 @@ public class StageLoader {
                         .setRotate(new Animated.Rotate(0f, Float.MAX_VALUE, -20f))
                 )
                 .add(engine.createComponent(Collider.class)
-                        .setSize(texture.getRegionWidth(), texture.getRegionHeight())
+                        .setSize(texture.getRegionWidth() * scaleFactor, texture.getRegionHeight() * scaleFactor)
                         .setSensor(true)
                 )
                 .add(engine.createComponent(Tag.class)
@@ -351,7 +355,16 @@ public class StageLoader {
     }
 
 
-    private static void buildDoor(Engine engine, TextureRegion texture, Vector2 position, int level, String name) {
+    private static void buildDoor(Engine engine, TextureRegion texture, Vector2 position, int level, String name, boolean horizontal) {
+        float xColliderSizeFactor = 1;
+        float yColliderSizeFactor = 1;
+        if(horizontal) {
+            yColliderSizeFactor = 3;
+        }
+        else {
+            xColliderSizeFactor = 3;
+        }
+
         engine.addEntity(new Entity()
                 .add(engine.createComponent(Transform.class)
                         .setPosition(position.x, position.y)
@@ -361,7 +374,7 @@ public class StageLoader {
                         .setColor(colorFromName(name.split("_")[1]))
                 )
                 .add(engine.createComponent(Collider.class)
-                        .setSize(texture.getRegionWidth(), texture.getRegionHeight())
+                        .setSize(texture.getRegionWidth() / xColliderSizeFactor, texture.getRegionHeight() / yColliderSizeFactor)
                 )
                 .add(engine.createComponent(Tag.class)
                         .addTag(level)
