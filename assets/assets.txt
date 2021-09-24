@@ -9,7 +9,7 @@ b:stages/stage_01.tmx:stages/stage_01-820796f18d684fc0995b614632dbdc9d.tmx:3646:
 b:stages/stage_08.tmx:stages/stage_08-6ada870c189e9333606061b49d0fd231.tmx:15413:application/unknown:1
 b:stages/stage_07.tmx:stages/stage_07-2c24f6e40c71c1f4240cd290ecdd74cb.tmx:4404:application/unknown:1
 b:stages/stage_09.tmx:stages/stage_09-61b40237f20ca9d5a4578b6f42f262c3.tmx:4824:application/unknown:1
-b:stages/stage_05.tmx:stages/stage_05-2371c8da21614a64aceb56c28c44ac36.tmx:4538:application/unknown:1
+b:stages/stage_05.tmx:stages/stage_05-467e5703227be5de442c7eb4c351b85d.tmx:4535:application/unknown:1
 b:stages/Dungeon Sprites.tsx:stages/Dungeon Sprites-a8496c13994c0c21de9461ac220adc36.tsx:353:application/unknown:1
 b:stages/00_Prefabs.tmx:stages/00_Prefabs-691021e21bc3dcbafd7075591ff61ec3.tmx:5672:application/unknown:1
 t:stages/stages.txt:stages/stages-90a0d0ec9ba7b3797299385b1de1a313.txt:116:text/plain:1
@@ -25,6 +25,7 @@ a:sound/gravity_off.mp3:sound/gravity_off-4a7876d84e996a3876c6af7203fff72f.mp3:1
 a:sound/bounce.mp3:sound/bounce-e960ac8166d3de0b17af0169212d71cd.mp3:4118:application/unknown:1
 a:sound/goal.mp3:sound/goal-d8555984497430e539e1b0e763aba7ae.mp3:37610:application/unknown:1
 a:sound/gravity_on.mp3:sound/gravity_on-a11f6b289888bb0a52201643f41d476b.mp3:13393:application/unknown:1
+i:veil.png:veil-2d3affbb8eb7dde23aa1b2d5075e9021.png:1980:image/png:1
 d:font:font:0:application/unknown:1
 t:font/pixel.fnt:font/pixel-beb1f36877e163ccf3bf429f5c71d567.fnt:11132:application/unknown:1
 i:font/pixel.png:font/pixel-f64570b363031b307678717604a3ee41.png:4284:image/png:1
