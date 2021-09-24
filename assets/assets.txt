@@ -12,6 +12,9 @@ t:stages/stages.txt:stages/stages-bfb5b622bd787f9dc648cae79100e31e.txt:77:text/p
 b:stages/stage_06.tmx:stages/stage_06-dc230d6cab3f36a6750f80d28eb82888.tmx:4825:application/unknown:1
 b:stages/stage_02.tmx:stages/stage_02-b5fcf15104aa8cac0f0d1e707905731f.tmx:4022:application/unknown:1
 b:stages/industrial.v2.tsx:stages/industrial.v2-c926852df5da24364e8fed29ed35830d.tsx:239:application/unknown:1
+d:sound:sound:0:application/unknown:1
+a:sound/switch.mp3:sound/switch-8e768eaf9a493fe9ee84f6f6968f8186.mp3:32738:application/unknown:1
+a:sound/bounce.mp3:sound/bounce-e960ac8166d3de0b17af0169212d71cd.mp3:4118:application/unknown:1
 d:font:font:0:application/unknown:1
 t:font/pixel.fnt:font/pixel-beb1f36877e163ccf3bf429f5c71d567.fnt:11132:application/unknown:1
 i:font/pixel.png:font/pixel-f64570b363031b307678717604a3ee41.png:4284:image/png:1
