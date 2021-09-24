@@ -107,7 +107,7 @@ public class PlayerSystem extends IteratingSystem {
 
             // Update scale and color
             if (field.active) {
-                gravityRenderable.color = new Color(1, 1, 0.8f, 1);
+                gravityRenderable.color = new Color(1, 0.8f, 0.6f, 1);
                 gravityAnimated.scale.from = 1.15f;
                 gravityAnimated.scale.to = 1.25f;
             } else {
@@ -132,6 +132,11 @@ public class PlayerSystem extends IteratingSystem {
                         MathUtils.clamp(distance * distance, 0, maxAffectedDistance * maxAffectedDistance)
                                 / (maxAffectedDistance * maxAffectedDistance);
                 pullAccelerationMagnitude = MathUtils.lerp(field.maxPull, field.minPull, progress);
+            }
+            else
+            {
+                float progress = MathUtils.clamp(distance, 0, 544) / (544);
+                pullAccelerationMagnitude = MathUtils.lerp(field.maxPull, field.maxPull - 1, progress);
             }
 
             Vector2 newAcceleration = new Vector2(
