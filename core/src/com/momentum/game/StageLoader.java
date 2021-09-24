@@ -76,7 +76,7 @@ public class StageLoader {
                 if (object instanceof TiledMapTileMapObject && object.getName() != null && object.getName().startsWith("switch")) {
                     TiledMapTileMapObject tiledObject = (TiledMapTileMapObject) object;
                     float rotation = tiledObject.getRotation();
-                    System.out.println(rotation);
+                    //System.out.println(rotation);
                     //if(tiledObject.isFlipVertically()) rotation = 2;
                     buildSwitch(engine, map.getTileSets().getTile(262).getTextureRegion(),
                             map.getTileSets().getTile(265).getTextureRegion(), getWorldPosition(tiledObject), rotation,
