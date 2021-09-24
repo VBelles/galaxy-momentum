@@ -84,6 +84,11 @@ public class PlayerSystem extends IteratingSystem {
                     GravityField field = GravityField.mapper.get(clickedEntity);
                     if (field != null && !field.constantField) {
                         field.active = !field.active;
+                        if (field.active) {
+                            resources.gravityOn.play(0.5f);
+                        } else {
+                            resources.gravityOff.play(0.5f);
+                        }
                     }
                 }
             }
