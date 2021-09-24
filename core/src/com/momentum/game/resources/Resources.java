@@ -17,7 +17,7 @@ public class Resources implements Disposable {
 
     private final AssetManager assetManager = new AssetManager();
 
-    private static final int STAGE_COUNT = 4;
+    private static final int STAGE_COUNT = 5;
     public List<AssetDescriptor<TiledMap>> stages = new ArrayList<>();
 
     public Animation<TextureRegion> playerMove;

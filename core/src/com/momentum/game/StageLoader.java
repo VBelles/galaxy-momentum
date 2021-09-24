@@ -3,6 +3,8 @@ package com.momentum.game;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
@@ -73,7 +75,12 @@ public class StageLoader {
                 // Build switches
                 if (object instanceof TiledMapTileMapObject && object.getName() != null && object.getName().startsWith("switch")) {
                     TiledMapTileMapObject tiledObject = (TiledMapTileMapObject) object;
-                    buildSwitch(engine, tiledObject.getTextureRegion(), getWorldPosition(tiledObject), level, object.getName());
+                    float rotation = tiledObject.getRotation();
+                    System.out.println(rotation);
+                    //if(tiledObject.isFlipVertically()) rotation = 2;
+                    buildSwitch(engine, map.getTileSets().getTile(262).getTextureRegion(),
+                            map.getTileSets().getTile(265).getTextureRegion(), getWorldPosition(tiledObject), rotation,
+                            level, object.getName());
                 }
 
                 // Build Gravity Field
@@ -243,16 +250,37 @@ public class StageLoader {
         );
     }
 
-    private static void buildSwitch(Engine engine, TextureRegion texture, Vector2 position, int level, String name) {
+    private static Color colorFromName(String name) {
+        switch (name) {
+            case "1":
+                return new Color(1f, 0.8f, 0.8f, 1f);
+            case "2":
+                return new Color(0.8f, 1f, 0.8f, 1f);
+            case "3":
+                return new Color(1f, 1f, 0.8f, 1f);
+            case "4":
+                return new Color(0.8f, 1f, 1f, 1f);
+        }
+        return Color.WHITE;
+    }
+
+    private static void buildSwitch(Engine engine, TextureRegion tex1, TextureRegion tex2, Vector2 position, float rotation, int level, String name) {
+
         engine.addEntity(new Entity()
                 .add(engine.createComponent(Transform.class)
                         .setPosition(position.x, position.y)
                 )
                 .add(engine.createComponent(Renderable.class)
-                        .setTexture(texture)
+                        .setTexture(tex1)
+                        .setAngle(-rotation)
+                        .setColor(colorFromName(name.split("_")[1]))
+                )
+                .add(engine.createComponent(Animated.class)
+                        .addAnimation(0, new Animation<>(0, tex1))
+                        .addAnimation(1, new Animation<>(0, tex2))
                 )
                 .add(engine.createComponent(Collider.class)
-                        .setSize(texture.getRegionWidth(), texture.getRegionHeight())
+                        .setSize(tex1.getRegionWidth(), tex1.getRegionHeight())
                         .setSensor(true)
                 )
                 .add(engine.createComponent(Tag.class)
@@ -315,6 +343,7 @@ public class StageLoader {
                 )
                 .add(engine.createComponent(Renderable.class)
                         .setTexture(texture)
+                        .setColor(colorFromName(name.split("_")[1]))
                 )
                 .add(engine.createComponent(Collider.class)
                         .setSize(texture.getRegionWidth(), texture.getRegionHeight())
