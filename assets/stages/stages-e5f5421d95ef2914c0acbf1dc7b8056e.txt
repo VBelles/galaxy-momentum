@@ -1,3 +1,4 @@
+stage_07.tmx
 stage_06.tmx
 stage_01.tmx
 stage_02.tmx
