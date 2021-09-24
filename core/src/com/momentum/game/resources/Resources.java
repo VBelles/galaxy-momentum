@@ -32,7 +32,20 @@ public class Resources implements Disposable {
     public Sound bounceSound;
     public Sound switchSound;
     public Sound killerSound;
+    public Sound gravityOn;
+    public Sound gravityOff;
 
+
+    static class LoaderHandler<T>{
+        public String fileName;
+        public LoadListener<T> listener;
+    }
+
+    interface LoadListener<T> {
+        void onLoad(T asset);
+    }
+
+    private final List<LoaderHandler<Object>> listeners = new ArrayList<>();
 
     public Resources() {
         assetManager.setLoader(TiledMap.class, new TmxMapLoaderText());
@@ -48,27 +61,40 @@ public class Resources implements Disposable {
             stages.add(descriptor);
         }
 
-        assetManager.load("sound/switch.mp3", Sound.class);
-        assetManager.load("sound/bounce.mp3", Sound.class);
-        assetManager.load("sound/killer.mp3", Sound.class);
+        load("momentum.atlas", TextureAtlas.class, (atlas) -> {
+            playerMove = new Animation<>(0.5f, atlas.findRegions("player_move"));
+            playerDead = new Animation<>(0.2f, atlas.findRegions("player_dead"));
+            playerHit = new Animation<>(0.5f, atlas.findRegions("player_hit"));
+            enemy = atlas.findRegion("enemy");
+        });
+        load("portal.png", Texture.class, (asset) -> {
+            TextureRegion[][] portalRegions = new TextureRegion(asset)
+                    .split(asset.getWidth() / 8, asset.getHeight() / 3);
+            goal = new Animation<>(0.16f, portalRegions[0][0], portalRegions[0][1], portalRegions[0][2],
+                    portalRegions[0][3], portalRegions[0][4], portalRegions[0][5], portalRegions[0][6], portalRegions[0][7]);
+        });
+        load("black_hole_area.png", Texture.class, (asset) -> blackHole = new TextureRegion(asset));
+        load("sound/bounce.mp3", Sound.class, (sound) -> bounceSound = sound);
+        load("sound/killer.mp3", Sound.class, (sound) -> killerSound = sound);
+        load("sound/switch.mp3", Sound.class, (sound) -> switchSound = sound);
+        load("sound/gravity_on.mp3", Sound.class, (sound) -> gravityOn = sound);
+        load("sound/gravity_off.mp3", Sound.class, (sound) -> gravityOff = sound);
+    }
+
+    private <T> void load(String fileName, Class<T> type, LoadListener<T> listener) {
+        assetManager.load(fileName, type);
+        LoaderHandler<Object> loaderHandler = new LoaderHandler<>();
+        loaderHandler.fileName = fileName;
+        //noinspection unchecked
+        loaderHandler.listener = (LoadListener<Object>) listener;
+        listeners.add(loaderHandler);
     }
 
     public void finishLoading() {
         assetManager.finishLoading();
-        TextureAtlas atlas = assetManager.get("momentum.atlas");
-        playerMove = new Animation<TextureRegion>(0.5f, atlas.findRegions("player_move"));
-        playerDead = new Animation<TextureRegion>(0.2f, atlas.findRegions("player_dead"));
-        playerHit = new Animation<TextureRegion>(0.5f, atlas.findRegions("player_hit"));
-        enemy = atlas.findRegion("enemy");
-        Texture portalTexture = assetManager.get("portal.png");
-        TextureRegion[][] portalRegions = new TextureRegion(portalTexture)
-                .split(portalTexture.getWidth() / 8, portalTexture.getHeight() / 3);
-        goal = new Animation<>(0.16f, portalRegions[0][0], portalRegions[0][1], portalRegions[0][2],
-                portalRegions[0][3], portalRegions[0][4], portalRegions[0][5], portalRegions[0][6], portalRegions[0][7]);
-        blackHole = new TextureRegion((Texture) assetManager.get("black_hole_area.png"));
-        bounceSound = assetManager.get("sound/bounce.mp3");
-        switchSound = assetManager.get("sound/switch.mp3");
-        killerSound = assetManager.get("sound/killer.mp3");
+        for (LoaderHandler<Object> listener : listeners) {
+            listener.listener.onLoad(assetManager.get(listener.fileName));
+        }
     }
 
     public <T> T get(AssetDescriptor<T> assetDescriptor) {
