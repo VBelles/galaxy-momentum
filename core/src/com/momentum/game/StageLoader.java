@@ -103,6 +103,31 @@ public class StageLoader {
             }
 
         }
+
+        int tileSize = (int) map.getProperties().get("tilewidth");
+        int width = (int) map.getProperties().get("width") * tileSize;
+        int height = (int) map.getProperties().get("height") * tileSize;
+
+        engine.addEntity(new Entity()
+                .add(engine.createComponent(Renderable.class)
+                        .setSize(width, height * 0.5f)
+                        .setTexture(resources.veil)
+                )
+                .add(engine.createComponent(Transform.class)
+                        .setPosition(width * 0.5f, height * 0.5f)
+                )
+                .add(engine.createComponent(ClickToStart.class))
+        );
+        engine.addEntity(new Entity()
+                .add(engine.createComponent(Renderable.class)
+                        .setText("Click to start")
+                        .setSize(width, height)
+                )
+                .add(engine.createComponent(Transform.class)
+                        .setPosition(0, height * 0.75f)
+                )
+                .add(engine.createComponent(ClickToStart.class))
+        );
     }
 
     private static Vector2 getWorldPosition(TiledMapTile tile, int row, int column) {
@@ -311,7 +336,7 @@ public class StageLoader {
         float maxPull = constant ? 30 : 40;
 
         float scaleFactor = 1;
-        if(!constant) scaleFactor = 1.4f;
+        if (!constant) scaleFactor = 1.4f;
 
         Entity entity = new Entity()
                 .add(engine.createComponent(Transform.class)
@@ -358,10 +383,9 @@ public class StageLoader {
     private static void buildDoor(Engine engine, TextureRegion texture, Vector2 position, int level, String name, boolean horizontal) {
         float xColliderSizeFactor = 1;
         float yColliderSizeFactor = 1;
-        if(horizontal) {
+        if (horizontal) {
             yColliderSizeFactor = 3;
-        }
-        else {
+        } else {
             xColliderSizeFactor = 3;
         }
 

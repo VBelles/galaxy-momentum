@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
+import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
@@ -23,6 +24,7 @@ public class PlayerSystem extends IteratingSystem {
     private final Resources resources;
     private Iterable<Entity> stageEntity;
     private Iterable<Entity> gravityFieldEntities;
+    private ImmutableArray<Entity> clickToStartEntities;
 
     // only when not constant, debug variable for testing which option is better
     // in the final game all of them should be true or false
@@ -40,10 +42,19 @@ public class PlayerSystem extends IteratingSystem {
         super.addedToEngine(engine);
         stageEntity = engine.getEntitiesFor(Family.all(Stage.class).get());
         gravityFieldEntities = engine.getEntitiesFor(Family.all(GravityField.class).get());
+        clickToStartEntities = engine.getEntitiesFor(Family.all(ClickToStart.class).get());
     }
 
     @Override
     public void processEntity(Entity entity, float deltaTime) {
+
+        // Wait for click to start
+        if (clickToStartEntities.size() != 0) {
+            if (Gdx.input.justTouched()) {
+                getEngine().removeAllEntities(Family.all(ClickToStart.class).get());
+            }
+            return;
+        }
         Player player = Player.mapper.get(entity);
         Transform transform = Transform.mapper.get(entity);
         Collider collider = Collider.mapper.get(entity);
@@ -137,9 +148,7 @@ public class PlayerSystem extends IteratingSystem {
                         MathUtils.clamp(distance * distance, 0, maxAffectedDistance * maxAffectedDistance)
                                 / (maxAffectedDistance * maxAffectedDistance);
                 pullAccelerationMagnitude = MathUtils.lerp(field.maxPull, field.minPull, progress);
-            }
-            else
-            {
+            } else {
                 float progress = MathUtils.clamp(distance, 0, 544) / (544);
                 pullAccelerationMagnitude = MathUtils.lerp(field.maxPull, field.maxPull - 1, progress);
             }

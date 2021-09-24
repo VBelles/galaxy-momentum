@@ -28,6 +28,7 @@ public class Resources implements Disposable {
     public Animation<TextureRegion> goal;
     public TextureRegion enemy;
     public TextureRegion blackHole;
+    public TextureRegion veil;
 
     public Sound bounceSound;
     public Sound switchSound;
@@ -70,6 +71,7 @@ public class Resources implements Disposable {
                     portalRegions[0][3], portalRegions[0][4], portalRegions[0][5], portalRegions[0][6], portalRegions[0][7]);
         });
         load("black_hole_area.png", Texture.class, (asset) -> blackHole = new TextureRegion(asset));
+        load("veil.png", Texture.class, (asset) -> veil = new TextureRegion(asset));
         load("sound/bounce.mp3", Sound.class, (sound) -> bounceSound = sound);
         load("sound/killer.mp3", Sound.class, (sound) -> killerSound = sound);
         load("sound/switch.mp3", Sound.class, (sound) -> switchSound = sound);
