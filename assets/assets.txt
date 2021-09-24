@@ -5,6 +5,7 @@ d:stages:stages:0:application/unknown:1
 i:stages/Dungeon Sprites.png:stages/Dungeon Sprites-fade8979984c821bd00c9e8c5dc6b901.png:11170:image/png:1
 b:stages/stage_0.tmx:stages/stage_0-70bda16d66b2a7eafabc09db36c06cf0.tmx:3649:application/unknown:1
 i:stages/industrial.v2.png:stages/industrial.v2-a755e0455b1fd9c8dea3d033698f079f.png:22668:image/png:1
+b:stages/stage_4.tmx:stages/stage_4-2bdfca5509a6c647196fa778cf40832d.tmx:4536:application/unknown:1
 b:stages/stage_2.tmx:stages/stage_2-df7c1048ce7583afacf1ffd347abb846.tmx:3803:application/unknown:1
 b:stages/stage_1.tmx:stages/stage_1-b5fcf15104aa8cac0f0d1e707905731f.tmx:4022:application/unknown:1
 b:stages/Dungeon Sprites.tsx:stages/Dungeon Sprites-a8496c13994c0c21de9461ac220adc36.tsx:353:application/unknown:1
