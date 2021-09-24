@@ -34,6 +34,7 @@ public class Resources implements Disposable {
     public Sound killerSound;
     public Sound gravityOn;
     public Sound gravityOff;
+    public Sound goalSound;
 
 
     static class LoaderHandler<T>{
@@ -72,8 +73,9 @@ public class Resources implements Disposable {
         load("sound/bounce.mp3", Sound.class, (sound) -> bounceSound = sound);
         load("sound/killer.mp3", Sound.class, (sound) -> killerSound = sound);
         load("sound/switch.mp3", Sound.class, (sound) -> switchSound = sound);
-        load("sound/gravity_on.mp3", Sound.class, (sound) -> gravityOn = sound);
+        load("sound/gravity_on_edited.mp3", Sound.class, (sound) -> gravityOn = sound);
         load("sound/gravity_off.mp3", Sound.class, (sound) -> gravityOff = sound);
+        load("sound/goal.mp3", Sound.class, (sound) -> goalSound = sound);
     }
 
     private <T> void load(String fileName, Class<T> type, LoadListener<T> listener) {
