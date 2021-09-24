@@ -38,7 +38,8 @@ public class Resources implements Disposable {
         assetManager.load("portal.png", Texture.class);
         assetManager.load("black_hole_area.png", Texture.class);
 
-        FileHandle fileHandle = Gdx.files.local("stages/stages.txt");
+
+        FileHandle fileHandle = Gdx.files.internal("stages/stages.txt");
         for (String stage : fileHandle.readString().split("\n")) {
             AssetDescriptor<TiledMap> descriptor = new AssetDescriptor<>("stages/" + stage.trim(), TiledMap.class);
             assetManager.load(descriptor);
