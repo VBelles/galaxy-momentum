@@ -116,7 +116,7 @@ public class PlayerSystem extends IteratingSystem {
             }
 
             //only has pull if active or constant field (always active)
-            if (!field.active) continue;
+            if (!field.active && !field.constantField) continue;
 
             //calculate direction of the pull
             Vector2 pullDirection = fieldTransform.position.cpy().sub(transform.position);
