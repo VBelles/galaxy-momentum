@@ -14,7 +14,6 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.momentum.game.components.*;
 import com.momentum.game.resources.Resources;
@@ -266,19 +265,17 @@ public class StageLoader {
     }
 
     private static void buildSwitch(Engine engine, TextureRegion tex1, TextureRegion tex2, Vector2 position, float rotation, int level, String name) {
-        if(rotation < 0) {
+        if (rotation < 0) {
             rotation += 36000;
             rotation = rotation % 360;
         }
 
-        if(rotation == 270){
+        if (rotation == 270) {
             position.x -= 16;
-        }
-        else if(rotation == 180){
+        } else if (rotation == 180) {
             position.x -= 16;
             position.y -= 16;
-        }
-        else if(rotation == 90){
+        } else if (rotation == 90) {
             position.y -= 16;
         }
 
@@ -335,7 +332,9 @@ public class StageLoader {
                         .setMinPull(minPull)
                         .setMaxPull(maxPull)
                 );
+        engine.addEntity(entity);
 
+        // Add another entity for the background
         if (constant) {
             entity.add(engine.createComponent(Killer.class));
             engine.addEntity(new Entity()
@@ -345,9 +344,9 @@ public class StageLoader {
                             .setRotate(new Animated.Rotate(0f, Float.MAX_VALUE, 600f))
                             .setScale(new Animated.Scale(0.8f, 1f, 0.3f))
                     )
+                    .add(engine.createComponent(Tag.class).addTag(level))
             );
         }
-        engine.addEntity(entity);
 
     }
 
