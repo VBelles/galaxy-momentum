@@ -56,7 +56,7 @@
   <object id="19" name="door_1" gid="138" x="160" y="176" width="16" height="16"/>
   <object id="20" name="door_1" gid="138" x="176" y="176" width="16" height="16"/>
   <object id="23" name="gravity" gid="526" x="400" y="128" width="16" height="16"/>
-  <object id="25" name="switch_1" gid="262" x="320" y="128" width="16" height="16" rotation="270"/>
+  <object id="25" name="switch_1" gid="262" x="336" y="128" width="16" height="16" rotation="270"/>
   <object id="27" name="goal" gid="1158" x="160" y="200" width="16" height="16"/>
  </objectgroup>
 </map>
