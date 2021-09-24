@@ -73,7 +73,7 @@ public class Resources implements Disposable {
         load("sound/bounce.mp3", Sound.class, (sound) -> bounceSound = sound);
         load("sound/killer.mp3", Sound.class, (sound) -> killerSound = sound);
         load("sound/switch.mp3", Sound.class, (sound) -> switchSound = sound);
-        load("sound/gravity_on.mp3", Sound.class, (sound) -> gravityOn = sound);
+        load("sound/gravity_on_edited.mp3", Sound.class, (sound) -> gravityOn = sound);
         load("sound/gravity_off.mp3", Sound.class, (sound) -> gravityOff = sound);
         load("sound/goal.mp3", Sound.class, (sound) -> goalSound = sound);
     }
