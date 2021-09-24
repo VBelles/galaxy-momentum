@@ -166,7 +166,7 @@ public class PlayerSystem extends IteratingSystem {
                     reflectedVector.scl(0.8f);//magic number for elasticity
                 }
 
-                if (reflectedVector.len() > 1) {
+                if (reflectedVector.len() > 5) {
                     resources.bounceSound.play();
                 }
 
