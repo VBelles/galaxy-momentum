@@ -1,5 +1,6 @@
-stage_0.tmx
-stage_1.tmx
-stage_2.tmx
-stage_3.tmx
-stage_4.tmx
+stage_06.tmx
+stage_01.tmx
+stage_02.tmx
+stage_03.tmx
+stage_04.tmx
+stage_05.tmx
