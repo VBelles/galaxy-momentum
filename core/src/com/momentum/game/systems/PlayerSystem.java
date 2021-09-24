@@ -166,7 +166,7 @@ public class PlayerSystem extends IteratingSystem {
                     reflectedVector.scl(0.8f);//magic number for elasticity
                 }
 
-                if (reflectedVector.len() > 1) {
+                if (reflectedVector.len() > 1 && !Killer.mapper.has(collidedEntity)) {
                     resources.bounceSound.play();
                 }
 
@@ -189,6 +189,7 @@ public class PlayerSystem extends IteratingSystem {
                 Gdx.app.log("PlayerSystem", "You died");
                 Stage stage = Stage.mapper.get(stageEntity.iterator().next());
                 stage.failure = true;
+                resources.killerSound.play();
             }
         }
 

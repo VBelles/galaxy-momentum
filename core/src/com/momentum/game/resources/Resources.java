@@ -31,6 +31,7 @@ public class Resources implements Disposable {
 
     public Sound bounceSound;
     public Sound switchSound;
+    public Sound killerSound;
 
 
     public Resources() {
@@ -49,6 +50,7 @@ public class Resources implements Disposable {
 
         assetManager.load("sound/switch.mp3", Sound.class);
         assetManager.load("sound/bounce.mp3", Sound.class);
+        assetManager.load("sound/killer.mp3", Sound.class);
     }
 
     public void finishLoading() {
@@ -66,6 +68,7 @@ public class Resources implements Disposable {
         blackHole = new TextureRegion((Texture) assetManager.get("black_hole_area.png"));
         bounceSound = assetManager.get("sound/bounce.mp3");
         switchSound = assetManager.get("sound/switch.mp3");
+        killerSound = assetManager.get("sound/killer.mp3");
     }
 
     public <T> T get(AssetDescriptor<T> assetDescriptor) {
