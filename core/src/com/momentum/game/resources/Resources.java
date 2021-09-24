@@ -1,7 +1,9 @@
 package com.momentum.game.resources;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -17,7 +19,6 @@ public class Resources implements Disposable {
 
     private final AssetManager assetManager = new AssetManager();
 
-    private static final int STAGE_COUNT = 5;
     public List<AssetDescriptor<TiledMap>> stages = new ArrayList<>();
 
     public Animation<TextureRegion> playerMove;
@@ -37,9 +38,11 @@ public class Resources implements Disposable {
         assetManager.load("portal.png", Texture.class);
         assetManager.load("black_hole_area.png", Texture.class);
 
-        for (int i = 0; i < STAGE_COUNT; i++) {
-            stages.add(new AssetDescriptor<>("stages/stage_" + i + ".tmx", TiledMap.class));
-            assetManager.load(stages.get(i));
+        FileHandle fileHandle = Gdx.files.local("stages/stages.txt");
+        for (String stage : fileHandle.readString().split("\n")) {
+            AssetDescriptor<TiledMap> descriptor = new AssetDescriptor<>("stages/" + stage.trim(), TiledMap.class);
+            assetManager.load(descriptor);
+            stages.add(descriptor);
         }
     }
 
