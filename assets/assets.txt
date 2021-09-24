@@ -1,5 +1,4 @@
 d:assets:assets:0:application/unknown:1
-i:alienworld_tileset.png:alienworld_tileset-09699095d0c0d57534ee4b4ec4b32191.png:32827:image/png:1
 i:momentum.png:momentum-4f3abe33d80aef8ebec7eb8855eae4ac.png:5851:image/png:1
 d:stages:stages:0:application/unknown:1
 i:stages/Dungeon Sprites.png:stages/Dungeon Sprites-fade8979984c821bd00c9e8c5dc6b901.png:11170:image/png:1
@@ -9,9 +8,9 @@ b:stages/stage_4.tmx:stages/stage_4-2bdfca5509a6c647196fa778cf40832d.tmx:4536:ap
 b:stages/stage_2.tmx:stages/stage_2-df7c1048ce7583afacf1ffd347abb846.tmx:3803:application/unknown:1
 b:stages/stage_1.tmx:stages/stage_1-b5fcf15104aa8cac0f0d1e707905731f.tmx:4022:application/unknown:1
 b:stages/Dungeon Sprites.tsx:stages/Dungeon Sprites-a8496c13994c0c21de9461ac220adc36.tsx:353:application/unknown:1
+t:stages/stages.txt:stages/stages-ad6a27fcf9e061cef8ec0aab005fd657.txt:59:text/plain:1
 b:stages/stage_3.tmx:stages/stage_3-cf0bf1e736ce995a6fc738102fe7e1a3.tmx:3919:application/unknown:1
 b:stages/industrial.v2.tsx:stages/industrial.v2-c926852df5da24364e8fed29ed35830d.tsx:239:application/unknown:1
-i:player.png:player-c99f73e93808e66baea8267c6ae12d04.png:148:image/png:1
 d:font:font:0:application/unknown:1
 t:font/pixel.fnt:font/pixel-beb1f36877e163ccf3bf429f5c71d567.fnt:11132:application/unknown:1
 i:font/pixel.png:font/pixel-f64570b363031b307678717604a3ee41.png:4284:image/png:1
