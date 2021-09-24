@@ -5,11 +5,10 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.dongbat.jbump.*;
 import com.momentum.game.PhysicsUtils;
 import com.momentum.game.components.*;
@@ -19,7 +18,7 @@ import java.util.ArrayList;
 
 public class PlayerSystem extends IteratingSystem {
 
-    private final Camera camera;
+    private final Viewport viewport;
     private final World<Entity> world;
     private final Resources resources;
     private Iterable<Entity> stageEntity;
@@ -29,9 +28,9 @@ public class PlayerSystem extends IteratingSystem {
     // in the final game all of them should be true or false
     public boolean toggleableGravityFields = true;
 
-    public PlayerSystem(Camera camera, World<Entity> world, Resources resources) {
+    public PlayerSystem(Viewport viewport, World<Entity> world, Resources resources) {
         super(Family.all(Player.class, Transform.class, Collider.class, Animated.class, Renderable.class).get());
-        this.camera = camera;
+        this.viewport = viewport;
         this.world = world;
         this.resources = resources;
     }
@@ -78,7 +77,7 @@ public class PlayerSystem extends IteratingSystem {
         ArrayList<Item> clickedItems = new ArrayList<>();
         if (toggleableGravityFields) {
             if (Gdx.input.justTouched()) {
-                Vector3 worldCoordinates = getWorldInputCoordinates();
+                Vector2 worldCoordinates = getWorldInputCoordinates();
                 world.queryPoint(worldCoordinates.x, worldCoordinates.y, CollisionFilter.defaultFilter, clickedItems);
                 for (Item clickedItem : clickedItems) {
                     Entity clickedEntity = (Entity) clickedItem.userData;
@@ -89,7 +88,7 @@ public class PlayerSystem extends IteratingSystem {
                 }
             }
         } else if (Gdx.input.isTouched()) {
-            Vector3 worldCoordinates = getWorldInputCoordinates();
+            Vector2 worldCoordinates = getWorldInputCoordinates();
             world.queryPoint(worldCoordinates.x, worldCoordinates.y, CollisionFilter.defaultFilter, clickedItems);
         }
 
@@ -197,8 +196,8 @@ public class PlayerSystem extends IteratingSystem {
         player.velocity.mulAdd(player.acceleration, deltaTime);
     }
 
-    private Vector3 getWorldInputCoordinates() {
-        return camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
+    private Vector2 getWorldInputCoordinates() {
+        return viewport.unproject(new Vector2(Gdx.input.getX(), Gdx.input.getY()));
     }
 
 }
