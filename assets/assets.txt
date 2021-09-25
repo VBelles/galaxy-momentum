@@ -5,7 +5,7 @@ i:stages/Dungeon Sprites.png:stages/Dungeon Sprites-bf40fba1b3e83bfb3bbfd44633ed
 b:stages/stage_04.tmx:stages/stage_04-a40a704be8ef930ec70e077031c453a7.tmx:3921:application/unknown:1
 i:stages/industrial.v2.png:stages/industrial.v2-a755e0455b1fd9c8dea3d033698f079f.png:22668:image/png:1
 b:stages/stage_03.tmx:stages/stage_03-85de2a51ed423f1df8da6fbf27548768.tmx:3799:application/unknown:1
-b:stages/stage_01.tmx:stages/stage_01-820796f18d684fc0995b614632dbdc9d.tmx:3646:application/unknown:1
+b:stages/stage_01.tmx:stages/stage_01-138d4fb17ebc035e38cce20345c4c8fa.tmx:3727:application/unknown:1
 b:stages/stage_toggle.tmx:stages/stage_toggle-df0732547849aed14b8d73dc189b2dd1.tmx:4569:application/unknown:1
 b:stages/stage_08.tmx:stages/stage_08-6ada870c189e9333606061b49d0fd231.tmx:15413:application/unknown:1
 b:stages/stage_07.tmx:stages/stage_07-2c24f6e40c71c1f4240cd290ecdd74cb.tmx:4404:application/unknown:1
@@ -16,9 +16,9 @@ b:stages/00_Prefabs.tmx:stages/00_Prefabs-691021e21bc3dcbafd7075591ff61ec3.tmx:5
 t:stages/stages.txt:stages/stages-2e515cae765debe0cfe386432edd50b8.txt:152:text/plain:1
 b:stages/stage_06.tmx:stages/stage_06-85ebb642ce6624c6149a1b261da83aff.tmx:3601:application/unknown:1
 b:stages/stage_02.tmx:stages/stage_02-3f733be842f40de0d2796d37129bc8ac.tmx:4018:application/unknown:1
-b:stages/stage_constant.tmx:stages/stage_constant-4814954f9421fc5188ed8490fb4c68c1.tmx:4506:application/unknown:1
+b:stages/stage_constant.tmx:stages/stage_constant-bf981f044881c9bd7c2ec6d5085ffe0a.tmx:4596:application/unknown:1
 b:stages/industrial.v2.tsx:stages/industrial.v2-c926852df5da24364e8fed29ed35830d.tsx:239:application/unknown:1
-b:stages/01_Template.tmx:stages/01_Template-4c2a11e9325e86a8254468fa5810cfdc.tmx:3752:application/unknown:1
+b:stages/01_Template.tmx:stages/01_Template-837fcc536f8bf3963c16dc251e9bbf87.tmx:3831:application/unknown:1
 d:sound:sound:0:application/unknown:1
 a:sound/killer2.mp3:sound/killer2-aa2169c814a67656326fc139b19fca00.mp3:4720:application/unknown:1
 a:sound/gravity_on_edited.mp3:sound/gravity_on_edited-4cfd26570aa1948df7256ffca4be4a07.mp3:10413:application/unknown:1
