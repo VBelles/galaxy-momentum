@@ -10,3 +10,4 @@ stage_09.tmx
 stage_06.tmx
 stage_08.tmx
 stage_10.tmx
+stage_11.tmx
