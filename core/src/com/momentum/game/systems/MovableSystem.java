@@ -39,6 +39,8 @@ public class MovableSystem extends IteratingSystem {
         PhysicsUtils.move(world, collider, transform);
 
         if (target.dst(transform.position) < delta) {
+            transform.position.set(target);
+            PhysicsUtils.move(world, collider, transform);
             movable.nextPoint += movable.increment;
             if (movable.cyclic) {
                 if (movable.nextPoint >= movable.path.size()) {
