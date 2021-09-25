@@ -30,7 +30,7 @@ public class Resources implements Disposable {
     public TextureRegion blackHole;
     public TextureRegion veil;
 
-    public Sound bounceSound;
+    public List<Sound> bounceSounds = new ArrayList<>();
     public Sound switchSound;
     public Sound killerSound;
     public Sound gravityOn;
@@ -72,12 +72,16 @@ public class Resources implements Disposable {
         });
         load("black_hole_area.png", Texture.class, (asset) -> blackHole = new TextureRegion(asset));
         load("veil.png", Texture.class, (asset) -> veil = new TextureRegion(asset));
-        load("sound/bounce.mp3", Sound.class, (sound) -> bounceSound = sound);
-        load("sound/killer.mp3", Sound.class, (sound) -> killerSound = sound);
+        load("sound/bounce_phaser00.mp3", Sound.class, (sound) -> bounceSounds.add(sound));
+        load("sound/bounce_phaser01.mp3", Sound.class, (sound) -> bounceSounds.add(sound));
+        load("sound/bounce_phaser02.mp3", Sound.class, (sound) -> bounceSounds.add(sound));
+        load("sound/bounce_phaser03.mp3", Sound.class, (sound) -> bounceSounds.add(sound));
+        load("sound/bounce_phaser04.mp3", Sound.class, (sound) -> bounceSounds.add(sound));
+        load("sound/killer2.mp3", Sound.class, (sound) -> killerSound = sound);
         load("sound/switch.mp3", Sound.class, (sound) -> switchSound = sound);
-        load("sound/gravity_on_edited.mp3", Sound.class, (sound) -> gravityOn = sound);
-        load("sound/gravity_off.mp3", Sound.class, (sound) -> gravityOff = sound);
-        load("sound/goal.mp3", Sound.class, (sound) -> goalSound = sound);
+        load("sound/gravity_on_phaser.mp3", Sound.class, (sound) -> gravityOn = sound);
+        load("sound/gravity_off_phaser.mp3", Sound.class, (sound) -> gravityOff = sound);
+        load("sound/goal_echo.mp3", Sound.class, (sound) -> goalSound = sound);
     }
 
     private <T> void load(String fileName, Class<T> type, LoadListener<T> listener) {

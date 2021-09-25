@@ -186,7 +186,8 @@ public class PlayerSystem extends IteratingSystem {
                 }
 
                 if (reflectedVector.len() > 5 && !Killer.mapper.has(collidedEntity)) {
-                    resources.bounceSound.play();
+                    int randInd = MathUtils.random(0, resources.bounceSounds.size() - 1);
+                    resources.bounceSounds.get(randInd).play();
                 }
 
                 player.setVelocity(reflectedVector);
