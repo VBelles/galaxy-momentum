@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="32" height="18" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="39">
  <properties>
-  <property name="title" value="fgfg"/>
+  <property name="title" value="Slow life"/>
  </properties>
  <tileset firstgid="1" source="industrial.v2.tsx"/>
  <tileset firstgid="1025" source="Dungeon Sprites.tsx"/>
@@ -54,17 +54,17 @@
  </layer>
  <objectgroup id="2" name="objects">
   <object id="2" name="spawn" gid="513" x="24" y="40" width="16" height="16"/>
-  <object id="12" name="gravity" gid="526" x="24" y="88" width="16" height="16"/>
-  <object id="23" name="gravity" gid="526" x="72" y="40" width="16" height="16"/>
-  <object id="35" name="goal" gid="1158" x="384" y="224" width="16" height="16"/>
+  <object id="12" name="gravity" gid="526" x="24" y="96" width="16" height="16"/>
+  <object id="23" name="gravity" gid="526" x="80" y="40" width="16" height="16"/>
+  <object id="35" name="goal" gid="1158" x="384" y="220" width="16" height="16"/>
   <object id="37" x="208" y="20" width="123.5" height="20">
-   <text fontfamily="MS Shell Dlg 2" wrap="1" halign="center">Patience!</text>
+   <text fontfamily="MS Shell Dlg 2" wrap="1" halign="center" valign="center">Patience!</text>
   </object>
   <object id="38" x="332" y="108" width="123.5" height="36">
    <properties>
     <property name="title" value="dfgfg"/>
    </properties>
-   <text fontfamily="MS Shell Dlg 2" wrap="1" halign="center">Press R to restart</text>
+   <text fontfamily="MS Shell Dlg 2" wrap="1" halign="center" valign="center">Press R to restart</text>
   </object>
  </objectgroup>
 </map>
