@@ -13,9 +13,10 @@ b:stages/stage_09.tmx:stages/stage_09-61b40237f20ca9d5a4578b6f42f262c3.tmx:4824:
 b:stages/stage_05.tmx:stages/stage_05-467e5703227be5de442c7eb4c351b85d.tmx:4535:application/unknown:1
 b:stages/Dungeon Sprites.tsx:stages/Dungeon Sprites-a8496c13994c0c21de9461ac220adc36.tsx:353:application/unknown:1
 b:stages/00_Prefabs.tmx:stages/00_Prefabs-691021e21bc3dcbafd7075591ff61ec3.tmx:5672:application/unknown:1
-t:stages/stages.txt:stages/stages-414096a221fb11b2ef46f72c9a8b6a5f.txt:133:text/plain:1
+t:stages/stages.txt:stages/stages-2e515cae765debe0cfe386432edd50b8.txt:152:text/plain:1
 b:stages/stage_06.tmx:stages/stage_06-85ebb642ce6624c6149a1b261da83aff.tmx:3601:application/unknown:1
 b:stages/stage_02.tmx:stages/stage_02-3f733be842f40de0d2796d37129bc8ac.tmx:4018:application/unknown:1
+b:stages/stage_constant.tmx:stages/stage_constant-4814954f9421fc5188ed8490fb4c68c1.tmx:4506:application/unknown:1
 b:stages/industrial.v2.tsx:stages/industrial.v2-c926852df5da24364e8fed29ed35830d.tsx:239:application/unknown:1
 b:stages/01_Template.tmx:stages/01_Template-4c2a11e9325e86a8254468fa5810cfdc.tmx:3752:application/unknown:1
 d:sound:sound:0:application/unknown:1
