@@ -44,7 +44,7 @@ a:sound/goal.mp3:sound/goal-d8555984497430e539e1b0e763aba7ae.mp3:37610:applicati
 a:sound/gravity_on_phaser.mp3:sound/gravity_on_phaser-ec2d33c338a01e4473a01a114a803726.mp3:10219:application/unknown:1
 a:sound/gravity_on.mp3:sound/gravity_on-a11f6b289888bb0a52201643f41d476b.mp3:13393:application/unknown:1
 a:sound/goal_echo.mp3:sound/goal_echo-a44fffa84d8905d94c53efe445a2c40c.mp3:37111:application/unknown:1
-i:veil.png:veil-2d3affbb8eb7dde23aa1b2d5075e9021.png:1980:image/png:1
+i:veil.png:veil-c267d57dceb624552ca45cc378b524bb.png:2970:image/png:1
 d:font:font:0:application/unknown:1
 t:font/pixel.fnt:font/pixel-beb1f36877e163ccf3bf429f5c71d567.fnt:11132:application/unknown:1
 i:font/pixel.png:font/pixel-f64570b363031b307678717604a3ee41.png:4284:image/png:1
