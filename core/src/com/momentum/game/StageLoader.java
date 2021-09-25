@@ -19,6 +19,8 @@ import com.momentum.game.components.*;
 import com.momentum.game.resources.Resources;
 import com.momentum.game.resources.map.TextLabelMapObject;
 
+import java.util.Collections;
+
 public class StageLoader {
 
     public static void load(Engine engine, Resources resources, int level) {
@@ -118,15 +120,24 @@ public class StageLoader {
                 )
                 .add(engine.createComponent(ClickToStart.class))
         );
+
+        String stage = "STAGE " + (level + 1 < 10 ? "0" : "") + (level + 1) + "\n";
+        String decoration = String.join("", Collections.nCopies(stage.length(), "-")) + "\n";
+        String title = map.getProperties().get("title", "", String.class);
         engine.addEntity(new Entity()
                 .add(engine.createComponent(Renderable.class)
-                        .setText("Click to start")
+                        .setText(decoration +
+                                stage +
+                                decoration +
+                                "\n" + title +
+                                "\n\n\nclick to start")
                         .setSize(width, height)
                 )
                 .add(engine.createComponent(Transform.class)
                         .setPosition(0, height * 0.75f)
                 )
                 .add(engine.createComponent(ClickToStart.class))
+                .add(engine.createComponent(Tag.class).addTag(level))
         );
     }
 
