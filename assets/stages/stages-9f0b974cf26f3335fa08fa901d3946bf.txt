@@ -12,3 +12,5 @@ slow_life.tmx
 open_the_gates.tmx
 die_step_by_step.tmx
 the_bridge.tmx
+balanced.tmx
+the_swing.tmx

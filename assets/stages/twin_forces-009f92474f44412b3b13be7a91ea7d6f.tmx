@@ -54,14 +54,14 @@
  </layer>
  <objectgroup id="2" name="objects">
   <object id="2" name="spawn" gid="513" x="51" y="151.833" width="16" height="16"/>
-  <object id="5" name="gravity" gid="526" x="408" y="70.333" width="16" height="16"/>
+  <object id="5" name="gravity" gid="526" x="408" y="104" width="16" height="16"/>
   <object id="6" name="movable" x="176" y="72">
    <polyline points="0,0 0.5,144"/>
   </object>
-  <object id="7" x="352" y="105" width="123.5" height="59">
+  <object id="7" x="352" y="124" width="123.5" height="59">
    <text fontfamily="MS Shell Dlg 2" wrap="1" halign="center" valign="center">Combine forces to reach the portal</text>
   </object>
-  <object id="9" name="gravity" gid="526" x="409" y="232" width="16" height="16"/>
+  <object id="9" name="gravity" gid="526" x="408" y="200" width="16" height="16"/>
   <object id="10" name="goal" gid="1158" x="280" y="152" width="16" height="16"/>
  </objectgroup>
 </map>
