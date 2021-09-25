@@ -119,6 +119,7 @@ public class StageLoader {
                         .setPosition(width * 0.5f, height * 0.5f)
                 )
                 .add(engine.createComponent(ClickToStart.class))
+                .add(engine.createComponent(Tag.class).addTag(level))
         );
 
         String stage = "STAGE " + (level + 1 < 10 ? "0" : "") + (level + 1) + "\n";
@@ -349,6 +350,19 @@ public class StageLoader {
         float scaleFactor = 1;
         if (!constant) scaleFactor = 1.4f;
 
+        // Add another entity for the background
+        if (constant) {
+            engine.addEntity(new Entity()
+                    .add(engine.createComponent(Transform.class).setPosition(position.x, position.y))
+                    .add(engine.createComponent(Renderable.class).setTexture(resources.blackHole))
+                    .add(engine.createComponent(Animated.class)
+                            .setRotate(new Animated.Rotate(0f, Float.MAX_VALUE, 600f))
+                            .setScale(new Animated.Scale(0.8f, 1f, 0.3f))
+                    )
+                    .add(engine.createComponent(Tag.class).addTag(level))
+            );
+        }
+
         Entity entity = new Entity()
                 .add(engine.createComponent(Transform.class)
                         .setPosition(position.x, position.y)
@@ -374,19 +388,7 @@ public class StageLoader {
                 );
         engine.addEntity(entity);
 
-        // Add another entity for the background
-        if (constant) {
-            entity.add(engine.createComponent(Killer.class));
-            engine.addEntity(new Entity()
-                    .add(engine.createComponent(Transform.class).setPosition(position.x, position.y))
-                    .add(engine.createComponent(Renderable.class).setTexture(resources.blackHole))
-                    .add(engine.createComponent(Animated.class)
-                            .setRotate(new Animated.Rotate(0f, Float.MAX_VALUE, 600f))
-                            .setScale(new Animated.Scale(0.8f, 1f, 0.3f))
-                    )
-                    .add(engine.createComponent(Tag.class).addTag(level))
-            );
-        }
+        if (constant) entity.add(engine.createComponent(Killer.class));
 
     }
 
