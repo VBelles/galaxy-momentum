@@ -39,10 +39,18 @@ public class StageSystem extends IteratingSystem {
     protected void processEntity(Entity entity, float deltaTime) {
         Stage stage = Stage.mapper.get(entity);
         boolean goalsAchieved = areGoalsAchieved();
-        if (stage.level == -1 || goalsAchieved
+        if (stage.level == -1) {
+            // Restart from last level
+            stage.level = preferences.getInteger("level", 0);
+            // Restart from 0 at last level?
+           /* if (stage.level == resources.stages.size() - 1) {
+                stage.level = 0;
+            }*/
+            loadStage(-1, stage.level);
+        } else if (goalsAchieved
                 || (Gdx.input.isKeyJustPressed(Input.Keys.N) && stageUnlocked(stage.level + 1))) {
             // Load next stage
-            if (stage.level != -1) resources.goalSound.play();
+            resources.goalSound.play();
             stage.level++;
             loadStage(stage.level - 1, stage.level);
         } else if (stage.failure || Gdx.input.isKeyJustPressed(Input.Keys.R)) {
