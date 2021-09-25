@@ -14,3 +14,4 @@ die_step_by_step.tmx
 the_bridge.tmx
 balanced.tmx
 the_swing.tmx
+choose_wisely.tmx

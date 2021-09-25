@@ -13,9 +13,10 @@ b:stages/die_step_by_step.tmx:stages/die_step_by_step-715990f6c170de8f6ea3185a79
 b:stages/slow_life.tmx:stages/slow_life-5226f7e50916c53db942eaf813e05694.tmx:4095:application/unknown:1
 b:stages/the_swing.tmx:stages/the_swing-fa2a89cd527b4bf1e72827b9090dc7d3.tmx:7586:application/unknown:1
 b:stages/cheek_to_cheek.tmx:stages/cheek_to_cheek-5009d83a2bc72fa81ebb8ee8f6f3c306.tmx:4048:application/unknown:1
+b:stages/choose_wisely.tmx:stages/choose_wisely-1d256070e6e3b8b38a080f6f2b8c9e30.tmx:5864:application/unknown:1
 b:stages/Dungeon Sprites.tsx:stages/Dungeon Sprites-a8496c13994c0c21de9461ac220adc36.tsx:353:application/unknown:1
 b:stages/00_Prefabs.tmx:stages/00_Prefabs-48b01f1f55d4f26eac3f2c8f27004380.tmx:5834:application/unknown:1
-t:stages/stages.txt:stages/stages-9f0b974cf26f3335fa08fa901d3946bf.txt:288:text/plain:1
+t:stages/stages.txt:stages/stages-7012c24c6496cd26bd6e65acd10183c7.txt:306:text/plain:1
 b:stages/balanced.tmx:stages/balanced-e57bfca1cf7a1bcf9637ea650e152c26.tmx:6030:application/unknown:1
 b:stages/long_way_home.tmx:stages/long_way_home-393cbd1b1a630e92cae1b45da2db43c0.tmx:3806:application/unknown:1
 b:stages/symmetric_choices.tmx:stages/symmetric_choices-677546e63ccb2a411e00d325f5c22d5a.tmx:4990:application/unknown:1
