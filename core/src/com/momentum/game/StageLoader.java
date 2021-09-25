@@ -244,7 +244,7 @@ public class StageLoader {
                 )
                 .add(engine.createComponent(Goal.class))
                 .add(engine.createComponent(Collider.class)
-                        .setSize(texture.getRegionWidth() / 8.8f, texture.getRegionHeight() / 2.5f)
+                        .setSize(texture.getRegionWidth() / 8.8f, texture.getRegionHeight() / 2.0f)
                         .setOffset(-1f, -5f)
                         .setSensor(true)
                 )
