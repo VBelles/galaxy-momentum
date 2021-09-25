@@ -1,5 +1,6 @@
 stage_01.tmx
 stage_02.tmx
+stage_toggle.tmx
 stage_03.tmx
 stage_04.tmx
 stage_05.tmx
