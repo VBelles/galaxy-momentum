@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="32" height="18" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="67">
  <properties>
-  <property name="title" value="mmm"/>
+  <property name="title" value="The bridge"/>
  </properties>
  <tileset firstgid="1" source="industrial.v2.tsx"/>
  <tileset firstgid="1025" source="Dungeon Sprites.tsx"/>
