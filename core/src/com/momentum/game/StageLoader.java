@@ -122,15 +122,15 @@ public class StageLoader {
                 .add(engine.createComponent(Tag.class).addTag(level))
         );
 
-        String stage = "STAGE " + (level + 1 < 10 ? "0" : "") + (level + 1) + "\n";
-        String decoration = String.join("", Collections.nCopies(stage.length(), "-")) + "\n";
-        String title = map.getProperties().get("title", "", String.class);
+        String stage = "Chapter " + (level + 1 < 10 ? "0" : "") + (level + 1) + "\n\n";
+        String title = map.getProperties().get("title", "", String.class) + "\n";
+        String history = map.getProperties().get("history", "", String.class) + "\n";
+        String decoration = String.join("", Collections.nCopies(title.length(), "-")) + "\n";
         engine.addEntity(new Entity()
                 .add(engine.createComponent(Renderable.class)
-                        .setText(decoration +
-                                stage +
-                                decoration +
-                                "\n" + title +
+                        .setText(stage +
+                                decoration + title + decoration +
+                                "\n" + history +
                                 "\n\n\nclick to start")
                         .setSize(width, height)
                 )
