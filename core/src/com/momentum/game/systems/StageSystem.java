@@ -87,6 +87,7 @@ public class StageSystem extends IteratingSystem {
         int furthestLevel = preferences.getInteger("level", -1);
         if (level > furthestLevel) {
             preferences.putInteger("level", level);
+            preferences.flush();
         }
     }
 }
