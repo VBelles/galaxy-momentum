@@ -115,7 +115,7 @@
    </properties>
   </object>
   <object id="44" x="212" y="16" width="123.5" height="59">
-   <text fontfamily="MS Shell Dlg 2" wrap="1" halign="center">Text</text>
+   <text fontfamily="MS Shell Dlg 2" wrap="1" halign="center" valign="center">Text</text>
   </object>
  </objectgroup>
 </map>
