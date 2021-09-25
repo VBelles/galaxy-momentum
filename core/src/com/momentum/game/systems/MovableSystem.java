@@ -30,15 +30,19 @@ public class MovableSystem extends IteratingSystem {
         }
 
         Vector2 target = movable.path.get(movable.nextPoint);
+        float distance = target.dst(transform.position);
         movable.dir.set(target)
                 .sub(transform.position)
                 .nor();
         float delta = movable.speed * deltaTime;
         transform.position.mulAdd(movable.dir, delta);
 
-        PhysicsUtils.move(world, collider, transform);
+        PhysicsUtils.update(world, collider, transform);
 
-        if (target.dst(transform.position) < delta) {
+        float newDistance = target.dst(transform.position);
+        if (newDistance < delta || newDistance > distance) {
+            transform.position.set(target);
+            PhysicsUtils.update(world, collider, transform);
             movable.nextPoint += movable.increment;
             if (movable.cyclic) {
                 if (movable.nextPoint >= movable.path.size()) {
