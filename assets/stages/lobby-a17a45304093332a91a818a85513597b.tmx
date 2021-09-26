@@ -54,7 +54,7 @@
  </layer>
  <objectgroup id="2" name="objects">
   <object id="2" name="spawn" gid="513" x="16" y="152" width="16" height="16"/>
-  <object id="36" name="goal" gid="1158" x="480" y="152" width="16" height="16"/>
+  <object id="36" name="goal" gid="1158" x="480" y="148" width="16" height="16"/>
   <object id="40" name="gravity" gid="526" x="456" y="152" width="16" height="16"/>
   <object id="56" name="door_1" gid="105" x="480" y="48" width="16" height="16">
    <properties>

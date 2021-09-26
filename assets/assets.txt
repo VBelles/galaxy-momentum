@@ -5,13 +5,13 @@ b:stages/twin_forces.tmx:stages/twin_forces-16cb4e1c42680051a78605306a9c3bb7.tmx
 b:stages/the_bridge.tmx:stages/the_bridge-dfb834ae5515b3dc9d5251f3ef69bdc8.tmx:7180:application/unknown:1
 b:stages/tread_carefully.tmx:stages/tread_carefully-8e2906df02e559d1dc0a4e814722ef7a.tmx:4032:application/unknown:1
 i:stages/Dungeon Sprites.png:stages/Dungeon Sprites-bf40fba1b3e83bfb3bbfd44633ed1ad8.png:11149:image/png:1
-b:stages/lobby.tmx:stages/lobby-8e9996fe5400fcca255e3bfa8325dde0.tmx:9634:application/unknown:1
+b:stages/lobby.tmx:stages/lobby-a17a45304093332a91a818a85513597b.tmx:9634:application/unknown:1
 b:stages/open_the_gates.tmx:stages/open_the_gates-ff64cb9344984ccc9e1359b8fd5ac22f.tmx:15501:application/unknown:1
 i:stages/industrial.v2.png:stages/industrial.v2-a755e0455b1fd9c8dea3d033698f079f.png:22668:image/png:1
-b:stages/opening.tmx:stages/opening-3d8375cbed867395b44bcbd4c6d77a8f.tmx:6127:application/unknown:1
+b:stages/opening.tmx:stages/opening-4757b616e29cce1bb6c69763e1dfbb40.tmx:6127:application/unknown:1
 b:stages/beginner_escapist.tmx:stages/beginner_escapist-2e8edb666b5bc179b44a830190894d77.tmx:9074:application/unknown:1
 b:stages/step_by_step.tmx:stages/step_by_step-857a46e02c2ab5c059ef101fee4bd213.tmx:4666:application/unknown:1
-b:stages/die_step_by_step.tmx:stages/die_step_by_step-715990f6c170de8f6ea3185a79fb6c87.tmx:5094:application/unknown:1
+b:stages/die_step_by_step.tmx:stages/die_step_by_step-6cc0b2597817bea28dc57d02da723589.tmx:5103:application/unknown:1
 b:stages/slow_life.tmx:stages/slow_life-110a1ac8eb464d64c73440afe21b8e79.tmx:4095:application/unknown:1
 b:stages/the_swing.tmx:stages/the_swing-fa2a89cd527b4bf1e72827b9090dc7d3.tmx:7586:application/unknown:1
 b:stages/cheek_to_cheek.tmx:stages/cheek_to_cheek-5009d83a2bc72fa81ebb8ee8f6f3c306.tmx:4048:application/unknown:1
