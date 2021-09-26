@@ -239,7 +239,7 @@ public class StageLoader {
                 .add(engine.createComponent(Renderable.class)
                         .setText(stage +
                                 decoration + title + decoration +
-                                "\n" + history +
+                                "\n" + history.replace("&quot;", "\"") +
                                 "\n" + clickText)
                         .setSize(width, height)
                 )
