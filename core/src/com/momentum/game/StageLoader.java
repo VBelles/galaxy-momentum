@@ -229,7 +229,7 @@ public class StageLoader {
 
         String clickText = level == 0 ? "By\nVicent Bellés Bellés\nDaniel Tomás Ozalla"
                 : level == resources.stages.size() - 1 ? ""
-                : "\n\n-click anywhere to start-";
+                : "\n\n\n-click anywhere to start-";
 
         String title = map.getProperties().get("title", "", String.class) + "\n";
         String history = map.getProperties().get("history", "", String.class) + "\n";
