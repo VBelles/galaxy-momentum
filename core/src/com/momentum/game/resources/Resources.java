@@ -123,6 +123,9 @@ public class Resources implements Disposable {
 
     @Override
     public void dispose() {
+        if (music != null) {
+            music.dispose();
+        }
         assetManager.dispose();
     }
 
