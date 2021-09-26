@@ -201,37 +201,55 @@ public class StageLoader {
             );
         }
 
-        engine.addEntity(new Entity()
-                .add(engine.createComponent(Renderable.class)
-                        .setSize(width, height * 0.5f)
-                        .setTexture(resources.veil)
-                )
-                .add(engine.createComponent(Transform.class)
-                        .setPosition(width * 0.5f, height * 0.5f)
-                )
-                .add(engine.createComponent(ClickToStart.class))
-                .add(engine.createComponent(Tag.class).addTag(level))
-        );
+        // Veil
+        if (level > 0) {
+            engine.addEntity(new Entity()
+                    .add(engine.createComponent(Renderable.class)
+                            .setSize(width, height * 0.5f)
+                            .setTexture(resources.veil)
+                    )
+                    .add(engine.createComponent(Transform.class)
+                            .setPosition(width * 0.5f, height * 0.5f)
+                    )
+                    .add(engine.createComponent(ClickToStart.class))
+                    .add(engine.createComponent(Tag.class).addTag(level))
+            );
+        }
 
-        String stage = "Chapter " + (level + 1 < 10 ? "0" : "") + (level + 1) + "\n\n";
+        // Title
+        String stage;
+        if (level == 0) {
+            stage = "";
+        } else if (level == resources.stages.size() - 1) {
+            stage = "THE END";
+        } else {
+            stage = "Chapter " + (level < 10 ? "0" : "") + level;
+        }
+        stage += "\n\n";
+
+        String clickText = level == 0 ? "By\nVicent Belles Belles\nDaniel Tomas Ozalla" : "\n\n-click anywhere to start-";
+
         String title = map.getProperties().get("title", "", String.class) + "\n";
         String history = map.getProperties().get("history", "", String.class) + "\n";
         String decoration = String.join("", Collections.nCopies(title.length(), "-")) + "\n";
-        engine.addEntity(new Entity()
+
+        Entity titleEntity = new Entity()
                 .add(engine.createComponent(Renderable.class)
                         .setText(stage +
                                 decoration + title + decoration +
                                 "\n" + history +
-                                "\n\n\n-click anywhere to start-")
+                                "\n" + clickText)
                         .setSize(width, height)
                 )
                 .add(engine.createComponent(Transform.class)
                         .setPosition(0, height * 0.75f)
                 )
-                .add(engine.createComponent(ClickToStart.class))
-                .add(engine.createComponent(Tag.class).addTag(level))
-        );
+                .add(engine.createComponent(Tag.class).addTag(level));
 
+        if (level > 0) {
+            titleEntity.add(engine.createComponent(ClickToStart.class));
+        }
+        engine.addEntity(titleEntity);
 
         resources.playMusic(Math.min(level / 4, 3) + 1);
     }
