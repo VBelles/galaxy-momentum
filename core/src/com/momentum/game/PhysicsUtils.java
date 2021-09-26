@@ -1,11 +1,14 @@
 package com.momentum.game;
 
 import com.badlogic.ashley.core.Entity;
-import com.dongbat.jbump.Rect;
-import com.dongbat.jbump.Response;
-import com.dongbat.jbump.World;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.viewport.Viewport;
+import com.dongbat.jbump.*;
 import com.momentum.game.components.Collider;
 import com.momentum.game.components.Transform;
+
+import java.util.ArrayList;
 
 
 public class PhysicsUtils {
@@ -33,5 +36,14 @@ public class PhysicsUtils {
                 rect.x + collider.width / 2 - collider.offset.x,
                 rect.y + collider.height / 2 - collider.offset.y
         );
+    }
+
+    @SuppressWarnings("rawtypes")
+    public static ArrayList<Item> getTouchedItems(World<Entity> world, Viewport viewport) {
+        Vector2 coordinates = viewport.unproject(new Vector2(Gdx.input.getX(), Gdx.input.getY()));
+        ArrayList<Item> items = new ArrayList<>();
+        world.queryPoint(coordinates.x, coordinates.y, CollisionFilter.defaultFilter, items);
+        return items;
+
     }
 }

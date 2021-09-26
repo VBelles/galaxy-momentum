@@ -89,6 +89,7 @@ public class PlayerSystem extends IteratingSystem {
         if (toggleableGravityFields) {
             if (Gdx.input.justTouched()) {
                 Vector2 worldCoordinates = getWorldInputCoordinates();
+                clickedItems = PhysicsUtils.getTouchedItems(world, viewport);
                 world.queryPoint(worldCoordinates.x, worldCoordinates.y, CollisionFilter.defaultFilter, clickedItems);
                 for (Item clickedItem : clickedItems) {
                     Entity clickedEntity = (Entity) clickedItem.userData;
@@ -104,8 +105,7 @@ public class PlayerSystem extends IteratingSystem {
                 }
             }
         } else if (Gdx.input.isTouched()) {
-            Vector2 worldCoordinates = getWorldInputCoordinates();
-            world.queryPoint(worldCoordinates.x, worldCoordinates.y, CollisionFilter.defaultFilter, clickedItems);
+            clickedItems = PhysicsUtils.getTouchedItems(world, viewport);
         }
 
         //for each pull point we add the accelerations it generates on the player

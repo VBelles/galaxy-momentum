@@ -16,5 +16,6 @@
 	<extend-configuration-property name="gdx.reflect.include" value="com.momentum.game.components.Animated" />
 	<extend-configuration-property name="gdx.reflect.include" value="com.momentum.game.components.Killer" />
 	<extend-configuration-property name="gdx.reflect.include" value="com.momentum.game.components.ClickToStart" />
+	<extend-configuration-property name="gdx.reflect.include" value="com.momentum.game.components.Button" />
 	<inherits name="com.dongbat.jbump" />
 </module>

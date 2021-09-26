@@ -141,6 +141,35 @@ public class StageLoader {
                 .add(engine.createComponent(Tag.class).addTag(level))
         );
 
+
+        engine.addEntity(new Entity()
+                .add(engine.createComponent(Renderable.class)
+                        .setText("R")
+                        .setSize(20, 20)
+                )
+                .add(engine.createComponent(Transform.class)
+                        .setPosition(width - 22, height - 8)
+                )
+                .add(engine.createComponent(Tag.class).addTag(level))
+        );
+
+        engine.addEntity(new Entity()
+                .add(engine.createComponent(Renderable.class)
+                        .setTexture(resources.veil)
+                        .setSize(15, 15)
+                )
+                .add(engine.createComponent(Transform.class)
+                        .setPosition(width - 11, height - 11)
+                )
+                .add(engine.createComponent(Collider.class)
+                        .setSize(30, 30)
+                        .setSensor(true)
+                )
+                .add(engine.createComponent(Button.class).setId(Button.RESTART))
+                .add(engine.createComponent(Tag.class).addTag(level))
+        );
+
+
         resources.playMusic(Math.min(level / 4, 3) + 1);
     }
 
