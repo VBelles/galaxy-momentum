@@ -115,6 +115,7 @@ public class Resources implements Disposable {
             music.stop();
             music.dispose();
         }
+        musicIndex = index;
         music = Gdx.audio.newMusic(Gdx.files.internal("music/momentum_" + index + ".mp3"));
         music.setLooping(true);
         music.play();
