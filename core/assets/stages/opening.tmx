@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="32" height="18" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="59">
+ <properties>
+  <property name="title" value="MOMENTUM GALAXY"/>
+ </properties>
+ <tileset firstgid="1" source="industrial.v2.tsx"/>
+ <tileset firstgid="1025" source="Dungeon Sprites.tsx"/>
+ <layer id="3" name="background" width="32" height="18">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="1" name="details" width="32" height="18">
+  <properties>
+   <property name="physics" type="bool" value="true"/>
+  </properties>
+  <data encoding="csv">
+54,0,20,20,20,20,20,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20,20,
+54,54,54,54,54,0,54,54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,54,20,
+54,0,54,54,54,0,0,54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20,
+54,54,54,54,54,54,54,54,0,0,0,54,54,54,54,54,54,0,0,0,0,54,54,54,54,54,54,0,0,1610613892,54,20,
+54,0,54,54,3221226628,3221226628,3221226628,3221226628,0,0,0,54,54,54,54,54,54,0,0,0,0,54,54,54,54,54,54,0,0,0,0,20,
+54,54,54,54,0,0,0,0,0,0,0,3221226628,3221226628,3221226628,3221226628,3221226628,3221226628,0,0,0,0,3221226628,3221226628,3221226628,3221226628,3221226628,3221226628,0,0,1610613892,54,20,
+54,0,54,54,1156,1156,1156,1156,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20,
+54,54,54,54,54,54,54,54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20,
+54,54,54,54,54,2684355716,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20,
+54,54,1156,54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20,
+54,1156,54,54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1610613892,54,20,
+54,54,1156,54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20,
+54,1156,54,54,0,0,0,0,54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1610613892,54,20,
+54,54,1156,54,0,0,0,54,54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,54,0,0,0,20,
+54,1156,54,54,54,0,0,54,54,54,0,0,54,0,0,0,0,0,0,0,0,0,0,0,0,0,54,54,0,0,54,20,
+54,20,20,20,54,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20
+</data>
+ </layer>
+ <objectgroup id="2" name="objects">
+  <object id="2" name="spawn" gid="513" x="96" y="152" width="16" height="16"/>
+  <object id="36" name="goal" gid="1158" x="400" y="152" width="16" height="16"/>
+  <object id="44" name="gravity_constant" gid="330" x="312" y="152" width="16" height="16">
+   <properties>
+    <property name="constant" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="45" name="gravity_constant" gid="330" x="296" y="248" width="16" height="16">
+   <properties>
+    <property name="constant" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="46" name="gravity_constant" gid="330" x="424" y="40" width="16" height="16">
+   <properties>
+    <property name="constant" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="49" name="door_1" gid="105" x="96" y="48" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="50" name="door_1" gid="138" x="64" y="96" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="51" name="door_1" gid="138" x="80" y="96" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="52" name="door_1" gid="138" x="96" y="96" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="53" name="door_3" gid="105" x="16" y="112" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="54" name="door_3" gid="105" x="16" y="80" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="55" name="door_3" gid="105" x="16" y="48" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="56" name="door_3" gid="105" x="16" y="16" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="57" name="door_3" gid="105" x="0" y="144" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="58" name="door_3" gid="105" x="0" y="160" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
