@@ -58,7 +58,7 @@
   <object id="6" name="movable" x="176" y="72">
    <polyline points="0,0 0.5,144"/>
   </object>
-  <object id="7" x="352" y="124" width="123.5" height="59">
+  <object id="7" x="352" y="128" width="123.5" height="59">
    <text fontfamily="MS Shell Dlg 2" wrap="1" halign="center" valign="center">Combine forces to reach the portal</text>
   </object>
   <object id="9" name="gravity" gid="526" x="408" y="200" width="16" height="16"/>

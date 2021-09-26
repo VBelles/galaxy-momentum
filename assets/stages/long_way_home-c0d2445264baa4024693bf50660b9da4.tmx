@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="32" height="18" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="11">
  <properties>
+  <property name="history" value="Son of The Tree, you shall return home."/>
   <property name="title" value="Long way home"/>
  </properties>
  <tileset firstgid="1" source="industrial.v2.tsx"/>
@@ -58,7 +59,7 @@
   <object id="6" name="movable" x="176" y="64">
    <polyline points="0,0 0.5,160"/>
   </object>
-  <object id="7" x="361" y="72.5" width="123.5" height="40">
+  <object id="7" x="356" y="88" width="123.5" height="40">
    <text fontfamily="MS Shell Dlg 2" wrap="1" halign="center" valign="center">Touch to activate the gravity field</text>
   </object>
   <object id="10" name="goal" gid="1158" x="280" y="152" width="16" height="16"/>
