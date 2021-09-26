@@ -222,7 +222,7 @@ public class StageLoader {
                         .setText(stage +
                                 decoration + title + decoration +
                                 "\n" + history +
-                                "\n\n\nclick to start")
+                                "\n\n\n-click anywhere to start-")
                         .setSize(width, height)
                 )
                 .add(engine.createComponent(Transform.class)

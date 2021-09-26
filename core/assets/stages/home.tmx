@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="32" height="18" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="182">
  <properties>
+  <property name="history" value="Time has come. Carry your species will."/>
   <property name="title" value="Home"/>
  </properties>
  <tileset firstgid="1" source="industrial.v2.tsx"/>
@@ -55,9 +56,6 @@
  <objectgroup id="2" name="objects">
   <object id="2" name="spawn" gid="513" x="20" y="152" width="16" height="16"/>
   <object id="40" name="gravity" gid="526" x="40" y="40" width="16" height="16"/>
-  <object id="44" x="148" y="76" width="123.5" height="59">
-   <text fontfamily="MS Shell Dlg 2" wrap="1" halign="center" valign="center">Your time has come</text>
-  </object>
   <object id="47" name="gravity" gid="526" x="104" y="40" width="16" height="16"/>
   <object id="48" name="gravity" gid="526" x="136" y="40" width="16" height="16"/>
   <object id="49" name="gravity" gid="526" x="40" y="104" width="16" height="16"/>
@@ -430,9 +428,6 @@
    <properties>
     <property name="horizontal" type="bool" value="false"/>
    </properties>
-  </object>
-  <object id="170" x="148" y="192" width="123.5" height="59">
-   <text fontfamily="MS Shell Dlg 2" wrap="1" halign="center" valign="center">You're home ^^</text>
   </object>
   <object id="171" name="gravity_constant" gid="330" x="200" y="152" width="16" height="16">
    <properties>

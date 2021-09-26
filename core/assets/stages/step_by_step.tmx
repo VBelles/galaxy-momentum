@@ -62,7 +62,7 @@
   <object id="44" name="gravity" gid="526" x="200" y="248" width="16" height="16"/>
   <object id="45" name="gravity" gid="526" x="392" y="56" width="16" height="16"/>
   <object id="46" name="gravity" gid="526" x="440" y="216" width="16" height="16"/>
-  <object id="48" x="48" y="40" width="144" height="56">
+  <object id="48" x="48" y="48" width="144" height="56">
    <text wrap="1" halign="center">Touch gravity fields again to deactivate them.</text>
   </object>
  </objectgroup>
