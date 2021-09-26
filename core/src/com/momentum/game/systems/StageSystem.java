@@ -91,7 +91,6 @@ public class StageSystem extends IteratingSystem {
             }
         }
         // Load new level
-        resources.playMusic(Math.min(level / 4, 3) + 1);
         StageLoader.load(getEngine(), resources, level);
 
         // Store the furthest stage reached

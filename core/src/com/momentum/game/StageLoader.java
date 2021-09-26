@@ -140,6 +140,8 @@ public class StageLoader {
                 .add(engine.createComponent(ClickToStart.class))
                 .add(engine.createComponent(Tag.class).addTag(level))
         );
+
+        resources.playMusic(Math.min(level / 4, 3) + 1);
     }
 
     private static Vector2 getWorldPosition(TiledMapTile tile, int row, int column) {

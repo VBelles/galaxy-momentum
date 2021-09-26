@@ -108,7 +108,7 @@ public class Resources implements Disposable {
     }
 
     public void playMusic(int index) {
-        if(index == musicIndex){
+        if (index == musicIndex) {
             return;
         }
         if (music != null) {
