@@ -16,7 +16,7 @@ b:stages/cheek_to_cheek.tmx:stages/cheek_to_cheek-5009d83a2bc72fa81ebb8ee8f6f3c3
 b:stages/choose_wisely.tmx:stages/choose_wisely-1d256070e6e3b8b38a080f6f2b8c9e30.tmx:5864:application/unknown:1
 b:stages/Dungeon Sprites.tsx:stages/Dungeon Sprites-a8496c13994c0c21de9461ac220adc36.tsx:353:application/unknown:1
 b:stages/00_Prefabs.tmx:stages/00_Prefabs-48b01f1f55d4f26eac3f2c8f27004380.tmx:5834:application/unknown:1
-t:stages/stages.txt:stages/stages-7012c24c6496cd26bd6e65acd10183c7.txt:306:text/plain:1
+t:stages/stages.txt:stages/stages-7e5657c6b9b91c6602bdca3bb76a59d5.txt:326:text/plain:1
 b:stages/balanced.tmx:stages/balanced-e57bfca1cf7a1bcf9637ea650e152c26.tmx:6030:application/unknown:1
 b:stages/long_way_home.tmx:stages/long_way_home-393cbd1b1a630e92cae1b45da2db43c0.tmx:3806:application/unknown:1
 b:stages/symmetric_choices.tmx:stages/symmetric_choices-677546e63ccb2a411e00d325f5c22d5a.tmx:4990:application/unknown:1
@@ -24,6 +24,7 @@ b:stages/tug_war.tmx:stages/tug_war-6e869bb33d687069aa314ff9b302a8e6.tmx:5540:ap
 b:stages/industrial.v2.tsx:stages/industrial.v2-c926852df5da24364e8fed29ed35830d.tsx:239:application/unknown:1
 b:stages/switch_it_up.tmx:stages/switch_it_up-0ed5c8f03f30fac52b6503d014144ed0.tmx:5138:application/unknown:1
 b:stages/01_Template.tmx:stages/01_Template-b517ca73405c6b2333d9145fd8ebf697.tmx:3879:application/unknown:1
+b:stages/boundless_faith.tmx:stages/boundless_faith-08eef4387a12d7708bef9bc1297b0008.tmx:6735:application/unknown:1
 b:stages/duality_of_the_black_hole.tmx:stages/duality_of_the_black_hole-977f59311461563a4e431814ca0d882f.tmx:4576:application/unknown:1
 d:sound:sound:0:application/unknown:1
 a:sound/killer2.mp3:sound/killer2-aa2169c814a67656326fc139b19fca00.mp3:4720:application/unknown:1
