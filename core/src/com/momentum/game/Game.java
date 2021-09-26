@@ -4,7 +4,6 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.dongbat.jbump.World;
 import com.momentum.game.components.Stage;
@@ -26,7 +25,6 @@ public class Game extends ApplicationAdapter {
     public void create() {
         Resources resources = new Resources();
         resources.finishLoading();
-        Preferences preferences = Gdx.app.getPreferences("preferences");
         viewport = new FitViewport(CAMERA_WIDTH, CAMERA_HEIGHT);
         engine = new PooledEngine();
         world = new World<>();
@@ -36,7 +34,7 @@ public class Game extends ApplicationAdapter {
         engine.addSystem(new PlayerSystem(viewport, world, resources));
         engine.addSystem(new SwitchSystem());
         engine.addSystem(new ControlsSystem(world, viewport));
-        engine.addSystem(new StageSystem(resources, preferences));
+        engine.addSystem(new StageSystem(resources));
         engine.addSystem(new AnimationSystem());
         engine.addSystem(new RenderSystem(viewport.getCamera()));
         engine.addSystem(new RenderDebugSystem(viewport.getCamera()));

@@ -5,7 +5,6 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.ashley.utils.ImmutableArray;
-import com.badlogic.gdx.Preferences;
 import com.momentum.game.StageLoader;
 import com.momentum.game.components.Goal;
 import com.momentum.game.components.Stage;
@@ -15,15 +14,13 @@ import com.momentum.game.resources.Resources;
 public class StageSystem extends IteratingSystem {
 
     private final Resources resources;
-    private final Preferences preferences;
 
     private Iterable<Entity> tagEntities;
     private ImmutableArray<Entity> goalEntities;
 
-    public StageSystem(Resources resources, Preferences preferences) {
+    public StageSystem(Resources resources) {
         super(Family.all(Stage.class).get());
         this.resources = resources;
-        this.preferences = preferences;
     }
 
     @Override
@@ -37,19 +34,9 @@ public class StageSystem extends IteratingSystem {
     protected void processEntity(Entity entity, float deltaTime) {
         Stage stage = Stage.mapper.get(entity);
         boolean goalsAchieved = areGoalsAchieved();
-        if (stage.level == -1) {
-            // Restart from last level
-            stage.level = 0;
-            /*stage.level = preferences.getInteger("level", 0);
-            // Restart from 0 at last level?
-            if (stage.level == resources.stages.size() - 1) {
-                stage.level = 0;
-            }*/
-            loadStage(-1, stage.level);
-        } else if ((goalsAchieved
-                || (stage.next && stageUnlocked(stage.level + 1))) && resources.stages.size() > stage.level + 1) {
+        if ((stage.level == -1 || goalsAchieved || stage.next) && resources.stages.size() > stage.level + 1) {
             // Load next stage
-            if (!stage.next) {
+            if (!stage.next && stage.level != -1) {
                 resources.goalSound.play();
             }
             stage.level++;
@@ -68,11 +55,6 @@ public class StageSystem extends IteratingSystem {
         stage.next = false;
         stage.previous = false;
 
-    }
-
-    private boolean stageUnlocked(int level) {
-        return true; // Weakness disgusts me
-        // return level <= preferences.getInteger("level", -1);
     }
 
     private boolean areGoalsAchieved() {
@@ -95,12 +77,5 @@ public class StageSystem extends IteratingSystem {
         }
         // Load new level
         StageLoader.load(getEngine(), resources, level);
-
-        // Store the furthest stage reached
-        int furthestLevel = preferences.getInteger("level", -1);
-        if (level > furthestLevel) {
-            preferences.putInteger("level", level);
-            preferences.flush();
-        }
     }
 }
