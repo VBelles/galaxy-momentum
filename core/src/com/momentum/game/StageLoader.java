@@ -139,62 +139,66 @@ public class StageLoader {
         );
 
         // Next button
+        boolean hasNext = level < resources.stages.size() - 1;
+
         engine.addEntity(new Entity()
                 .add(engine.createComponent(Renderable.class)
                         .setTexture(resources.veil)
                         .setSize(15, 15)
                 )
                 .add(engine.createComponent(Transform.class)
-                        .setPosition(width - 11, 11)
+                        .setPosition( 11, height - 11)
                 )
                 .add(engine.createComponent(Collider.class)
                         .setSize(30, 30)
                         .setSensor(true)
                 )
-                .add(engine.createComponent(Button.class).setAction(Button.NEXT))
+                .add(engine.createComponent(Button.class).setAction(hasNext ? Button.NEXT : Button.PREVIOUS))
                 .add(engine.createComponent(Tag.class).addTag(level))
         );
 
         engine.addEntity(new Entity()
                 .add(engine.createComponent(Renderable.class)
-                        .setText("N")
+                        .setText(hasNext ? "N" : "P")
                         .setSize(20, 20)
                 )
                 .add(engine.createComponent(Transform.class)
-                        .setPosition(width - 21, 14)
+                        .setPosition( 1, height - 8)
                 )
                 .add(engine.createComponent(Tag.class).addTag(level))
         );
+
 
         // Previous button
-        engine.addEntity(new Entity()
-                .add(engine.createComponent(Renderable.class)
-                        .setTexture(resources.veil)
-                        .setSize(15, 15)
-                )
-                .add(engine.createComponent(Transform.class)
-                        .setPosition(width - 40, 11)
-                )
-                .add(engine.createComponent(Collider.class)
-                        .setSize(30, 30)
-                        .setSensor(true)
-                )
-                .add(engine.createComponent(Button.class).setAction(Button.PREVIOUS))
-                .add(engine.createComponent(Tag.class).addTag(level))
-        );
+        if (level > 0 && hasNext) {
+            engine.addEntity(new Entity()
+                    .add(engine.createComponent(Renderable.class)
+                            .setTexture(resources.veil)
+                            .setSize(15, 15)
+                    )
+                    .add(engine.createComponent(Transform.class)
+                            .setPosition( 40, height - 11)
+                    )
+                    .add(engine.createComponent(Collider.class)
+                            .setSize(30, 30)
+                            .setSensor(true)
+                    )
+                    .add(engine.createComponent(Button.class).setAction(Button.PREVIOUS))
+                    .add(engine.createComponent(Tag.class).addTag(level))
+            );
 
 
-        engine.addEntity(new Entity()
-                .add(engine.createComponent(Renderable.class)
-                        .setText("P")
-                        .setSize(20, 20)
-                )
-                .add(engine.createComponent(Transform.class)
-                        .setPosition(width - 50, 14)
-                )
-                .add(engine.createComponent(Tag.class).addTag(level))
-        );
-
+            engine.addEntity(new Entity()
+                    .add(engine.createComponent(Renderable.class)
+                            .setText("P")
+                            .setSize(20, 20)
+                    )
+                    .add(engine.createComponent(Transform.class)
+                            .setPosition( 30, height - 8)
+                    )
+                    .add(engine.createComponent(Tag.class).addTag(level))
+            );
+        }
 
         engine.addEntity(new Entity()
                 .add(engine.createComponent(Renderable.class)
