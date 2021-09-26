@@ -110,6 +110,92 @@ public class StageLoader {
         int width = (int) map.getProperties().get("width") * tileSize;
         int height = (int) map.getProperties().get("height") * tileSize;
 
+        // Restart button
+        engine.addEntity(new Entity()
+                .add(engine.createComponent(Renderable.class)
+                        .setTexture(resources.veil)
+                        .setSize(15, 15)
+                )
+                .add(engine.createComponent(Transform.class)
+                        .setPosition(width - 11, height - 11)
+                )
+                .add(engine.createComponent(Collider.class)
+                        .setSize(30, 30)
+                        .setSensor(true)
+                )
+                .add(engine.createComponent(Button.class).setAction(Button.RESTART))
+                .add(engine.createComponent(Tag.class).addTag(level))
+        );
+
+        engine.addEntity(new Entity()
+                .add(engine.createComponent(Renderable.class)
+                        .setText("R")
+                        .setSize(20, 20)
+                )
+                .add(engine.createComponent(Transform.class)
+                        .setPosition(width - 22, height - 8)
+                )
+                .add(engine.createComponent(Tag.class).addTag(level))
+        );
+
+        // Next button
+        engine.addEntity(new Entity()
+                .add(engine.createComponent(Renderable.class)
+                        .setTexture(resources.veil)
+                        .setSize(15, 15)
+                )
+                .add(engine.createComponent(Transform.class)
+                        .setPosition(width - 11, 11)
+                )
+                .add(engine.createComponent(Collider.class)
+                        .setSize(30, 30)
+                        .setSensor(true)
+                )
+                .add(engine.createComponent(Button.class).setAction(Button.NEXT))
+                .add(engine.createComponent(Tag.class).addTag(level))
+        );
+
+        engine.addEntity(new Entity()
+                .add(engine.createComponent(Renderable.class)
+                        .setText("N")
+                        .setSize(20, 20)
+                )
+                .add(engine.createComponent(Transform.class)
+                        .setPosition(width - 21, 14)
+                )
+                .add(engine.createComponent(Tag.class).addTag(level))
+        );
+
+        // Previous button
+        engine.addEntity(new Entity()
+                .add(engine.createComponent(Renderable.class)
+                        .setTexture(resources.veil)
+                        .setSize(15, 15)
+                )
+                .add(engine.createComponent(Transform.class)
+                        .setPosition(width - 40, 11)
+                )
+                .add(engine.createComponent(Collider.class)
+                        .setSize(30, 30)
+                        .setSensor(true)
+                )
+                .add(engine.createComponent(Button.class).setAction(Button.PREVIOUS))
+                .add(engine.createComponent(Tag.class).addTag(level))
+        );
+
+
+        engine.addEntity(new Entity()
+                .add(engine.createComponent(Renderable.class)
+                        .setText("P")
+                        .setSize(20, 20)
+                )
+                .add(engine.createComponent(Transform.class)
+                        .setPosition(width - 50, 14)
+                )
+                .add(engine.createComponent(Tag.class).addTag(level))
+        );
+
+
         engine.addEntity(new Entity()
                 .add(engine.createComponent(Renderable.class)
                         .setSize(width, height * 0.5f)
@@ -138,34 +224,6 @@ public class StageLoader {
                         .setPosition(0, height * 0.75f)
                 )
                 .add(engine.createComponent(ClickToStart.class))
-                .add(engine.createComponent(Tag.class).addTag(level))
-        );
-
-
-        engine.addEntity(new Entity()
-                .add(engine.createComponent(Renderable.class)
-                        .setText("R")
-                        .setSize(20, 20)
-                )
-                .add(engine.createComponent(Transform.class)
-                        .setPosition(width - 22, height - 8)
-                )
-                .add(engine.createComponent(Tag.class).addTag(level))
-        );
-
-        engine.addEntity(new Entity()
-                .add(engine.createComponent(Renderable.class)
-                        .setTexture(resources.veil)
-                        .setSize(15, 15)
-                )
-                .add(engine.createComponent(Transform.class)
-                        .setPosition(width - 11, height - 11)
-                )
-                .add(engine.createComponent(Collider.class)
-                        .setSize(30, 30)
-                        .setSensor(true)
-                )
-                .add(engine.createComponent(Button.class).setId(Button.RESTART))
                 .add(engine.createComponent(Tag.class).addTag(level))
         );
 

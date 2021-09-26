@@ -5,8 +5,6 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.ashley.utils.ImmutableArray;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Preferences;
 import com.momentum.game.StageLoader;
 import com.momentum.game.components.Goal;
@@ -48,22 +46,26 @@ public class StageSystem extends IteratingSystem {
                 stage.level = 0;
             }*/
             loadStage(-1, stage.level);
-        } else if (goalsAchieved
-                || (Gdx.input.isKeyJustPressed(Input.Keys.N) && stageUnlocked(stage.level + 1))) {
+        } else if ((goalsAchieved
+                || (stage.next && stageUnlocked(stage.level + 1))) && resources.stages.size() > stage.level + 1) {
             // Load next stage
             resources.goalSound.play();
             stage.level++;
+            stage.next = false;
             loadStage(stage.level - 1, stage.level);
-        } else if (stage.failure || Gdx.input.isKeyJustPressed(Input.Keys.R)) {
+        } else if (stage.failure) {
             // Reset stage
             loadStage(stage.level, stage.level);
-            stage.failure = false;
-        } else if (Gdx.input.isKeyJustPressed(Input.Keys.P) && stage.level > 0) {
+        } else if (stage.previous && stage.level > 0) {
             // Load previous stage
             resources.goalSound.play();
             stage.level--;
             loadStage(stage.level + 1, stage.level);
         }
+
+        stage.failure = false;
+        stage.next = false;
+        stage.previous = false;
 
     }
 

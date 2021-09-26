@@ -8,6 +8,8 @@ public class Stage implements Component, Pool.Poolable {
 
     public int level = -1;
     public boolean failure = false;
+    public boolean next = false;
+    public boolean previous = false;
 
     public Stage setLevel(int level) {
         this.level = level;
@@ -18,6 +20,8 @@ public class Stage implements Component, Pool.Poolable {
     public void reset() {
         level = -1;
         failure = false;
+        next = false;
+        previous = false;
     }
 
     public static final ComponentMapper<Stage> mapper = ComponentMapper.getFor(Stage.class);
