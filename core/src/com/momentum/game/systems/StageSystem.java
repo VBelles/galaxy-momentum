@@ -49,7 +49,9 @@ public class StageSystem extends IteratingSystem {
         } else if ((goalsAchieved
                 || (stage.next && stageUnlocked(stage.level + 1))) && resources.stages.size() > stage.level + 1) {
             // Load next stage
-            resources.goalSound.play();
+            if (!stage.next) {
+                resources.goalSound.play();
+            }
             stage.level++;
             stage.next = false;
             loadStage(stage.level - 1, stage.level);
@@ -58,7 +60,6 @@ public class StageSystem extends IteratingSystem {
             loadStage(stage.level, stage.level);
         } else if (stage.previous && stage.level > 0) {
             // Load previous stage
-            resources.goalSound.play();
             stage.level--;
             loadStage(stage.level + 1, stage.level);
         }
