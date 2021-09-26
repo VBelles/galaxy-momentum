@@ -8,6 +8,7 @@ i:stages/Dungeon Sprites.png:stages/Dungeon Sprites-bf40fba1b3e83bfb3bbfd44633ed
 b:stages/lobby.tmx:stages/lobby-8e9996fe5400fcca255e3bfa8325dde0.tmx:9634:application/unknown:1
 b:stages/open_the_gates.tmx:stages/open_the_gates-ff64cb9344984ccc9e1359b8fd5ac22f.tmx:15501:application/unknown:1
 i:stages/industrial.v2.png:stages/industrial.v2-a755e0455b1fd9c8dea3d033698f079f.png:22668:image/png:1
+b:stages/opening.tmx:stages/opening-6fd3761cdd493bfb09197344648ec35c.tmx:6067:application/unknown:1
 b:stages/beginner_escapist.tmx:stages/beginner_escapist-2e8edb666b5bc179b44a830190894d77.tmx:9074:application/unknown:1
 b:stages/step_by_step.tmx:stages/step_by_step-6456c2fd546228571a9b32c493070ae9.tmx:4666:application/unknown:1
 b:stages/die_step_by_step.tmx:stages/die_step_by_step-715990f6c170de8f6ea3185a79fb6c87.tmx:5094:application/unknown:1
@@ -17,7 +18,7 @@ b:stages/cheek_to_cheek.tmx:stages/cheek_to_cheek-5009d83a2bc72fa81ebb8ee8f6f3c3
 b:stages/choose_wisely.tmx:stages/choose_wisely-1818daf65ce93c81dd1d5f257f4d798d.tmx:7138:application/unknown:1
 b:stages/Dungeon Sprites.tsx:stages/Dungeon Sprites-a8496c13994c0c21de9461ac220adc36.tsx:353:application/unknown:1
 b:stages/00_Prefabs.tmx:stages/00_Prefabs-48b01f1f55d4f26eac3f2c8f27004380.tmx:5834:application/unknown:1
-t:stages/stages.txt:stages/stages-528f7752e64530838844f1a0ad96acf5.txt:345:text/plain:1
+t:stages/stages.txt:stages/stages-4657c3d9680c222065c87fba925323ed.txt:357:text/plain:1
 b:stages/balanced.tmx:stages/balanced-e57bfca1cf7a1bcf9637ea650e152c26.tmx:6030:application/unknown:1
 b:stages/long_way_home.tmx:stages/long_way_home-393cbd1b1a630e92cae1b45da2db43c0.tmx:3806:application/unknown:1
 b:stages/home.tmx:stages/home-301411b082fb002da2bf95e88582b6b6.tmx:21113:application/unknown:1
