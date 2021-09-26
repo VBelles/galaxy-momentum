@@ -19,7 +19,7 @@ b:stages/00_Prefabs.tmx:stages/00_Prefabs-48b01f1f55d4f26eac3f2c8f27004380.tmx:5
 t:stages/stages.txt:stages/stages-7e5657c6b9b91c6602bdca3bb76a59d5.txt:326:text/plain:1
 b:stages/balanced.tmx:stages/balanced-e57bfca1cf7a1bcf9637ea650e152c26.tmx:6030:application/unknown:1
 b:stages/long_way_home.tmx:stages/long_way_home-393cbd1b1a630e92cae1b45da2db43c0.tmx:3806:application/unknown:1
-b:stages/symmetric_choices.tmx:stages/symmetric_choices-677546e63ccb2a411e00d325f5c22d5a.tmx:4990:application/unknown:1
+b:stages/symmetric_choices.tmx:stages/symmetric_choices-f3cb1142c42eebe6fe3a5803548fb854.tmx:4990:application/unknown:1
 b:stages/tug_war.tmx:stages/tug_war-6e869bb33d687069aa314ff9b302a8e6.tmx:5540:application/unknown:1
 b:stages/industrial.v2.tsx:stages/industrial.v2-c926852df5da24364e8fed29ed35830d.tsx:239:application/unknown:1
 b:stages/switch_it_up.tmx:stages/switch_it_up-0ed5c8f03f30fac52b6503d014144ed0.tmx:5138:application/unknown:1
@@ -48,6 +48,11 @@ a:sound/goal.mp3:sound/goal-d8555984497430e539e1b0e763aba7ae.mp3:37610:applicati
 a:sound/gravity_on_phaser.mp3:sound/gravity_on_phaser-ec2d33c338a01e4473a01a114a803726.mp3:10219:application/unknown:1
 a:sound/gravity_on.mp3:sound/gravity_on-a11f6b289888bb0a52201643f41d476b.mp3:13393:application/unknown:1
 a:sound/goal_echo.mp3:sound/goal_echo-a44fffa84d8905d94c53efe445a2c40c.mp3:37111:application/unknown:1
+d:music:music:0:application/unknown:1
+a:music/momentum_3.mp3:music/momentum_3-481e97a450d7d8abc5f7129cc9c0c0ed.mp3:2137455:application/unknown:1
+a:music/momentum_1.mp3:music/momentum_1-33ad1d19e5cd351a3fc85fa82e34a1d5.mp3:1315893:application/unknown:1
+a:music/momentum_2.mp3:music/momentum_2-10079cdbb3799cec6e33a6d97b546000.mp3:1830169:application/unknown:1
+a:music/momentum_4.mp3:music/momentum_4-0e35b3289142cc8868bcc4e93d9d94ac.mp3:2338930:application/unknown:1
 i:veil.png:veil-c267d57dceb624552ca45cc378b524bb.png:2970:image/png:1
 d:font:font:0:application/unknown:1
 t:font/pixel.fnt:font/pixel-beb1f36877e163ccf3bf429f5c71d567.fnt:11132:application/unknown:1
