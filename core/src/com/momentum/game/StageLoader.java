@@ -140,6 +140,7 @@ public class StageLoader {
 
         // Next button
         boolean hasNext = level < resources.stages.size() - 1;
+        boolean hasPrevious = level > 0;
 
         engine.addEntity(new Entity()
                 .add(engine.createComponent(Renderable.class)
@@ -147,54 +148,54 @@ public class StageLoader {
                         .setSize(15, 15)
                 )
                 .add(engine.createComponent(Transform.class)
-                        .setPosition( 11, height - 11)
+                        .setPosition(11, height - 11)
                 )
                 .add(engine.createComponent(Collider.class)
                         .setSize(30, 30)
                         .setSensor(true)
                 )
-                .add(engine.createComponent(Button.class).setAction(hasNext ? Button.NEXT : Button.PREVIOUS))
+                .add(engine.createComponent(Button.class).setAction(hasPrevious ? Button.PREVIOUS : Button.NEXT))
                 .add(engine.createComponent(Tag.class).addTag(level))
         );
 
         engine.addEntity(new Entity()
                 .add(engine.createComponent(Renderable.class)
-                        .setText(hasNext ? "N" : "P")
+                        .setText(hasPrevious ? "P" : "N")
                         .setSize(20, 20)
                 )
                 .add(engine.createComponent(Transform.class)
-                        .setPosition( 1, height - 8)
+                        .setPosition(1, height - 8)
                 )
                 .add(engine.createComponent(Tag.class).addTag(level))
         );
 
 
         // Previous button
-        if (level > 0 && hasNext) {
+        if (hasNext && hasPrevious) {
             engine.addEntity(new Entity()
                     .add(engine.createComponent(Renderable.class)
                             .setTexture(resources.veil)
                             .setSize(15, 15)
                     )
                     .add(engine.createComponent(Transform.class)
-                            .setPosition( 40, height - 11)
+                            .setPosition(40, height - 11)
                     )
                     .add(engine.createComponent(Collider.class)
                             .setSize(30, 30)
                             .setSensor(true)
                     )
-                    .add(engine.createComponent(Button.class).setAction(Button.PREVIOUS))
+                    .add(engine.createComponent(Button.class).setAction(Button.NEXT))
                     .add(engine.createComponent(Tag.class).addTag(level))
             );
 
 
             engine.addEntity(new Entity()
                     .add(engine.createComponent(Renderable.class)
-                            .setText("P")
+                            .setText("N")
                             .setSize(20, 20)
                     )
                     .add(engine.createComponent(Transform.class)
-                            .setPosition( 30, height - 8)
+                            .setPosition(30, height - 8)
                     )
                     .add(engine.createComponent(Tag.class).addTag(level))
             );
