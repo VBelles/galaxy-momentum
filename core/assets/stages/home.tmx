@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="32" height="18" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="182">
  <properties>
-  <property name="history" value="Time has come. Carry your species will."/>
+  <property name="history" value="&quot;Time has come. Carry our species will.&quot;"/>
   <property name="title" value="Home"/>
  </properties>
  <tileset firstgid="1" source="industrial.v2.tsx"/>
