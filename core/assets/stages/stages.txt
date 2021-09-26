@@ -11,8 +11,10 @@ symmetric_choices.tmx
 slow_life.tmx
 open_the_gates.tmx
 die_step_by_step.tmx
-the_bridge.tmx
 balanced.tmx
 the_swing.tmx
-choose_wisely.tmx
 boundless_faith.tmx
+choose_wisely.tmx
+the_bridge.tmx
+lobby.tmx
+home.tmx

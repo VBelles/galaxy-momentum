@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="32" height="18" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="182">
+ <properties>
+  <property name="title" value="Home"/>
+ </properties>
+ <tileset firstgid="1" source="industrial.v2.tsx"/>
+ <tileset firstgid="1025" source="Dungeon Sprites.tsx"/>
+ <layer id="3" name="background" width="32" height="18">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="1" name="details" width="32" height="18">
+  <properties>
+   <property name="physics" type="bool" value="true"/>
+  </properties>
+  <data encoding="csv">
+54,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,
+54,54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,54,0,54,0,54,0,0,20,
+54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,54,0,54,54,0,0,20,
+54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,54,0,54,54,54,20,
+54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,54,0,54,0,20,
+54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,54,0,54,20,
+54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,54,0,20,
+54,54,0,0,0,0,0,0,0,0,0,54,0,0,54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,54,20,
+54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+54,54,0,0,0,0,0,0,0,0,0,54,0,0,54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,54,20,
+54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,54,0,20,
+54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,54,0,54,20,
+54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,54,0,54,0,20,
+54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,54,0,54,54,54,20,
+54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,54,0,54,54,0,0,20,
+54,54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,54,0,54,0,54,0,0,20,
+54,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20
+</data>
+ </layer>
+ <objectgroup id="2" name="objects">
+  <object id="2" name="spawn" gid="513" x="20" y="152" width="16" height="16"/>
+  <object id="40" name="gravity" gid="526" x="40" y="40" width="16" height="16"/>
+  <object id="44" x="148" y="76" width="123.5" height="59">
+   <text fontfamily="MS Shell Dlg 2" wrap="1" halign="center" valign="center">Your time has come</text>
+  </object>
+  <object id="47" name="gravity" gid="526" x="104" y="40" width="16" height="16"/>
+  <object id="48" name="gravity" gid="526" x="136" y="40" width="16" height="16"/>
+  <object id="49" name="gravity" gid="526" x="40" y="104" width="16" height="16"/>
+  <object id="50" name="gravity" gid="526" x="328" y="40" width="16" height="16"/>
+  <object id="51" name="gravity" gid="526" x="168" y="40" width="16" height="16"/>
+  <object id="52" name="gravity" gid="526" x="40" y="136" width="16" height="16"/>
+  <object id="53" name="gravity" gid="526" x="296" y="40" width="16" height="16"/>
+  <object id="54" name="gravity" gid="526" x="264" y="40" width="16" height="16"/>
+  <object id="55" name="gravity" gid="526" x="232" y="40" width="16" height="16"/>
+  <object id="56" name="gravity" gid="526" x="200" y="40" width="16" height="16"/>
+  <object id="57" name="gravity" gid="526" x="72" y="40" width="16" height="16"/>
+  <object id="58" name="gravity" gid="526" x="40" y="264" width="16" height="16"/>
+  <object id="59" name="gravity" gid="526" x="40" y="232" width="16" height="16"/>
+  <object id="60" name="gravity" gid="526" x="40" y="200" width="16" height="16"/>
+  <object id="61" name="gravity" gid="526" x="40" y="168" width="16" height="16"/>
+  <object id="62" name="gravity" gid="526" x="40" y="72" width="16" height="16"/>
+  <object id="63" name="gravity" gid="526" x="360" y="72" width="16" height="16"/>
+  <object id="64" name="gravity" gid="526" x="360" y="40" width="16" height="16"/>
+  <object id="65" name="gravity" gid="526" x="360" y="104" width="16" height="16"/>
+  <object id="66" name="gravity" gid="526" x="360" y="136" width="16" height="16"/>
+  <object id="67" name="gravity" gid="526" x="360" y="264" width="16" height="16"/>
+  <object id="68" name="gravity" gid="526" x="360" y="232" width="16" height="16"/>
+  <object id="69" name="gravity" gid="526" x="360" y="200" width="16" height="16"/>
+  <object id="70" name="gravity" gid="526" x="360" y="168" width="16" height="16"/>
+  <object id="71" name="gravity" gid="526" x="104" y="264" width="16" height="16"/>
+  <object id="72" name="gravity" gid="526" x="136" y="264" width="16" height="16"/>
+  <object id="73" name="gravity" gid="526" x="328" y="264" width="16" height="16"/>
+  <object id="74" name="gravity" gid="526" x="168" y="264" width="16" height="16"/>
+  <object id="75" name="gravity" gid="526" x="296" y="264" width="16" height="16"/>
+  <object id="76" name="gravity" gid="526" x="264" y="264" width="16" height="16"/>
+  <object id="77" name="gravity" gid="526" x="232" y="264" width="16" height="16"/>
+  <object id="78" name="gravity" gid="526" x="200" y="264" width="16" height="16"/>
+  <object id="79" name="gravity" gid="526" x="72" y="264" width="16" height="16"/>
+  <object id="82" name="door_1" gid="105" x="16" y="48" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="83" name="door_1" gid="105" x="16" y="64" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="84" name="door_1" gid="105" x="16" y="80" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="85" name="door_1" gid="105" x="16" y="96" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="86" name="door_1" gid="105" x="16" y="112" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="91" name="door_1" gid="105" x="16" y="192" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="92" name="door_1" gid="105" x="16" y="208" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="93" name="door_1" gid="105" x="16" y="224" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="94" name="door_1" gid="105" x="16" y="240" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="95" name="door_1" gid="105" x="16" y="256" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="96" name="door_1" gid="105" x="384" y="48" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="97" name="door_1" gid="105" x="384" y="64" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="98" name="door_1" gid="105" x="384" y="80" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="99" name="door_1" gid="105" x="384" y="96" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="100" name="door_1" gid="105" x="384" y="112" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="101" name="door_1" gid="105" x="384" y="128" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="102" name="door_1" gid="105" x="384" y="144" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="103" name="door_1" gid="105" x="384" y="160" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="104" name="door_1" gid="105" x="384" y="176" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="105" name="door_1" gid="105" x="384" y="192" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="106" name="door_1" gid="105" x="384" y="208" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="107" name="door_1" gid="105" x="384" y="224" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="108" name="door_1" gid="105" x="384" y="240" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="109" name="door_1" gid="105" x="384" y="256" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="111" name="door_1" gid="105" x="400" y="64" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="112" name="door_1" gid="105" x="400" y="80" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="113" name="door_1" gid="105" x="400" y="96" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="114" name="door_1" gid="105" x="400" y="112" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="115" name="door_1" gid="105" x="400" y="128" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="116" name="door_1" gid="105" x="400" y="144" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="117" name="door_1" gid="105" x="400" y="160" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="118" name="door_1" gid="105" x="400" y="176" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="119" name="door_1" gid="105" x="400" y="192" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="120" name="door_1" gid="105" x="400" y="208" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="121" name="door_1" gid="105" x="400" y="224" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="122" name="door_1" gid="105" x="400" y="240" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="124" name="door_1" gid="105" x="416" y="80" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="125" name="door_1" gid="105" x="416" y="96" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="126" name="door_1" gid="105" x="416" y="112" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="127" name="door_1" gid="105" x="416" y="128" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="128" name="door_1" gid="105" x="416" y="144" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="129" name="door_1" gid="105" x="416" y="160" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="130" name="door_1" gid="105" x="416" y="176" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="131" name="door_1" gid="105" x="416" y="192" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="132" name="door_1" gid="105" x="416" y="208" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="133" name="door_1" gid="105" x="416" y="224" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="137" name="door_1" gid="105" x="432" y="96" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="138" name="door_1" gid="105" x="432" y="112" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="139" name="door_1" gid="105" x="432" y="128" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="140" name="door_1" gid="105" x="432" y="144" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="141" name="door_1" gid="105" x="432" y="160" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="142" name="door_1" gid="105" x="432" y="176" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="143" name="door_1" gid="105" x="432" y="192" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="144" name="door_1" gid="105" x="432" y="208" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="148" name="door_1" gid="105" x="448" y="112" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="149" name="door_1" gid="105" x="448" y="128" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="150" name="door_1" gid="105" x="448" y="144" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="151" name="door_1" gid="105" x="448" y="160" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="152" name="door_1" gid="105" x="448" y="176" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="153" name="door_1" gid="105" x="448" y="192" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="157" name="door_1" gid="105" x="464" y="128" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="158" name="door_1" gid="105" x="464" y="144" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="159" name="door_1" gid="105" x="464" y="160" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="160" name="door_1" gid="105" x="464" y="176" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="164" name="door_1" gid="105" x="480" y="144" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="165" name="door_1" gid="105" x="480" y="160" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="168" name="door_4" gid="105" x="496" y="144" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="169" name="door_4" gid="105" x="496" y="160" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="170" x="148" y="192" width="123.5" height="59">
+   <text fontfamily="MS Shell Dlg 2" wrap="1" halign="center" valign="center">You're home ^^</text>
+  </object>
+  <object id="171" name="gravity_constant" gid="330" x="200" y="152" width="16" height="16">
+   <properties>
+    <property name="constant" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="172" name="door_3" gid="105" x="176" y="160" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="173" name="door_3" gid="138" x="192" y="176" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="174" name="door_3" gid="138" x="208" y="176" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="175" name="door_3" gid="105" x="224" y="144" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="176" name="door_3" gid="105" x="224" y="160" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="177" name="door_3" gid="105" x="176" y="144" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="178" name="door_3" gid="138" x="192" y="128" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="179" name="door_3" gid="138" x="208" y="128" width="16" height="16">
+   <properties>
+    <property name="horizontal" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="180" name="switch_4" gid="262" x="480" y="272" width="16" height="16"/>
+  <object id="181" name="switch_1" gid="262" x="496" y="16" width="16" height="16" rotation="180"/>
+ </objectgroup>
+</map>
