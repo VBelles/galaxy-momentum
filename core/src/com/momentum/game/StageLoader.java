@@ -227,7 +227,7 @@ public class StageLoader {
         }
         stage += "\n\n";
 
-        String clickText = level == 0 ? "By\nVicent Belles Belles\nDaniel Tomas Ozalla"
+        String clickText = level == 0 ? "By\nVicent Bellés Bellés\nDaniel Tomás Ozalla"
                 : level == resources.stages.size() - 1 ? ""
                 : "\n\n-click anywhere to start-";
 
