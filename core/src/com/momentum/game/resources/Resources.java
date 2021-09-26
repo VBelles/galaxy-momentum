@@ -3,6 +3,7 @@ package com.momentum.game.resources;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
@@ -36,9 +37,11 @@ public class Resources implements Disposable {
     public Sound gravityOn;
     public Sound gravityOff;
     public Sound goalSound;
+    private Music music;
+    private int musicIndex = -1;
 
 
-    static class LoaderHandler<T>{
+    static class LoaderHandler<T> {
         public String fileName;
         public LoadListener<T> listener;
     }
@@ -102,6 +105,19 @@ public class Resources implements Disposable {
 
     public <T> T get(AssetDescriptor<T> assetDescriptor) {
         return assetManager.get(assetDescriptor);
+    }
+
+    public void playMusic(int index) {
+        if(index == musicIndex){
+            return;
+        }
+        if (music != null) {
+            music.stop();
+            music.dispose();
+        }
+        music = Gdx.audio.newMusic(Gdx.files.internal("music/momentum_" + index + ".mp3"));
+        music.setLooping(true);
+        music.play();
     }
 
     @Override

@@ -41,9 +41,10 @@ public class StageSystem extends IteratingSystem {
         boolean goalsAchieved = areGoalsAchieved();
         if (stage.level == -1) {
             // Restart from last level
-            stage.level = preferences.getInteger("level", 0);
+            stage.level = 0;
+            /*stage.level = preferences.getInteger("level", 0);
             // Restart from 0 at last level?
-           /* if (stage.level == resources.stages.size() - 1) {
+            if (stage.level == resources.stages.size() - 1) {
                 stage.level = 0;
             }*/
             loadStage(-1, stage.level);
@@ -67,7 +68,8 @@ public class StageSystem extends IteratingSystem {
     }
 
     private boolean stageUnlocked(int level) {
-        return level <= preferences.getInteger("level", -1);
+        return true; // Weakness disgusts me
+        // return level <= preferences.getInteger("level", -1);
     }
 
     private boolean areGoalsAchieved() {
@@ -89,6 +91,7 @@ public class StageSystem extends IteratingSystem {
             }
         }
         // Load new level
+        resources.playMusic(Math.min(level / 4, 3) + 1);
         StageLoader.load(getEngine(), resources, level);
 
         // Store the furthest stage reached
