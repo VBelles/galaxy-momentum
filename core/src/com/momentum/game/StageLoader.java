@@ -462,7 +462,7 @@ public class StageLoader {
         float maxPull = constant ? 30 : 40;
 
         float scaleFactor = 1;
-        if (!constant) scaleFactor = 1.4f;
+        if (!constant) scaleFactor = 2.0f;
 
         // Add another entity for the background
         if (constant) {
