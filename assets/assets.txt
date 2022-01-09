@@ -63,7 +63,6 @@ a:music/momentum_2.mp3:music/momentum_2-10079cdbb3799cec6e33a6d97b546000.mp3:183
 a:music/momentum_4.mp3:music/momentum_4-0e35b3289142cc8868bcc4e93d9d94ac.mp3:2338930:application/unknown:1
 a:music/momentum_3.mp3:music/momentum_3-481e97a450d7d8abc5f7129cc9c0c0ed.mp3:2137455:application/unknown:1
 i:momentum.png:momentum-4f3abe33d80aef8ebec7eb8855eae4ac.png:5851:image/png:1
-i:dani.png:dani-6a02c83b8b78f4c5e4f82816d55ad2a2.png:186603:image/png:1
 t:com/badlogic/gdx/graphics/g3d/particles/particles.fragment.glsl:particles.fragment-b90524761fdf09b0a836056d590c30b8.glsl:820:application/unknown:1
 t:com/badlogic/gdx/graphics/g3d/particles/particles.vertex.glsl:particles.vertex-f25b8b2fae10b9bfa09bfdd484923148.glsl:2886:application/unknown:1
 t:com/badlogic/gdx/graphics/g3d/shaders/default.fragment.glsl:default.fragment-e1c018bd48044c8b67c7bbc53145e540.glsl:5874:application/unknown:1
