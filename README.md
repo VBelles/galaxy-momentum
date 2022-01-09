@@ -1,4 +1,4 @@
-# Galaxy Momentum
+# Momentum Galaxy
 Deployed at https://vbelles.github.io/galaxy-momentum/
 
-Game in development for [libGDX Jam 18](https://itch.io/jam/libgdx-jam-18)
+Game developed for [libGDX Jam 18](https://itch.io/jam/libgdx-jam-18)
