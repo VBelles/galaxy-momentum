@@ -1,5 +1,5 @@
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
@@ -18,9 +18,9 @@ android {
     defaultConfig {
         applicationId "com.momentum.game"
         minSdkVersion 14
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion 31
+        versionCode 100
+        versionName "1.0.0"
     }
     buildTypes {
         release {
